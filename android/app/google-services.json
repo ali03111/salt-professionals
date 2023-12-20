@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "841728114130",
+    "project_id": "salt-1ea5a",
+    "storage_bucket": "salt-1ea5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841728114130:android:ee5bf3f5741911a4e05c0b",
+        "android_client_info": {
+          "package_name": "com.codment.salt.customer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSyGR6K-XUCplkzgw_RQlV4Gec2dVjg3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841728114130:android:a7ddbbf4d2fe63e0e05c0b",
+        "android_client_info": {
+          "package_name": "com.codment.salt.stylelist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSyGR6K-XUCplkzgw_RQlV4Gec2dVjg3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
