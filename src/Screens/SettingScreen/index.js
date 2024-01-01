@@ -1,9 +1,82 @@
 import React from 'react';
 import {memo} from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
+import {ProfileCardView} from './ProfileCardView';
+import BackHeader from '../../Components/BackHeader';
+import {hp} from '../../Config/responsive';
+import IconBtnView from '../../Components/IconBtnView';
+import {
+  arrowLeftOld,
+  dollarCircle,
+  information,
+  lockWhite,
+  logOutWhite,
+  receiptWhite,
+  starWhite,
+  termsWhite,
+  trashRed,
+} from '../../Assets';
+import {MultiView} from './MultiView';
 
-const SettingScreen = () => {
-  return <View></View>;
+const centerView = [
+  {
+    title: 'Change Password',
+    leftIcon: lockWhite,
+    rightText: 'Change',
+  },
+  {
+    title: 'About Salt',
+    leftIcon: information,
+    rightIcon: arrowLeftOld,
+  },
+  {
+    title: 'Privacy Policy',
+    leftIcon: receiptWhite,
+    rightIcon: arrowLeftOld,
+  },
+  {
+    title: 'Terms and Conditions',
+    leftIcon: termsWhite,
+    rightIcon: arrowLeftOld,
+  },
+  {
+    title: 'Rate Us',
+    leftIcon: starWhite,
+    rightIcon: arrowLeftOld,
+  },
+];
+
+const bottomView = [
+  {
+    title: 'Log Out',
+    leftIcon: logOutWhite,
+  },
+  {
+    title: 'Delete Account',
+    leftIcon: trashRed,
+  },
+];
+
+const SettingScreen = ({navigation}) => {
+  return (
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      scrollEnabled
+      contentContainerStyle={{flexGrow: 1, paddingBottom: hp('10')}}>
+      <BackHeader headerTitle={'Setting'} />
+      <ProfileCardView
+        onpress={() => navigation.navigate('EditProfileScreen')}
+      />
+      <IconBtnView
+        viewStyle={{marginTop: hp('5')}}
+        title={'Total Earnings'}
+        leftIcon={dollarCircle}
+        rightIcon={arrowLeftOld}
+      />
+      <MultiView data={centerView} viewStyle={{height: hp('50')}} />
+      <MultiView data={bottomView} />
+    </ScrollView>
+  );
 };
 
 export default memo(SettingScreen);

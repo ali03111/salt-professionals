@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import {memo} from 'react';
-import {FlatList, ScrollView, Text, View} from 'react-native';
+import {FlatList, ScrollView, StatusBar, Text, View} from 'react-native';
 import HomeHeader from './homeHeader';
 import {HeadingView} from './headingView';
 import {UpComingAppCards} from './UpComingAppCard';
@@ -11,6 +11,9 @@ import {styles} from './styles';
 import ThemeButton from '../../Components/ThemeButton';
 import {arrowRightIcon} from '../../Assets';
 import {ProfileCardComp} from '../../Components/ProfileCardComp';
+import {ProfileProgressView} from './ProfileProgressView';
+import {Colors} from '../../Theme/Variables';
+import {AppointmentReqComp} from '../../Components/AppointmentReqComp';
 
 const HomeScreen = ({navigation}) => {
   const renderItem = useCallback(
@@ -21,13 +24,21 @@ const HomeScreen = ({navigation}) => {
   );
   const topRatedrenderItem = useCallback(
     ({item, index}) => {
-      return <ProfileCardComp data={item} />;
+      return (
+        <AppointmentReqComp
+          item={item}
+          viewStyle={{
+            marginRight: wp('3'),
+          }}
+        />
+      );
     },
     [UpcomingData],
   );
 
   return (
     <View style={{flex: 1}}>
+      <StatusBar backgroundColor={Colors.themeRed} barStyle={'light-content'} />
       <HomeHeader />
       <ScrollView
         contentContainerStyle={{paddingBottom: hp('5')}}
@@ -43,14 +54,11 @@ const HomeScreen = ({navigation}) => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.upComingFlatlistView}
         />
-        <ThemeButton
-          title={'Book an Appointment'}
-          style={styles.bookBtnView}
-          textStyle={styles.btnText}
-          image={arrowRightIcon}
-          imageStyle={styles.btnImage}
+        <ProfileProgressView />
+        <HeadingView
+          title={'Top-rated professionals '}
+          viewStyle={{marginTop: hp('6')}}
         />
-        <HeadingView title={'Top-rated professionals '} />
         <FlatList
           data={UpcomingData}
           renderItem={topRatedrenderItem}

@@ -5,6 +5,7 @@ import {Colors} from '../../Theme/Variables';
 export const styles = StyleSheet.create({
   logInMain: {
     flex: 1,
+    paddingBottom: hp('10'),
     // paddingHorizontal: wp('3.5'),
   },
   topImage: isIOS => ({

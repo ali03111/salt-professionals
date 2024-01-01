@@ -27,7 +27,7 @@ const StackNavigatior = () => {
           headerShown: false,
           statusBarAnimation: 'slide',
           statusBarStyle: 'light',
-          ...statusBarColor,
+          // ...statusBarColor,
         }}>
         {!onboarding && (
           <Stack.Screen
@@ -37,8 +37,6 @@ const StackNavigatior = () => {
         )}
         {!isLogin && (
           <>
-            <Stack.Screen name="MybottomTabs" component={MybottomTabs} />
-
             <Stack.Screen name="LoginScreen" component={Screens.LoginScreen} />
             <Stack.Screen
               name="RegisterScreen"
@@ -55,6 +53,10 @@ const StackNavigatior = () => {
               />
             )} */}
             <Stack.Screen name="MybottomTabs" component={MybottomTabs} />
+            <Stack.Screen
+              name="EditProfileScreen"
+              component={Screens.EditProfileScreen}
+            />
             {/* <Stack.Screen
               name="EditPhoneNumberScreen"
               component={Screens.EditPhoneNumberScreen}

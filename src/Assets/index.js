@@ -63,6 +63,25 @@ export {default as star} from './Icons/star.png';
 export {default as arrowRight} from './Icons/arrowRight.png';
 export {default as arrowBack} from './Icons/arrow-right.png';
 export {default as redArrow} from './Icons/redArrow.png';
+export {default as information} from './Icons/information.png';
+export {default as chatBtn} from './Icons/chatBtn.png';
+export {default as filterWhite} from './Icons/filterWhite.png';
+export {default as downArrow} from './Icons/downArrow.png';
+export {default as upArrow} from './Icons/upArrow.png';
+export {default as arrowLeftOld} from './Icons/arrowLeftOld.png';
+export {default as dollarCircle} from './Icons/dollarCircle.png';
+export {default as lockWhite} from './Icons/lockWhite.png';
+export {default as receiptWhite} from './Icons/receiptWhite.png';
+export {default as termsWhite} from './Icons/termsWhite.png';
+export {default as starWhite} from './Icons/starWhite.png';
+export {default as logOutWhite} from './Icons/logOutWhite.png';
+export {default as trashRed} from './Icons/trashRed.png';
+export {default as addIcon} from './Icons/addIcon.png';
+export {default as circleWhite} from './Icons/circleWhite.png';
+export {default as profileWhite} from './Icons/profileWhite.png';
+export {default as medalStar} from './Icons/medalStar.png';
+export {default as briefCase} from './Icons/briefCase.png';
+export {default as locationWhite} from './Icons/locationWhite.png';
 
 export {default as google} from './Icons/google.png';
 export {default as apple} from './Icons/apple.png';
@@ -111,6 +130,8 @@ export {default as arrowRightIcon} from './Icons/arrow-right.png';
 // Lotties files
 
 export {default as handShakeLottie} from './Lotties/Hand.json';
+export {default as saltBlack} from './Lotties/SaltBlack.json';
+export {default as saltWhite} from './Lotties/SaltWhite.json';
 
 export {default as currentUserLottie} from './Lotties/currentUser1.json';
 export {default as destinationLottie} from './Lotties/destination1.json';

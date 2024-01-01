@@ -41,8 +41,8 @@ const useLogin = ({navigate, goBack}) => {
 
   const goToForgotPassword = () => navigate('ForgotPasswordScreen');
 
-  const googleLoginFunc = async () => {
-    dispatch(loginUser({type: 'Google', datas: {}}));
+  const onSocialLogin = async name => {
+    dispatch(loginUser({type: name, datas: {}}));
   };
   const facebookLoginFunc = async () => {
     dispatch(loginUser({type: 'facebook', datas: {}}));
@@ -58,7 +58,7 @@ const useLogin = ({navigate, goBack}) => {
     control,
     getValues,
     facebookLoginFunc,
-    googleLoginFunc,
+    googleLoginFunc: () => {},
     PhoneNumberLoginFuc: () => {},
     remember,
     setRemember,
@@ -67,6 +67,7 @@ const useLogin = ({navigate, goBack}) => {
     loginUser: loginUserFun,
     appleIdlogin,
     goToForgotPassword,
+    onSocialLogin,
   };
 };
 

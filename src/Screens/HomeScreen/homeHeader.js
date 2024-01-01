@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image, Platform} from 'react-native';
+import {View, Text, Image, Platform, Dimensions} from 'react-native';
 import {Colors} from '../../Theme/Variables';
 import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
@@ -13,18 +13,24 @@ import {styles} from './styles';
 import {Touchable} from '../../Components/Touchable';
 import Lottie from 'lottie-react-native';
 import {CircleImage} from '../../Components/CircleImageComponent';
+import useReduxStore from '../../Hooks/UseReduxStore';
 const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
 const HomeHeader = () => {
+  const {getState} = useReduxStore();
+
+  const {userData} = getState('Auth');
+
   return (
     <View style={styles.headerView}>
       <View style={styles.firstView}>
-        <View>
+        <View style={{maxWidth: wp('70')}}>
           <TextComponent
             omponent
-            text={'Hello Melaa'}
+            text={`Hello ${userData?.name}`}
             styles={styles.nameText}
+            numberOfLines={1}
           />
           <TextComponent text={'Welcome to Salt!'} styles={{top: hp('1')}} />
         </View>
@@ -35,22 +41,17 @@ const HomeHeader = () => {
           loop
           autoPlay
         />
-        <CircleImage image={url} uri={true} />
-        {/* <Touchable style={{marginLeft: wp('32')}}>
-          <Image
-            source={notificationWhite}
-            resizeMode="contain"
-            style={styles.notiIcon}
-          />
-        </Touchable>
-        <Touchable style={{marginLeft: wp('4')}}>
-          <Image
-            source={settingWhite}
-            resizeMode="contain"
-            style={styles.setIcon}
-          />
-        </Touchable> */}
       </View>
+      <CircleImage
+        image={userData?.image}
+        uri={true}
+        styles={{
+          width: Dimensions.get('window').width * 0.15,
+          height: Dimensions.get('window').width * 0.15,
+          // marginLeft: wp('33'),
+          // top: hp('2'),
+        }}
+      />
     </View>
   );
 };

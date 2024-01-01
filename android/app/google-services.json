@@ -12,7 +12,20 @@
           "package_name": "com.codment.salt.customer"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "841728114130-r4b6op0cebgg40sm9possma7soav215e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codment.salt.customer",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "841728114130-msqkiovn6969b3e1erfbarob0i1lu407.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCSyGR6K-XUCplkzgw_RQlV4Gec2dVjg3A"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841728114130-msqkiovn6969b3e1erfbarob0i1lu407.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "841728114130-7o8ltnuum9ld9dioq418dj1sreq9mli5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.codment.salt.customer"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +56,20 @@
           "package_name": "com.codment.salt.stylelist"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "841728114130-8qcu5bhqdob6sgckvcans2n5tnrc3i2e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codment.salt.stylelist",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "841728114130-msqkiovn6969b3e1erfbarob0i1lu407.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCSyGR6K-XUCplkzgw_RQlV4Gec2dVjg3A"
@@ -39,7 +77,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841728114130-msqkiovn6969b3e1erfbarob0i1lu407.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "841728114130-7o8ltnuum9ld9dioq418dj1sreq9mli5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.codment.salt.customer"
+              }
+            }
+          ]
         }
       }
     }

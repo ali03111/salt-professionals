@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-
+#import <GoogleSignIn/GoogleSignIn.h>
 #import <React/RCTBundleURLProvider.h>
 #import <Firebase.h>
 //#import <FBSDKCoreKit/FBSDKCoreKit.h>
@@ -16,6 +16,11 @@
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+// AppDelegate.m
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options {
+  return [GIDSignIn.sharedInstance handleURL:url];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

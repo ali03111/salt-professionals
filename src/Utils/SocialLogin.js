@@ -41,55 +41,54 @@ export const faceBookLogin = async () => {};
 //   return user;
 // };
 
-export const appleIdlogin = async () => {};
-// export const appleIdlogin = async () => {
-//   // Start the sign-in request
-//   if (!appleAuth.isSupported)
-//     throw new Error(
-//       'AppleAuth is not supported on the device. Currently Apple Authentication works on iOS devices running iOS 13 or later',
-//     );
-//   const appleAuthRequestResponse = await appleAuth.performRequest({
-//     requestedOperation: appleAuth.Operation.LOGIN,
-//     requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
-//   });
-//   if (!appleAuthRequestResponse.identityToken)
-//     throw new Error('Apple Sign-In failed - no identify token returned');
+export const appleIdlogin = async () => {
+  // Start the sign-in request
+  if (!appleAuth.isSupported)
+    throw new Error(
+      'AppleAuth is not supported on the device. Currently Apple Authentication works on iOS devices running iOS 13 or later',
+    );
+  const appleAuthRequestResponse = await appleAuth.performRequest({
+    requestedOperation: appleAuth.Operation.LOGIN,
+    requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+  });
+  if (!appleAuthRequestResponse.identityToken)
+    throw new Error('Apple Sign-In failed - no identify token returned');
 
-//   const {
-//     identityToken,
-//     nonce,
-//     fullName: {givenName, familyName},
-//   } = appleAuthRequestResponse;
-//   const token = auth.AppleAuthProvider.credential(identityToken, nonce);
-//   const {additionalUserInfo} = await auth().signInWithCredential(token);
-//   return {
-//     token,
-//     name: `${givenName || ''} ${familyName || ''}`,
-//     identityToken,
-//     isNewUser: additionalUserInfo.isNewUser,
-//   };
-// };
+  const {
+    identityToken,
+    nonce,
+    fullName: {givenName, familyName},
+  } = appleAuthRequestResponse;
+  const token = auth.AppleAuthProvider.credential(identityToken, nonce);
+  const {additionalUserInfo} = await auth().signInWithCredential(token);
+  return {
+    token,
+    name: `${givenName || ''} ${familyName || ''}`,
+    identityToken,
+    isNewUser: additionalUserInfo.isNewUser,
+  };
+};
 
-export const googleLogin = async () => {};
-// export const googleLogin = async () => {
-//   const logOutWithGoogle = async () => {
-//     await GoogleSignin.revokeAccess();
-//     await GoogleSignin.signOut();
-//     console.log('logOutWithGoogle');
-//   };
+// export const googleLogin = async () => {};
+export const googleLogin = async () => {
+  const logOutWithGoogle = async () => {
+    await GoogleSignin.revokeAccess();
+    await GoogleSignin.signOut();
+    console.log('logOutWithGoogle');
+  };
 
-//   const hasPlayService = await GoogleSignin.hasPlayServices({
-//     showPlayServicesUpdateDialog: true,
-//   });
-//   if (!hasPlayService) throw new Error('play services not available');
-//   const isSignIn = await GoogleSignin.isSignedIn();
-//   if (isSignIn) await logOutWithGoogle();
-//   const {idToken, user} = await GoogleSignin.signIn();
-//   const token = auth.GoogleAuthProvider.credential(idToken);
-//   const {additionalUserInfo} = await auth().signInWithCredential(token);
+  const hasPlayService = await GoogleSignin.hasPlayServices({
+    showPlayServicesUpdateDialog: true,
+  });
+  if (!hasPlayService) throw new Error('play services not available');
+  const isSignIn = await GoogleSignin.isSignedIn();
+  if (isSignIn) await logOutWithGoogle();
+  const {idToken, user} = await GoogleSignin.signIn();
+  const token = auth.GoogleAuthProvider.credential(idToken);
+  const {additionalUserInfo} = await auth().signInWithCredential(token);
 
-//   return {...token, ...user, isNewUser: additionalUserInfo.isNewUser};
-// };
+  return {...token, ...user, isNewUser: additionalUserInfo.isNewUser};
+};
 
 export const PhoneNumberLogin = async phoneNumber => {
   // Handle the button press

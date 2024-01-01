@@ -32,7 +32,7 @@ import * as Animatable from 'react-native-animatable';
 import {onBoardinData} from '../../Utils/localDB';
 import ThemeButton from '../../Components/ThemeButton';
 import SwipeButton from 'rn-swipe-button';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const OnboardScreen = ({navigation}) => {
   const {
@@ -66,7 +66,7 @@ const OnboardScreen = ({navigation}) => {
   };
 
   const arrowIcon = () => (
-    <AntDesign name="arrowright" color={'white'} size={hp('3')} />
+    <AntDesign name="arrow-right" color={'white'} size={hp('3')} />
   );
 
   const FirstView = () => {
@@ -97,6 +97,7 @@ const OnboardScreen = ({navigation}) => {
               width: wp('90'),
               alignSelf: 'center',
               paddingLeft: wp('1'),
+              marginTop: hp('4'),
             }}
             thumbIconStyles={{
               height: hp('2'),

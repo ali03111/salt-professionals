@@ -25,6 +25,7 @@ import {fcmRegister, verifyUser} from './src/Redux/Action/AuthAction';
 import {Colors} from './src/Theme/Variables';
 import {hp, wp} from './src/Config/responsive';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
 const App = () => {
   const flexStyle = {flex: 1};
@@ -42,10 +43,10 @@ const App = () => {
 
   const useEffectFun = () => {
     dispatch(verifyUser());
-    // GoogleSignin.configure({
-    //   webClientId:
-    //     '1005053076444-mgrhj94e5bcv1a937pc07914jmevu2gv.apps.googleusercontent.com',
-    // });
+    GoogleSignin.configure({
+      webClientId:
+        '841728114130-msqkiovn6969b3e1erfbarob0i1lu407.apps.googleusercontent.com',
+    });
     LogBox.ignoreLogs([
       'VirtualizedLists should never be nested',
       'ViewPropTypes will be removed from React Native',

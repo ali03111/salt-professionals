@@ -14,7 +14,52 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-saltstylelist-saltstylelistTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-saltstylelist-saltstylelistTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		A67754662B32D27A00EB790A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A67754652B32D27A00EB790A /* GoogleService-Info.plist */; };
+		A667388C2B32FBC100D6C152 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754092B32C7CE00EB790A /* Fontisto.ttf */; };
+		A667388D2B32FBC100D6C152 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677540A2B32C7CE00EB790A /* Octicons.ttf */; };
+		A667388E2B32FBC100D6C152 /* Proxima Nova Alt Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A677540B2B32C7CE00EB790A /* Proxima Nova Alt Thin.otf */; };
+		A667388F2B32FBC100D6C152 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677540C2B32C7CE00EB790A /* Feather.ttf */; };
+		A66738902B32FBC100D6C152 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677540D2B32C7CE00EB790A /* Rubik-MediumItalic.ttf */; };
+		A66738912B32FBC100D6C152 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677540E2B32C7CE00EB790A /* Rubik-Bold.ttf */; };
+		A66738922B32FBC100D6C152 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677540F2B32C7CE00EB790A /* Entypo.ttf */; };
+		A66738932B32FBC100D6C152 /* Proxima Nova Alt Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754102B32C7CE00EB790A /* Proxima Nova Alt Bold.otf */; };
+		A66738942B32FBC100D6C152 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754112B32C7CE00EB790A /* FontAwesome5_Brands.ttf */; };
+		A66738952B32FBC100D6C152 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754122B32C7CE00EB790A /* MaterialCommunityIcons.ttf */; };
+		A66738962B32FBC100D6C152 /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754132B32C7CE00EB790A /* Rubik-SemiBoldItalic.ttf */; };
+		A66738972B32FBC100D6C152 /* Proxima-Nova-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754142B32C7CE00EB790A /* Proxima-Nova-Thin.otf */; };
+		A66738982B32FBC100D6C152 /* Proxima-Nova-Alt-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754152B32C7CE00EB790A /* Proxima-Nova-Alt-Light.otf */; };
+		A66738992B32FBC100D6C152 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754162B32C7CE00EB790A /* AntDesign.ttf */; };
+		A667389A2B32FBC100D6C152 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754172B32C7CE00EB790A /* Foundation.ttf */; };
+		A667389B2B32FBC100D6C152 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754182B32C7CE00EB790A /* Ionicons.ttf */; };
+		A667389C2B32FBC100D6C152 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754192B32C7CE00EB790A /* FontAwesome5_Solid.ttf */; };
+		A667389D2B32FBC100D6C152 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677541A2B32C7CE00EB790A /* FontAwesome5_Regular.ttf */; };
+		A667389E2B32FBC100D6C152 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677541B2B32C7CE00EB790A /* Rubik-Light.ttf */; };
+		A667389F2B32FBC100D6C152 /* Proxima-Nova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A677541C2B32C7CE00EB790A /* Proxima-Nova-Bold.otf */; };
+		A66738A02B32FBC100D6C152 /* Proxima Nova Extrabold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A677541D2B32C7CE00EB790A /* Proxima Nova Extrabold.otf */; };
+		A66738A12B32FBC100D6C152 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677541E2B32C7CE00EB790A /* Rubik-Medium.ttf */; };
+		A66738A22B32FBC100D6C152 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677541F2B32C7CE00EB790A /* FontAwesome.ttf */; };
+		A66738A32B32FBC100D6C152 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754202B32C7CE00EB790A /* Zocial.ttf */; };
+		A66738A42B32FBC100D6C152 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754212B32C7CE00EB790A /* Rubik-ExtraBoldItalic.ttf */; };
+		A66738A52B32FBC100D6C152 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754222B32C7CE00EB790A /* Rubik-Black.ttf */; };
+		A66738A62B32FBC100D6C152 /* Proxima Nova Alt Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754232B32C7CE00EB790A /* Proxima Nova Alt Light.otf */; };
+		A66738A72B32FBC100D6C152 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754242B32C7CE00EB790A /* EvilIcons.ttf */; };
+		A66738A82B32FBC100D6C152 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754252B32C7CE00EB790A /* Rubik-Italic.ttf */; };
+		A66738A92B32FBC100D6C152 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754262B32C7CE00EB790A /* Rubik-LightItalic.ttf */; };
+		A66738AA2B32FBC100D6C152 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754272B32C7CE00EB790A /* Rubik-SemiBold.ttf */; };
+		A66738AB2B32FBC100D6C152 /* Proxima Nova Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754282B32C7CE00EB790A /* Proxima Nova Black.otf */; };
+		A66738AC2B32FBC100D6C152 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754292B32C7CE00EB790A /* Rubik-BlackItalic.ttf */; };
+		A66738AD2B32FBC100D6C152 /* Proxima-Nova-Alt-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A677542A2B32C7CE00EB790A /* Proxima-Nova-Alt-Bold.otf */; };
+		A66738AE2B32FBC100D6C152 /* Proxima-Nova-Extrabold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A677542B2B32C7CE00EB790A /* Proxima-Nova-Extrabold.otf */; };
+		A66738AF2B32FBC100D6C152 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677542C2B32C7CE00EB790A /* Rubik-ExtraBold.ttf */; };
+		A66738B02B32FBC100D6C152 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A677542D2B32C7CE00EB790A /* Proxima Nova Bold.otf */; };
+		A66738B12B32FBC100D6C152 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677542E2B32C7CE00EB790A /* SimpleLineIcons.ttf */; };
+		A66738B22B32FBC100D6C152 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A677542F2B32C7CE00EB790A /* Rubik-Regular.ttf */; };
+		A66738B32B32FBC100D6C152 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754302B32C7CE00EB790A /* ProximaNova-Regular.otf */; };
+		A66738B42B32FBC100D6C152 /* Proxima Nova Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754312B32C7CE00EB790A /* Proxima Nova Thin.otf */; };
+		A66738B52B32FBC100D6C152 /* Proxima-Nova-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754322B32C7CE00EB790A /* Proxima-Nova-Black.otf */; };
+		A66738B62B32FBC100D6C152 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754332B32C7CE00EB790A /* MaterialIcons.ttf */; };
+		A66738B72B32FBC100D6C152 /* Proxima-Nova-Alt-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = A67754342B32C7CE00EB790A /* Proxima-Nova-Alt-Thin.otf */; };
+		A66738B82B32FBC100D6C152 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67754352B32C7CE00EB790A /* Rubik-BoldItalic.ttf */; };
+		A6FBFEAC2B343D4D007148AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6FBFEAB2B343D4D007148AC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +134,7 @@
 		A67754332B32C7CE00EB790A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		A67754342B32C7CE00EB790A /* Proxima-Nova-Alt-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima-Nova-Alt-Thin.otf"; sourceTree = "<group>"; };
 		A67754352B32C7CE00EB790A /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
-		A67754652B32D27A00EB790A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A6FBFEAB2B343D4D007148AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -163,7 +208,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				A67754652B32D27A00EB790A /* GoogleService-Info.plist */,
+				A6FBFEAB2B343D4D007148AC /* GoogleService-Info.plist */,
 				A67754082B32C7CE00EB790A /* Resources */,
 				13B07FAE1A68108700A75B9A /* saltstylelist */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -343,9 +388,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A667388C2B32FBC100D6C152 /* Fontisto.ttf in Resources */,
+				A667388D2B32FBC100D6C152 /* Octicons.ttf in Resources */,
+				A667388E2B32FBC100D6C152 /* Proxima Nova Alt Thin.otf in Resources */,
+				A667388F2B32FBC100D6C152 /* Feather.ttf in Resources */,
+				A66738902B32FBC100D6C152 /* Rubik-MediumItalic.ttf in Resources */,
+				A66738912B32FBC100D6C152 /* Rubik-Bold.ttf in Resources */,
+				A66738922B32FBC100D6C152 /* Entypo.ttf in Resources */,
+				A66738932B32FBC100D6C152 /* Proxima Nova Alt Bold.otf in Resources */,
+				A66738942B32FBC100D6C152 /* FontAwesome5_Brands.ttf in Resources */,
+				A66738952B32FBC100D6C152 /* MaterialCommunityIcons.ttf in Resources */,
+				A66738962B32FBC100D6C152 /* Rubik-SemiBoldItalic.ttf in Resources */,
+				A66738972B32FBC100D6C152 /* Proxima-Nova-Thin.otf in Resources */,
+				A66738982B32FBC100D6C152 /* Proxima-Nova-Alt-Light.otf in Resources */,
+				A66738992B32FBC100D6C152 /* AntDesign.ttf in Resources */,
+				A667389A2B32FBC100D6C152 /* Foundation.ttf in Resources */,
+				A667389B2B32FBC100D6C152 /* Ionicons.ttf in Resources */,
+				A667389C2B32FBC100D6C152 /* FontAwesome5_Solid.ttf in Resources */,
+				A667389D2B32FBC100D6C152 /* FontAwesome5_Regular.ttf in Resources */,
+				A667389E2B32FBC100D6C152 /* Rubik-Light.ttf in Resources */,
+				A667389F2B32FBC100D6C152 /* Proxima-Nova-Bold.otf in Resources */,
+				A66738A02B32FBC100D6C152 /* Proxima Nova Extrabold.otf in Resources */,
+				A66738A12B32FBC100D6C152 /* Rubik-Medium.ttf in Resources */,
+				A66738A22B32FBC100D6C152 /* FontAwesome.ttf in Resources */,
+				A66738A32B32FBC100D6C152 /* Zocial.ttf in Resources */,
+				A66738A42B32FBC100D6C152 /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				A66738A52B32FBC100D6C152 /* Rubik-Black.ttf in Resources */,
+				A66738A62B32FBC100D6C152 /* Proxima Nova Alt Light.otf in Resources */,
+				A66738A72B32FBC100D6C152 /* EvilIcons.ttf in Resources */,
+				A66738A82B32FBC100D6C152 /* Rubik-Italic.ttf in Resources */,
+				A66738A92B32FBC100D6C152 /* Rubik-LightItalic.ttf in Resources */,
+				A66738AA2B32FBC100D6C152 /* Rubik-SemiBold.ttf in Resources */,
+				A66738AB2B32FBC100D6C152 /* Proxima Nova Black.otf in Resources */,
+				A66738AC2B32FBC100D6C152 /* Rubik-BlackItalic.ttf in Resources */,
+				A66738AD2B32FBC100D6C152 /* Proxima-Nova-Alt-Bold.otf in Resources */,
+				A66738AE2B32FBC100D6C152 /* Proxima-Nova-Extrabold.otf in Resources */,
+				A66738AF2B32FBC100D6C152 /* Rubik-ExtraBold.ttf in Resources */,
+				A66738B02B32FBC100D6C152 /* Proxima Nova Bold.otf in Resources */,
+				A66738B12B32FBC100D6C152 /* SimpleLineIcons.ttf in Resources */,
+				A66738B22B32FBC100D6C152 /* Rubik-Regular.ttf in Resources */,
+				A66738B32B32FBC100D6C152 /* ProximaNova-Regular.otf in Resources */,
+				A66738B42B32FBC100D6C152 /* Proxima Nova Thin.otf in Resources */,
+				A6FBFEAC2B343D4D007148AC /* GoogleService-Info.plist in Resources */,
+				A66738B52B32FBC100D6C152 /* Proxima-Nova-Black.otf in Resources */,
+				A66738B62B32FBC100D6C152 /* MaterialIcons.ttf in Resources */,
+				A66738B72B32FBC100D6C152 /* Proxima-Nova-Alt-Thin.otf in Resources */,
+				A66738B82B32FBC100D6C152 /* Rubik-BoldItalic.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				A67754662B32D27A00EB790A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +444,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (

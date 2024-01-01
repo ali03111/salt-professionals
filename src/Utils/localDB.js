@@ -31,7 +31,7 @@ export const UpcomingData = [
     image:
       'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
     date: '27 - Nov - 2023',
-    time: '4:32 PM',
+    time: '4:32 PM - 04:03 PM',
   },
   {
     id: 1,
@@ -40,7 +40,7 @@ export const UpcomingData = [
     image:
       'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
     date: '27 - Nov - 2023',
-    time: '4:32 PM',
+    time: '4:32 PM - 04:03 PM',
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ export const UpcomingData = [
     image:
       'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
     date: '27 - Nov - 2023',
-    time: '4:32 PM',
+    time: '4:32 PM - 04:03 PM',
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const UpcomingData = [
     image:
       'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
     date: '27 - Nov - 2023',
-    time: '4:32 PM',
+    time: '4:32 PM - 04:03 PM',
   },
   {
     id: 4,
@@ -67,7 +67,7 @@ export const UpcomingData = [
     image:
       'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
     date: '27 - Nov - 2023',
-    time: '4:32 PM',
+    time: '4:32 PM - 04:03 PM',
   },
   {
     id: 5,
@@ -76,7 +76,7 @@ export const UpcomingData = [
     image:
       'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
     date: '27 - Nov - 2023',
-    time: '4:32 PM',
+    time: '4:32 PM - 04:03 PM',
   },
 ];
 

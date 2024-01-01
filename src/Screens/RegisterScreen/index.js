@@ -48,7 +48,7 @@ const RegisterScreen = ({navigation}) => {
     <KeyBoardWrapper
       showsVerticalScrollIndicator={false}
       styles={styles.logInMain}>
-      <StatusBar barStyle={isIOS ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={'light-content'} backgroundColor={'black'} />
       <Image
         source={loginBgBlack}
         style={{
@@ -121,7 +121,8 @@ const RegisterScreen = ({navigation}) => {
           }}
         />
         <ThemeButton
-          title={'Log In'}
+          onPress={handleSubmit(signUpButton)}
+          title={'Sign Up'}
           style={{marginTop: hp('3'), marginBottom: hp('2')}}
         />
       </View>
@@ -130,7 +131,7 @@ const RegisterScreen = ({navigation}) => {
       <BottomText
         text={'Already have an account?'}
         ButtonText={'Log In'}
-        viewStyle={{marginTop: hp('0')}}
+        viewStyle={{marginBottom: hp('2')}}
         onPress={() => navigation.navigate('LoginScreen')}
       />
     </KeyBoardWrapper>

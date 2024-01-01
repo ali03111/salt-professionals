@@ -4,9 +4,9 @@ import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
 import {styles} from './styles';
 
-export const HeadingView = ({title, onPress}) => {
+export const HeadingView = ({title, onPress, viewStyle}) => {
   return (
-    <View style={styles.headingView}>
+    <View style={{...styles.headingView, ...viewStyle}}>
       <TextComponent text={title} />
       <TextComponent
         text={'View All'}

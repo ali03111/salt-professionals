@@ -28,12 +28,10 @@ const useRegister = ({navigate, goBack}) => {
   };
 
   const signUpButton = ({name, email, password, confirm_password}) => {
-    if (number != '' && number != null) {
-      setError(null);
-      dispatch(
-        loginUser({type: 'email', datas: {name, email, number, password}}),
-      );
-    } else setError('Please enter your number');
+    // if (number != '' && number != null) {
+    //   setError(null);
+    dispatch(loginUser({type: 'email', datas: {name, email, password}}));
+    // } else setError('Please enter your number');
   };
   const loginNav = () => navigate('LoginScreen');
 

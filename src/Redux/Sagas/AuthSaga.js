@@ -37,52 +37,45 @@ properties, and then performs a series of asynchronous operations using the `yie
 const loginSaga = function* ({payload: {datas, type}}) {
   yield put(loadingTrue());
   try {
-    const {ok, data} = yield call(checkNumberService, datas?.number);
-    console.log('jkdsbfjksdbfjkdsbfjkdbjfbsdjf', data);
-    if (ok) {
-      const getLoginData = loginObject[type];
-      const resultData = yield call(getLoginData, datas);
-      const {socialData, status} = {socialData: resultData, status: true};
-      if (status) {
-        const idTokenResult = yield call(getFbResult);
-        const jwtToken = idTokenResult.token;
-        if (jwtToken) {
-          console.log('jwtToken', jwtToken);
-          // if (socialData.isNewUser || type == 'email') {
-          //   var {result} = yield call(createTelematicUser, {
-          //     token: deviceToken,
-          //     data: datas.name ? datas : socialData,
-          //   });
-          // }
-          const {data, ok} = yield call(registerService, {
-            token: jwtToken,
-            name: datas?.name,
-            email: datas?.email,
-            password: datas?.password,
-            phone: datas?.number,
-          });
-          console.log('data=========>>>>>>>', data);
+    const getLoginData = loginObject[type];
+    const resultData = yield call(getLoginData, datas);
+    const {socialData, status} = {socialData: resultData, status: true};
+    if (status) {
+      const idTokenResult = yield call(getFbResult);
+      const jwtToken = idTokenResult.token;
+      if (jwtToken) {
+        console.log('jwtToken', jwtToken);
+        // if (socialData.isNewUser || type == 'email') {
+        //   var {result} = yield call(createTelematicUser, {
+        //     token: deviceToken,
+        //     data: datas.name ? datas : socialData,
+        //   });
+        // }
+        const {data, ok} = yield call(registerService, {
+          token: jwtToken,
+          name: datas?.name,
+          email: datas?.email,
+          password: datas?.password,
+          phone: datas?.number,
+          type: 'professional',
+        });
+        console.log('data=========>>>>>>>', data);
+        yield put(loadingTrue());
+        if (ok) {
           yield put(loadingTrue());
-          if (ok) {
-            yield put(loadingTrue());
-            yield put(updateAuth(data));
-            if (data.user.is_verified == 0) {
-              delay('100');
-              yield call(NavigationService.navigate, 'EditPhoneNumberScreen');
-            }
-            // if (data.user.isNewUser) {
-            //   yield call(sendPhoneBookTOServer);
-            //   yield call(getContactFromSql);
-            // } else {
-            //   yield call(checkSqlDataBase);
-            //   yield call(getContactFromSql);
-            // }
-          } else {
-            errorMessage(data?.message);
-          }
+          yield put(updateAuth(data));
+          // if (data.user.isNewUser) {
+          //   yield call(sendPhoneBookTOServer);
+          //   yield call(getContactFromSql);
+          // } else {
+          //   yield call(checkSqlDataBase);
+          //   yield call(getContactFromSql);
+          // }
+        } else {
+          errorMessage(data?.message);
         }
       }
-    } else errorMessage(data?.message);
+    }
   } catch (error) {
     errorMessage(error?.message.split(' ').slice(1).join(' ') ?? error);
     console.log('err', error);
@@ -105,6 +98,7 @@ function* registerSaga({payload: {datas}}) {
       if (jwtToken) {
         const {data, ok} = yield call(loginService, {
           token: jwtToken,
+          type: 'professional',
         });
         yield put(loadingTrue());
         console.log('sdjbfjksdbfjbsdjfbsdf', data);

@@ -22,6 +22,7 @@ const Colors = {
   iconColor: 'rgba(238, 42, 123, 1)',
   grayFaded: 'rgba(255, 255, 255, 0.5)',
   textGray: 'rgba(154, 154, 154, 1)',
+  lightBlack: 'rgba(255, 255, 255, 0.1)',
 };
 
 /** FontSize **/

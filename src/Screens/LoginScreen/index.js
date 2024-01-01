@@ -38,6 +38,7 @@ const LoginScreen = ({navigation}) => {
     reset,
     control,
     getValues,
+    onSocialLogin,
     setRemember,
     rememberValue,
     remember,
@@ -52,8 +53,8 @@ const LoginScreen = ({navigation}) => {
   const isIOS = Boolean(Platform.OS == 'ios');
 
   return (
-    <ScrollView style={styles.logInMain}>
-      <StatusBar barStyle={isIOS ? 'light-content' : 'dark-content'} />
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.logInMain}>
+      <StatusBar barStyle={'light-content'} backgroundColor={'black'} />
       <Image
         source={loginBgBlack}
         style={{
@@ -101,11 +102,12 @@ const LoginScreen = ({navigation}) => {
         />
       </View>
       <DashText text={'Log In'} />
-      <SocialBottomView />
+      <SocialBottomView onPress={name => onSocialLogin(name)} />
       <BottomText
         text={'Don’t have an account?'}
         ButtonText={'Sign Up'}
         onPress={() => navigation.navigate('RegisterScreen')}
+        viewStyle={{marginBottom: hp('2')}}
       />
     </ScrollView>
   );
