@@ -57,6 +57,10 @@ const StackNavigatior = () => {
               name="EditProfileScreen"
               component={Screens.EditProfileScreen}
             />
+            <Stack.Screen
+              name="SpecialitiesScreen"
+              component={Screens.SpecialitiesScreen}
+            />
             {/* <Stack.Screen
               name="EditPhoneNumberScreen"
               component={Screens.EditPhoneNumberScreen}

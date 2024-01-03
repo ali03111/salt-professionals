@@ -10,6 +10,7 @@ export {default as facebookImage} from './Images/facebook.png';
 export {default as activeBar} from './Images/activeBar.png';
 export {default as handShake} from './Images/handShake.png';
 export {default as divider} from './Images/divider.png';
+export {default as blurImage} from './Images/blurImage.png';
 
 export {default as splashOne} from './Images/splash-one.png';
 export {default as splashTwo} from './Images/splash-two.png';
@@ -82,6 +83,8 @@ export {default as profileWhite} from './Icons/profileWhite.png';
 export {default as medalStar} from './Icons/medalStar.png';
 export {default as briefCase} from './Icons/briefCase.png';
 export {default as locationWhite} from './Icons/locationWhite.png';
+export {default as boldDivider} from './Icons/boldDivider.png';
+export {default as plusCircle} from './Icons/plusCircle.png';
 
 export {default as google} from './Icons/google.png';
 export {default as apple} from './Icons/apple.png';

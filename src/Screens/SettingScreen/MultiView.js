@@ -3,13 +3,14 @@ import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
 import IconBtnView from '../../Components/IconBtnView';
 import {divider} from '../../Assets';
+import {Touchable} from '../../Components/Touchable';
 
 export const MultiView = ({data, viewStyle}) => {
   return (
     <View style={{...styles.mainView, ...viewStyle}}>
       {data?.map((res, i) => {
         return (
-          <View style={styles.listView}>
+          <Touchable style={styles.listView} onPress={res?.onPress}>
             {i > 0 && (
               <Image
                 source={divider}
@@ -23,8 +24,9 @@ export const MultiView = ({data, viewStyle}) => {
               rightIcon={res?.rightIcon}
               rightText={res?.rightText}
               viewStyle={styles.innerView}
+              onPress={res?.onPress}
             />
-          </View>
+          </Touchable>
         );
       })}
     </View>
@@ -57,7 +59,10 @@ const styles = StyleSheet.create({
     // height: hp('50'),
     paddingBottom: hp('2'),
   },
-  listView: {alignItems: 'center', justifyContent: 'center'},
+  listView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   innerView: {
     borderWidth: 0,
     overflow: 'hidden',

@@ -29,22 +29,31 @@ import IconBtnView from '../../Components/IconBtnView';
 import {MultiView} from '../SettingScreen/MultiView';
 import {styles} from './styles';
 import {Touchable} from '../../Components/Touchable';
-
-const middleView = [
-  {
-    title: 'Specialities',
-    leftIcon: medalStar,
-    rightIcon: arrowLeftOld,
-  },
-  {
-    title: 'Portfolio',
-    leftIcon: briefCase,
-    rightIcon: arrowLeftOld,
-  },
-];
+import EditNameModal from './EditNameModal';
 
 const EditProfileScreen = ({navigation}) => {
-  const {userData, profileData, uploadFromGalary} = useEditProfileScreen();
+  const {
+    userData,
+    profileData,
+    uploadFromGalary,
+    userNameModal,
+    onBackPress,
+    dynamicRoute,
+  } = useEditProfileScreen(navigation);
+  const middleView = [
+    {
+      title: 'Specialities',
+      leftIcon: medalStar,
+      rightIcon: arrowLeftOld,
+      onPress: () => dynamicRoute('SpecialitiesScreen'),
+    },
+    {
+      title: 'Portfolio',
+      leftIcon: briefCase,
+      rightIcon: arrowLeftOld,
+      onPress: () => {},
+    },
+  ];
   console.log('userDatauserDatauserData', userData);
   return (
     <View style={styles.mainView}>
@@ -85,6 +94,7 @@ const EditProfileScreen = ({navigation}) => {
           title={userData?.name}
           leftIcon={profileWhite}
           rightText={'Edit'}
+          onPress={onBackPress}
         />
         <MultiView data={middleView} />
         <IconBtnView
@@ -92,6 +102,11 @@ const EditProfileScreen = ({navigation}) => {
           title={'Where you willing to work'}
           leftIcon={locationWhite}
           rightText={'Select'}
+        />
+        <EditNameModal
+          userData={userData}
+          userNameModal={userNameModal}
+          onBackPress={onBackPress}
         />
       </ScrollView>
     </View>
