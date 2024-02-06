@@ -7,6 +7,7 @@ import useReduxStore from '../Hooks/UseReduxStore';
 import NavigationService from '../Services/NavigationService';
 import {Colors} from '../Theme/Variables';
 import {Platform} from 'react-native';
+import randomFile from '../Screens/HomeScreen/randomFile';
 
 const Stack = createNativeStackNavigator();
 const StackNavigatior = () => {
@@ -29,6 +30,7 @@ const StackNavigatior = () => {
           statusBarStyle: 'light',
           // ...statusBarColor,
         }}>
+        {/* <Stack.Screen name="randomFile" component={randomFile} /> */}
         {!onboarding && (
           <Stack.Screen
             name="OnBoardScreen"

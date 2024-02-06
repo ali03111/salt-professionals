@@ -12,12 +12,14 @@ import {persistor, store} from './src/Redux/Reducer';
 import 'react-native-gesture-handler';
 
 const SaltStylelist = () => (
-  <Provider store={store}>
-    <PersistGate persistor={persistor} loading={null}>
-      <FlashMessage position="top" />
-      <App />
-    </PersistGate>
-  </Provider>
+  <>
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}>
+        <App />
+      </PersistGate>
+    </Provider>
+    <FlashMessage position="bottom" />
+  </>
 );
 
 AppRegistry.registerComponent(appName, () => SaltStylelist);

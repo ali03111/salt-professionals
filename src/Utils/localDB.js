@@ -391,3 +391,70 @@ export const tripProfileColors = [
   '#4169E1',
   '#00BFFF',
 ];
+
+export const braidType = [
+  {
+    id: 1,
+    title: 'Pony tail',
+  },
+  {
+    id: 2,
+    title: 'pony tail with designs',
+  },
+  {
+    id: 3,
+    title: 'box braids with design',
+  },
+  {
+    id: 4,
+    title: 'knotless braids',
+  },
+  {
+    id: 5,
+    title: 'knotless braids with design',
+  },
+  {
+    id: 6,
+    title: 'corn rows',
+  },
+  {
+    id: 7,
+    title: 'corn rows with design',
+  },
+  {
+    id: 8,
+    title: 'knotless micro braids',
+  },
+  {
+    id: 9,
+    title: 'micro braids',
+  },
+  {
+    id: 10,
+    title: 'Senegalese twist',
+  },
+  {
+    id: 11,
+    title: 'gel twist ',
+  },
+  {
+    id: 12,
+    title: 'locs',
+  },
+  {
+    id: 13,
+    title: 'lemonade braids',
+  },
+  {
+    id: 14,
+    title: 'faux locs',
+  },
+  {
+    id: 15,
+    title: 'butterfly faux locs',
+  },
+  {
+    id: 16,
+    title: 'kinky twist',
+  },
+];

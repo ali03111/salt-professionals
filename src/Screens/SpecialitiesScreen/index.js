@@ -7,73 +7,82 @@ import {plusCircle} from '../../Assets';
 import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
 import {styles} from './styles';
+import TagModalView from './TagModalView';
+import useSpecialitiesScreen from './userSpecialitiesScreen';
+import {braidType} from '../../Utils/localDB';
+
+export const data = [
+  {
+    id: 1,
+    title: 'sdf',
+  },
+  {
+    id: 1,
+    title: 'sdfsdsd',
+  },
+  {
+    id: 1,
+    title: 's ddddf',
+  },
+  {
+    id: 1,
+    title: 'sd  d df',
+  },
+  {
+    id: 1,
+    title: 'dddsdf',
+  },
+  {
+    id: 1,
+    title: 'sderef',
+  },
+  {
+    id: 1,
+    title: 's3wewdf',
+  },
+  {
+    id: 1,
+    title: 'sdfeee',
+  },
+  {
+    id: 1,
+    title: 'sdwewewef',
+  },
+  {
+    id: 1,
+    title: 'sdssf',
+  },
+  {
+    id: 1,
+    title: 'sssdf',
+  },
+  {
+    id: 1,
+    title: 'ssdsddf',
+  },
+  {
+    id: 1,
+    title: 'sdsdsf',
+  },
+];
 
 const SpecialitiesScreen = ({navigation}) => {
-  const data = [
-    {
-      id: 1,
-      title: 'sdf',
-    },
-    {
-      id: 1,
-      title: 'sdfsdsd',
-    },
-    {
-      id: 1,
-      title: 's ddddf',
-    },
-    {
-      id: 1,
-      title: 'sd  d df',
-    },
-    {
-      id: 1,
-      title: 'dddsdf',
-    },
-    {
-      id: 1,
-      title: 'sderef',
-    },
-    {
-      id: 1,
-      title: 's3wewdf',
-    },
-    {
-      id: 1,
-      title: 'sdfeee',
-    },
-    {
-      id: 1,
-      title: 'sdwewewef',
-    },
-    {
-      id: 1,
-      title: 'sdssf',
-    },
-    {
-      id: 1,
-      title: 'sssdf',
-    },
-    {
-      id: 1,
-      title: 'ssdsddf',
-    },
-    {
-      id: 1,
-      title: 'sdsdsf',
-    },
-  ];
-
+  const {activeTags, addTags, toggleModal, onOpenModal} =
+    useSpecialitiesScreen(navigation);
   const ArryView = ({item}) => {
     return (
       <View style={styles.arryView}>
-        {item.map(res => {
-          return (
-            <View style={styles.textView}>
-              <TextComponent fade={true} text={res?.title} />
-            </View>
-          );
-        })}
+        {item.length > 0 ? (
+          item.map(res => {
+            return (
+              <View style={styles.textView}>
+                <TextComponent fade={true} text={res?.title} />
+              </View>
+            );
+          })
+        ) : (
+          <View></View>
+        )}
       </View>
     );
   };
@@ -90,6 +99,7 @@ const SpecialitiesScreen = ({navigation}) => {
         <HeadingView
           title={'Braid Types'}
           rightText={'Add more'}
+          onPress={() => onOpenModal(braidType)}
           childern={
             <Image
               source={plusCircle}
@@ -124,6 +134,7 @@ const SpecialitiesScreen = ({navigation}) => {
         />
         <ArryView item={data} />
       </ScrollView>
+      <TagModalView activeTags={activeTags} allData={braidType} />
     </View>
   );
 };

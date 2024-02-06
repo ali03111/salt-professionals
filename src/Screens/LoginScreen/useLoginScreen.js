@@ -17,6 +17,7 @@ import {
 import {getFbResult, logOutFirebase} from '../../Services/AuthServices';
 import useReduxStore from '../../Hooks/UseReduxStore';
 import {loginUser, registerUser} from '../../Redux/Action/AuthAction';
+import {successMessage} from '../../Config/NotificationMessage';
 
 const {default: useFormHook} = require('../../Hooks/UseFormHooks');
 const {default: Schemas} = require('../../Utils/Validation');
@@ -39,7 +40,8 @@ const useLogin = ({navigate, goBack}) => {
   };
   // const loginUser = () => navigate('MybottomTabs');
 
-  const goToForgotPassword = () => navigate('ForgotPasswordScreen');
+  const goToForgotPassword = () => successMessage('ForgotPasswordScreen');
+  // const goToForgotPassword = () => navigate('ForgotPasswordScreen');
 
   const onSocialLogin = async name => {
     dispatch(loginUser({type: name, datas: {}}));
