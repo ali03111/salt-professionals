@@ -42,16 +42,18 @@ const HomeHeader = () => {
           autoPlay
         />
       </View>
-      <CircleImage
-        image={userData?.image}
-        uri={true}
-        styles={{
-          width: Dimensions.get('window').width * 0.15,
-          height: Dimensions.get('window').width * 0.15,
-          // marginLeft: wp('33'),
-          // top: hp('2'),
-        }}
-      />
+      <View style={{marginTop: hp('3')}}>
+        <CircleImage
+          image={userData?.image}
+          uri={true}
+          styles={{
+            width: Dimensions.get('window').width * 0.15,
+            height: Dimensions.get('window').width * 0.15,
+            // marginLeft: wp('33'),
+            // marginTop: hp('2'),
+          }}
+        />
+      </View>
     </View>
   );
 };

@@ -59,23 +59,25 @@ const bottomView = [
 
 const SettingScreen = ({navigation}) => {
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      scrollEnabled
-      contentContainerStyle={{flexGrow: 1, paddingBottom: hp('10')}}>
+    <View>
       <BackHeader headerTitle={'Setting'} />
-      <ProfileCardView
-        onpress={() => navigation.navigate('EditProfileScreen')}
-      />
-      <IconBtnView
-        viewStyle={{marginTop: hp('5')}}
-        title={'Total Earnings'}
-        leftIcon={dollarCircle}
-        rightIcon={arrowLeftOld}
-      />
-      <MultiView data={centerView} viewStyle={{height: hp('50')}} />
-      <MultiView data={bottomView} />
-    </ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        scrollEnabled
+        contentContainerStyle={{flexGrow: 1, paddingBottom: hp('20')}}>
+        <ProfileCardView
+          onpress={() => navigation.navigate('EditProfileScreen')}
+        />
+        <IconBtnView
+          viewStyle={{marginTop: hp('5')}}
+          title={'Total Earnings'}
+          leftIcon={dollarCircle}
+          rightIcon={arrowLeftOld}
+        />
+        <MultiView data={centerView} />
+        <MultiView data={bottomView} />
+      </ScrollView>
+    </View>
   );
 };
 

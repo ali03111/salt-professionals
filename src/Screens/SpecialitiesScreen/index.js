@@ -88,14 +88,18 @@ const SpecialitiesScreen = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: Colors.themeBlack}}>
       <BackHeader
         headerTitle={'Specialities'}
         isBack={true}
         goBack={() => navigation.goBack()}
       />
       <ScrollView
-        contentContainerStyle={{flex: 1, backgroundColor: Colors.themeBlack}}>
+        contentContainerStyle={{
+          flexGrow: 1,
+          backgroundColor: Colors.themeBlack,
+          paddingBottom: hp('10'),
+        }}>
         <HeadingView
           title={'Braid Types'}
           rightText={'Add more'}
@@ -134,7 +138,7 @@ const SpecialitiesScreen = ({navigation}) => {
         />
         <ArryView item={data} />
       </ScrollView>
-      <TagModalView activeTags={activeTags} allData={braidType} />
+      {/* <TagModalView activeTags={activeTags} allData={braidType} /> */}
     </View>
   );
 };

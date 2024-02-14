@@ -14,6 +14,8 @@ import {ProfileCardComp} from '../../Components/ProfileCardComp';
 import {ProfileProgressView} from './ProfileProgressView';
 import {Colors} from '../../Theme/Variables';
 import {AppointmentReqComp} from '../../Components/AppointmentReqComp';
+import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
+import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 
 const HomeScreen = ({navigation}) => {
   const renderItem = useCallback(
@@ -44,6 +46,11 @@ const HomeScreen = ({navigation}) => {
         contentContainerStyle={{paddingBottom: hp('5')}}
         showsVerticalScrollIndicator={false}>
         <HeadingView title={'Upcoming Appointments'} />
+        {/* <AniLeftScroll
+          data={UpcomingData}
+          InnerCompoenet={item => <UpComingAppCards data={item} />}
+        /> */}
+
         <FlatList
           data={UpcomingData}
           renderItem={renderItem}

@@ -1,10 +1,13 @@
 import {memo, useCallback} from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
+// import UpComingAppView from '../../Components/UpComingAppView';
 import {UpComingAppView} from '../../Components/UpComingAppView';
 import {UpcomingData} from '../../Utils/localDB';
 import {keyExtractor} from '../../Utils';
 import {styles} from './styles';
 import {hp} from '../../Config/responsive';
+import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
+import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
 
 const UpcomingApp = () => {
   // const renderItem = useCallback(({item, index}) => {
@@ -19,11 +22,20 @@ const UpcomingApp = () => {
 
   return (
     <View style={{flex: 1}}>
-      <UpComingAppView
+      {/* <UpComingAppView
         viewStyle={{
           marginBottom: hp('2'),
         }}
-      />
+      /> */}
+      {/* <AniFlatOneByOne
+        data={[
+          1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        ]}
+        InnerCompnonet={<Text>jhavdhavscjhvajhscvjahsvcjhas</Text>}
+      /> */}
+
+      <AniLeftScroll />
+
       {/* <FlatList
         data={UpcomingData}
         renderItem={renderItem}

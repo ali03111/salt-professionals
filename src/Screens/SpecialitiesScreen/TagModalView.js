@@ -18,7 +18,7 @@ const TagModalView = ({activeTags, allData, isModal}) => {
         alignItems: 'center',
       }}>
       <Modal
-        isVisible={true}
+        isVisible={false}
         //   isVisible={userNameModal}
         // hasBackdrop={false}
         animationInTiming={100}
@@ -71,7 +71,7 @@ const TagModalView = ({activeTags, allData, isModal}) => {
             <ThemeButton
               title={'Save'}
               style={styles.btn}
-              //   onPress={onBackPress}
+              // onPress={onBackPress}
             />
           </View>
         </View>

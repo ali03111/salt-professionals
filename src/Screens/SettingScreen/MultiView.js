@@ -1,4 +1,4 @@
-import {Image, StyleSheet, View} from 'react-native';
+import {FlatList, Image, StyleSheet, View} from 'react-native';
 import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
 import IconBtnView from '../../Components/IconBtnView';
@@ -6,9 +6,39 @@ import {divider} from '../../Assets';
 import {Touchable} from '../../Components/Touchable';
 
 export const MultiView = ({data, viewStyle}) => {
+  const renderItem = ({item}) => {
+    return (
+      <Touchable style={styles.listView} onPress={item?.onPress}>
+        {/* {i > 0 && (
+        <Image
+          source={divider}
+          resizeMode="contain"
+          style={styles.divider}
+        />
+      )} */}
+        <IconBtnView
+          title={item?.title}
+          leftIcon={item?.leftIcon}
+          rightIcon={item?.rightIcon}
+          rightText={item?.rightText}
+          viewStyle={styles.innerView}
+          onPress={item?.onPress}
+        />
+      </Touchable>
+    );
+  };
+
   return (
     <View style={{...styles.mainView, ...viewStyle}}>
-      {data?.map((res, i) => {
+      <FlatList
+        scrollEnabled={false}
+        renderItem={renderItem}
+        data={data}
+        ItemSeparatorComponent={
+          <Image source={divider} resizeMode="contain" style={styles.divider} />
+        }
+      />
+      {/* {data?.map((res, i) => {
         return (
           <Touchable style={styles.listView} onPress={res?.onPress}>
             {i > 0 && (
@@ -28,7 +58,7 @@ export const MultiView = ({data, viewStyle}) => {
             />
           </Touchable>
         );
-      })}
+      })} */}
     </View>
   );
 };
@@ -57,7 +87,7 @@ const styles = StyleSheet.create({
     marginTop: hp('3'),
     justifyContent: 'space-between',
     // height: hp('50'),
-    paddingBottom: hp('2'),
+    // paddingBottom: hp('2'),
   },
   listView: {
     alignItems: 'center',
@@ -67,7 +97,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     overflow: 'hidden',
     backgroundColor: 'transparent',
-    marginTop: hp('1.8'),
+    // marginTop: hp('1.8'),
   },
   divider: {width: wp('78'), marginLeft: wp('7')},
 });
