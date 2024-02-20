@@ -22,19 +22,19 @@ const UpcomingApp = () => {
 
   return (
     <View style={{flex: 1}}>
-      {/* <UpComingAppView
+      {/* <AniFlatOneByOne
+        data={UpcomingData}
+        flatViewStyle={styles.upComingFlatlistView}
+        InnerCompnonet={item => (
+          )}
+      /> */}
+      <UpComingAppView
         viewStyle={{
           marginBottom: hp('2'),
         }}
-      /> */}
-      {/* <AniFlatOneByOne
-        data={[
-          1, 2, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        ]}
-        InnerCompnonet={<Text>jhavdhavscjhvajhscvjahsvcjhas</Text>}
-      /> */}
-
-      <AniLeftScroll />
+        data={UpcomingData}
+      />
+      {/* <AniLeftScroll /> */}
 
       {/* <FlatList
         data={UpcomingData}

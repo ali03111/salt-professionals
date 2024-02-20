@@ -7,6 +7,7 @@ import {
   DemoProfileImage6,
   splashOne,
   splashTwo,
+  userIcon,
 } from '../Assets';
 
 export const onBoardinData = [
@@ -71,6 +72,33 @@ export const UpcomingData = [
   },
   {
     id: 5,
+    name: 'Gregory Hayes',
+    location: 'Gregory added you to the  ',
+    image:
+      'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
+    date: '27 - Nov - 2023',
+    time: '4:32 PM - 04:03 PM',
+  },
+  {
+    id: 6,
+    name: 'Gregory Hayes',
+    location: 'Gregory added you to the  ',
+    image:
+      'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
+    date: '27 - Nov - 2023',
+    time: '4:32 PM - 04:03 PM',
+  },
+  {
+    id: 7,
+    name: 'Gregory Hayes',
+    location: 'Gregory added you to the  ',
+    image:
+      'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg',
+    date: '27 - Nov - 2023',
+    time: '4:32 PM - 04:03 PM',
+  },
+  {
+    id: 8,
     name: 'Gregory Hayes',
     location: 'Gregory added you to the  ',
     image:
@@ -191,66 +219,78 @@ export const Invitation = [
   },
 ];
 
-export const frequentTrips = [
+export const Chat = [
   {
     id: 0,
-    name: 'Office',
-    image: DemoProfileImage3,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
     id: 1,
-    name: 'Home',
-    image: DemoProfileImage5,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
     id: 2,
-    name: 'Business',
-    image: DemoProfileImage1,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
     id: 3,
-    name: 'Visit',
-    image: DemoProfileImage5,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 0,
-    name: 'Office',
-    image: DemoProfileImage3,
+    id: 4,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 1,
-    name: 'Home',
-    image: DemoProfileImage5,
+    id: 5,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 2,
-    name: 'Business',
-    image: DemoProfileImage1,
+    id: 6,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 3,
-    name: 'Visit',
-    image: DemoProfileImage5,
+    id: 7,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 0,
-    name: 'Office',
-    image: DemoProfileImage3,
+    id: 8,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 1,
-    name: 'Home',
-    image: DemoProfileImage5,
+    id: 9,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 2,
-    name: 'Business',
-    image: DemoProfileImage1,
+    id: 10,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
   {
-    id: 3,
-    name: 'Visit',
-    image: DemoProfileImage5,
+    id: 11,
+    name: 'James Dean',
+    lastMsg: 'If you suspect that your braid has take the initsd[ps sd ps]...',
+    time: '4:32 PM',
   },
 ];
 

@@ -48,6 +48,7 @@ const LoginScreen = ({navigation}) => {
     googleLoginFunc,
     facebookLoginFunc,
     goToForgotPassword,
+    loginUserFun,
   } = useLogin(navigation);
 
   const isIOS = Boolean(Platform.OS == 'ios');
@@ -94,7 +95,11 @@ const LoginScreen = ({navigation}) => {
             tintColor: Colors.themeRed,
           }}
         />
-        <ThemeButton title={'Log In'} style={{marginTop: hp('3')}} />
+        <ThemeButton
+          title={'Log In'}
+          style={{marginTop: hp('3')}}
+          onPress={handleSubmit(loginUserFun)}
+        />
         <TextComponent
           text={'Forgot Password?'}
           fade={true}

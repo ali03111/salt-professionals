@@ -18,78 +18,16 @@ import * as Animatable from 'react-native-animatable';
 const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
-export const AniFlatOneByOne = ({data, InnerCompnonet}) => {
-  //   const height = useSharedValue(22);
-  //   StatusBar.setBarStyle('light-content', true);
-  const firstOpacity = useRef(new Animated.Value(0)).current;
-  const secondOpacity = useRef(new Animated.Value(0)).current;
-  const thirdOpacity = useRef(new Animated.Value(0)).current;
-  const [viewCards, setViewCards] = useState(false);
+export const AniFlatOneByOne = ({data, InnerCompnonet, flatViewStyle}) => {
   const {width, height} = Dimensions.get('screen');
-  const cardStyles = {
-    height: height / 4.5,
-    width: width - 50,
-    borderRadius: 14,
-    position: 'absolute',
-    zIndex: 100,
-    left: 7,
-    padding: 20,
-  };
-  const backCardStyle = {
-    position: 'relative',
-    width: width - 35,
-    height: height / 4.4,
-    borderRadius: 14,
-    opacity: 0.3,
-    zIndex: -1,
-    top: 5,
-  };
-
-  const animatedRef = useRef(new Animated.Value(0)).current;
-
-  // React.useEffect(() => {
-  //   Animated.stagger(1000, [
-  //     Animated.timing(animatedRef, {
-  //       toValue: 1,
-  //       useNativeDriver: true,
-  //     }),
-  //   ]).start();
-  // }, []);
-
-  // console.log(
-  //   'dhjsvkjsvdkjvsdkjvkjsdbvsd',
-  //   data.map((res, i) => {
-  //     console.log(
-  //       'kjsdbjkbsdkjcbsdkbcbsdcjbsdkjbckjsdbcjkbsdkbcjbsdk',
-  //       animatedRef + i,
-  //     );
-  //     return Animated.timing(animatedRef, {
-  //       toValue: 1,
-  //       useNativeDriver: true,
-  //     });
-  //   }),
-  // );
-
-  // React.useEffect(() => {
-  //   const animatedArry = data.map((res, i) => {
-  //     const i = useRef(new Animated.Value(0)).current;
-  //     return Animated.timing(i, {
-  //       toValue: 1,
-  //       useNativeDriver: true,
-  //     });
-  //   });
-  //   Animated.stagger(1000, animatedArry).start();
-  // }, []);
 
   const handlePress = () => {
-    console.log('kjsdbkjsbjkdbfkjsdbkfbsdjbfjksdbfjksdbfjksd', height);
     height.value = withSpring(Number(height.value) + 50);
   };
 
   const renderItem = ({item, index}) => {
     return (
       <Animatable.View
-        style={{marginTop: 25}}
         animation={'fadeIn'}
         delay={Number(index.toString() + '00')}>
         {InnerCompnonet(item)}
@@ -101,7 +39,10 @@ export const AniFlatOneByOne = ({data, InnerCompnonet}) => {
     <FlatList
       data={data}
       renderItem={renderItem}
-      contentContainerStyle={{flex: 1, paddingBottom: hp('10')}}
+      scrollEnabled
+      contentContainerStyle={{
+        ...flatViewStyle,
+      }}
     />
   );
 };

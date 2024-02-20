@@ -70,6 +70,7 @@ const useLogin = ({navigate, goBack}) => {
     appleIdlogin,
     goToForgotPassword,
     onSocialLogin,
+    loginUserFun,
   };
 };
 

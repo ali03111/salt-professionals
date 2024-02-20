@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   headerView: {
     backgroundColor: Colors.themeRed,
     width: wp('100'),
-    paddingTop: hp('2'),
+    paddingTop: Platform.OS == 'ios' ? hp('2') : 0,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -145,7 +145,7 @@ export const styles = StyleSheet.create({
     width: wp('93'),
     alignSelf: 'center',
     backgroundColor: 'white',
-    height: hp('14'),
+    // height: hp('14'),
     borderRadius: 10,
     paddingVertical: hp('1'),
     paddingHorizontal: wp('3'),

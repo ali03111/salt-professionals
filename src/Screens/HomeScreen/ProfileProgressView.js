@@ -25,6 +25,8 @@ export const ProfileProgressView = () => {
         percent={90}
         radius={50}
         borderWidth={8}
+        // containerStyle={{height: hp('10')}}
+        // outerCircleStyle={{height: hp('10')}}
         color="#3399FF"
         shadowColor="#fff"
         bgColor="#fff">

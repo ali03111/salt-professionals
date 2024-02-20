@@ -105,10 +105,10 @@ function* registerSaga({payload: {datas}}) {
         if (ok) {
           yield put(loadingTrue());
           yield put(updateAuth(data));
-          if (data.user.is_verified == 0) {
-            delay('100');
-            yield call(NavigationService.navigate, 'EditPhoneNumberScreen');
-          }
+          // if (data.user.is_verified == 0) {
+          //   delay('100');
+          //   yield call(NavigationService.navigate, 'EditPhoneNumberScreen');
+          // }
           // if (data.user.isNewUser) {
           //   yield call(sendPhoneBookTOServer);
           //   yield call(getContactFromSql);

@@ -9,6 +9,7 @@ import {keyExtractor} from '../../Utils';
 import {UpcomingData} from '../../Utils/localDB';
 import {styles} from './styles';
 import {hp} from '../../Config/responsive';
+import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 
 const RequestApp = () => {
   const renderItem = useCallback(({item, index}) => {
@@ -23,7 +24,19 @@ const RequestApp = () => {
 
   return (
     <View style={{flex: 1}}>
-      <FlatList
+      <AniFlatOneByOne
+        data={UpcomingData}
+        flatViewStyle={styles.upComingFlatlistView}
+        InnerCompnonet={item => (
+          <AppointmentReqComp
+            viewStyle={{
+              marginBottom: hp('2'),
+            }}
+          />
+        )}
+      />
+
+      {/* <FlatList
         data={UpcomingData}
         renderItem={renderItem}
         scrollEnabled
@@ -31,7 +44,7 @@ const RequestApp = () => {
         extraData={keyExtractor}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.upComingFlatlistView}
-      />
+      /> */}
       {/* <AppointmentReqCompSkeleton /> */}
       {/* <SkeletonPlaceholder>
         <AppointmentReqCompSkeleton />

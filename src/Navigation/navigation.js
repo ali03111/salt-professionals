@@ -59,6 +59,7 @@ const StackNavigatior = () => {
               name="EditProfileScreen"
               component={Screens.EditProfileScreen}
             />
+            <Stack.Screen name="ChatScreen" component={Screens.ChatScreen} />
             <Stack.Screen
               name="SpecialitiesScreen"
               component={Screens.SpecialitiesScreen}
