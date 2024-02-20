@@ -21,10 +21,11 @@ import {
   divider,
   downArrow,
   information,
+  upArrow,
 } from '../Assets';
 import ThemeButton from './ThemeButton';
 import {Touchable} from './Touchable';
-import {Colors} from '../Theme/Variables';
+import {Colors, FontSize} from '../Theme/Variables';
 import Animatedd, {useSharedValue, withSpring} from 'react-native-reanimated';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -34,43 +35,45 @@ const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
 export const UpComingAppView = ({data, viewStyle}) => {
+  // console.log(data.date, 'ALJKAKLJALJKALKJAKLj');
   const [accordionItem, setAccordionItem] = useState('');
 
   const renderHeader = (item, index) => {
     const i = [index].toString() == accordionItem.toString();
+    console.log(i, 'alsjdklasjdlkjsjjjjjjjjjj');
     return (
       <View style={{...styles.comingView, ...viewStyle}}>
         <View style={styles.bottomView}>
           <MaterialCommunityIcons
             name="calendar-month-outline"
             color="white"
-            size={hp('3')}
+            size={hp('2.4')}
           />
           <TextComponent
-            text={data?.date}
+            text={data[0]?.date}
             fade={true}
             styles={styles.dateText}
           />
           <MaterialCommunityIcons
             name="clock-outline"
             color="white"
-            size={hp('3')}
+            size={hp('2.4')}
           />
           <TextComponent
-            text={data?.time}
+            text={data[0]?.time}
             fade={true}
             styles={styles.timeText}
           />
         </View>
         <View style={styles.userView}>
-          <CircleImage image={data?.image} uri={true} />
+          <CircleImage image={data[0]?.image} uri={true} />
           <View style={styles.nameView}>
             <TextComponent
-              text={`${data?.name}`}
+              text={`${data[0]?.name}`}
               styles={{fontSize: hp('1.8'), fontWeight: 'bold'}}
             />
             <TextComponent
-              text={`${data?.location}`}
+              text={`${data[0]?.location}`}
               fade={true}
               styles={{
                 fontSize: hp('1.8'),
@@ -91,10 +94,12 @@ export const UpComingAppView = ({data, viewStyle}) => {
             style={{...styles.viewAppBtn, backgroundColor: 'red'}}
             textStyle={{fontSize: hp('1.5')}}
           />
+          {console.log(item.id, data[0].id, '787987987987987')}
           <ThemeButton
+            onPress={() => setAccordionItem([item.id])}
             title={'View Details'}
             style={styles.viewAppBtn}
-            image={downArrow}
+            image={!i ? upArrow : downArrow}
             imageStyle={{
               tintColor: 'white',
               width: wp('2.5'),
@@ -108,14 +113,16 @@ export const UpComingAppView = ({data, viewStyle}) => {
   };
 
   const renderContent = item => {
-    // console.log('check asd', item.script_media);
+    console.log('check asd', item);
     return (
       <View
         style={{
           ...styles.comingView,
           borderTopWidth: 0,
           // top: hp('-10'),
-        }}></View>
+        }}>
+        <TextComponent text={'Hellow OWrld'} />
+      </View>
     );
   };
 
@@ -126,13 +133,13 @@ export const UpComingAppView = ({data, viewStyle}) => {
           underlayColor={Colors.themeBlack}
           activeSections={accordionItem}
           sections={data}
-          containerStyle={{backgroundColor: 'blue', alignItems: 'center'}}
+          containerStyle={{alignItems: 'center'}}
           expandFromBottom={false}
           // renderSectionTitle={this._renderSectionTitle}
           renderHeader={renderHeader}
           renderContent={renderContent}
           onChange={(i, index) => {
-            setAccordionItem(i);
+            // setAccordionItem(i);
             console.log('i', i);
           }}
         />
@@ -148,11 +155,11 @@ const styles = StyleSheet.create({
     width: wp('90'),
     borderRadius: 6,
     borderWidth: 0.2,
-    borderColor: Colors.grayFaded,
+    // borderColor: Colors.grayFaded,
     // height: hp('10'),
     // paddingVertical: hp('2'),
     // paddingHorizontal: wp('3'),
-    overflow: 'hidden',
+    // overflow: 'hidden',
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -181,13 +188,14 @@ const styles = StyleSheet.create({
     // borderRadius: 10,
   },
   dateText: {
-    fontSize: hp('1.8'),
+    fontSize: FontSize.scale12,
     marginLeft: wp('2'),
     marginRight: wp('5'),
     color: 'white',
   },
   timeText: {
-    fontSize: hp('1.8'),
+    fontSize: FontSize.scale12,
+
     marginLeft: wp('2'),
     color: 'white',
   },

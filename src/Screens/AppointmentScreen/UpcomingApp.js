@@ -1,5 +1,5 @@
 import {memo, useCallback} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text, View} from 'react-native';
 // import UpComingAppView from '../../Components/UpComingAppView';
 import {UpComingAppView} from '../../Components/UpComingAppView';
 import {UpcomingData} from '../../Utils/localDB';
@@ -21,7 +21,7 @@ const UpcomingApp = () => {
   // }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
       {/* <AniFlatOneByOne
         data={UpcomingData}
         flatViewStyle={styles.upComingFlatlistView}
@@ -31,6 +31,7 @@ const UpcomingApp = () => {
       <UpComingAppView
         viewStyle={{
           marginBottom: hp('2'),
+          marginTop: hp('2'),
         }}
         data={UpcomingData}
       />
@@ -51,7 +52,7 @@ const UpcomingApp = () => {
       <AppointmentReqCompSkeleton />
       <AppointmentReqCompSkeleton />
     </SkeletonPlaceholder> */}
-    </View>
+    </ScrollView>
   );
 };
 export default memo(UpcomingApp);
