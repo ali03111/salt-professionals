@@ -8,6 +8,7 @@ import {
   Dimensions,
   ScrollView,
   Text,
+  FlatList,
 } from 'react-native';
 import {hp, wp} from '../Config/responsive';
 import {TextComponent} from './TextComponent';
@@ -30,17 +31,42 @@ import Animatedd, {useSharedValue, withSpring} from 'react-native-reanimated';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import Accordion from 'react-native-collapsible/Accordion';
 import {UpcomingData} from '../Utils/localDB';
+import * as Animatable from 'react-native-animatable';
+import {SettingScreen} from '../Screens';
+import {MultiView} from '../Screens/SettingScreen/MultiView';
 
+const centerView = [
+  {
+    title: 'Braid Type',
+    rightText: 'Pony Tail',
+    leftIcon: false,
+  },
+  {
+    title: 'Braid Size',
+    rightText: 'Extra Small',
+    leftIcon: false,
+  },
+  {
+    title: 'Braid Lengths',
+    rightText: 'Chin Length',
+    leftIcon: false,
+  },
+  {
+    title: 'Location',
+    rightText: 'House Call  ',
+    leftIcon: false,
+  },
+];
 const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
 export const UpComingAppView = ({data, viewStyle}) => {
   // console.log(data.date, 'ALJKAKLJALJKALKJAKLj');
   const [accordionItem, setAccordionItem] = useState('');
+  // const [accordionItem, setAccordionItem] = useState('');
 
   const renderHeader = (item, index) => {
     const i = [index].toString() == accordionItem.toString();
-    console.log(i, 'alsjdklasjdlkjsjjjjjjjjjj');
     return (
       <View style={{...styles.comingView, ...viewStyle}}>
         <View style={styles.bottomView}>
@@ -94,12 +120,12 @@ export const UpComingAppView = ({data, viewStyle}) => {
             style={{...styles.viewAppBtn, backgroundColor: 'red'}}
             textStyle={{fontSize: hp('1.5')}}
           />
-          {console.log(item.id, data[0].id, '787987987987987')}
           <ThemeButton
-            onPress={() => setAccordionItem([item.id])}
+            onPress={() => setAccordionItem(item.id)}
+            // onPress={() => setAccordionItem([item.id])}
             title={'View Details'}
             style={styles.viewAppBtn}
-            image={!i ? upArrow : downArrow}
+            image={i ? upArrow : downArrow}
             imageStyle={{
               tintColor: 'white',
               width: wp('2.5'),
@@ -108,58 +134,75 @@ export const UpComingAppView = ({data, viewStyle}) => {
             textStyle={{fontSize: hp('1.5')}}
           />
         </View>
+        {i ? (
+          <Animatable.View animation={'fadeIn'} delay={Number('100')}>
+            <MultiView data={centerView} />
+          </Animatable.View>
+        ) : (
+          <View
+            style={{
+              // ...styles.comingView,
+              padding: 10,
+            }}></View>
+        )}
       </View>
     );
   };
 
-  const renderContent = item => {
-    console.log('check asd', item);
-    return (
-      <View
-        style={{
-          ...styles.comingView,
-          borderTopWidth: 0,
-          // top: hp('-10'),
-        }}>
-        <TextComponent text={'Hellow OWrld'} />
-      </View>
-    );
-  };
+  // const renderContent = item => {
+  //   console.log('check asd', item);
+  //   return (
+  //     <View
+  //       style={{
+  //         ...styles.comingView,
+  //         borderTopWidth: 0,
+  //         top: hp('-20'),
+  //         backgroundColor: 'red',
+  //       }}>
+  //       <TextComponent text={'Hellow OWrld'} />
+  //     </View>
+  //   );
+  // };
 
-  const renderAccordion = useCallback(() => {
-    return (
-      <>
-        <Accordion
-          underlayColor={Colors.themeBlack}
-          activeSections={accordionItem}
-          sections={data}
-          containerStyle={{alignItems: 'center'}}
-          expandFromBottom={false}
-          // renderSectionTitle={this._renderSectionTitle}
-          renderHeader={renderHeader}
-          renderContent={renderContent}
-          onChange={(i, index) => {
-            // setAccordionItem(i);
-            console.log('i', i);
-          }}
-        />
-      </>
-    );
-  });
+  //   const renderAccordion = useCallback(() => {
+  //     return (
+  //       <>
+  //         <Accordion
+  //           underlayColor={Colors.themeBlack}
+  //           activeSections={accordionItem}
+  //           sections={data}
+  //           containerStyle={{alignItems: 'center'}}
+  //           expandFromBottom={false}
+  //           // renderSectionTitle={this._renderSectionTitle}
+  //           renderHeader={renderHeader}
+  //           renderContent={renderContent}
+  //           onChange={(i, index) => {
+  //             // setAccordionItem(i);
+  //             console.log('i', i);
+  //           }}
+  //         />
+  //       </>
+  //     );
+  //   });
 
-  return renderAccordion();
+  //   return renderAccordion();
+  return (
+    <View>
+      <FlatList
+        contentContainerStyle={{alignSelf: 'center', marginBottom: hp('2')}}
+        data={data}
+        renderItem={({item, index}) => renderHeader(item, index)}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   comingView: {
+    // padding: 10,
     width: wp('90'),
     borderRadius: 6,
-    borderWidth: 0.2,
-    // borderColor: Colors.grayFaded,
-    // height: hp('10'),
-    // paddingVertical: hp('2'),
-    // paddingHorizontal: wp('3'),
-    // overflow: 'hidden',
+
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -169,7 +212,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 50,
     backgroundColor: Colors.themeBlack,
-    height: hp('22'),
+    // height: hp('22'),
     // backgroundColor: 'white',
   },
   bottomView: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, Image, StyleSheet} from 'react-native';
-import {Colors, FontFamily} from '../Theme/Variables';
+import {Colors, FontFamily, FontSize} from '../Theme/Variables';
 import {Touchable} from './Touchable';
 import {hp, wp} from '../Config/responsive';
 import {arrowRightIcon, userProfileIcon} from '../Assets';
@@ -22,13 +22,15 @@ const IconBtnView = ({
       Opacity={0.7}
       onPress={onPress}
       style={{...styles.button, ...viewStyle}}>
-      <Image source={leftIcon} style={{...styles.iconStyle, ...leftStyle}} />
+      {leftIcon ? (
+        <Image source={leftIcon} style={{...styles.iconStyle, ...leftStyle}} />
+      ) : null}
       <TextComponent text={title} styles={{...styles.text, ...textStyle}} />
       {rightText ? (
         <TextComponent
           text={rightText}
           fade={true}
-          styles={{fontSize: hp('1.5'), marginRight: wp('2')}}
+          styles={{fontSize: FontSize.scale12, marginRight: wp('2')}}
         />
       ) : (
         <Image
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text: {
-    fontSize: hp('2'),
+    fontSize: FontSize.scale16,
     textAlign: 'left',
     marginLeft: wp('3'),
     flex: 1,

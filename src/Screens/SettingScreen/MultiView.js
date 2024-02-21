@@ -17,6 +17,7 @@ export const MultiView = ({data, viewStyle}) => {
         />
       )} */}
         <IconBtnView
+          mainIcon={item.mainIcon}
           title={item?.title}
           leftIcon={item?.leftIcon}
           rightIcon={item?.rightIcon}
@@ -29,7 +30,12 @@ export const MultiView = ({data, viewStyle}) => {
   };
 
   return (
-    <View style={{...styles.mainView, ...viewStyle}}>
+    <View
+      style={{
+        ...styles.mainView,
+        ...viewStyle,
+        borderWidth: data[0].leftIcon && 1,
+      }}>
       <FlatList
         scrollEnabled={false}
         renderItem={renderItem}
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
     // flexDirection: 'row',
     borderWidth: 0.3,
     borderColor: Colors.grayFaded,
-    // marginBottom: hp('2.5'),
+    marginBottom: hp('2.5'),
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     alignSelf: 'center',
-    // paddingVertical: hp('2'),
+    paddingVertical: hp('2'),
     marginTop: hp('3'),
     justifyContent: 'space-between',
     // height: hp('50'),
@@ -99,5 +105,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     // marginTop: hp('1.8'),
   },
-  divider: {width: wp('78'), marginLeft: wp('7')},
+  divider: {width: wp('86'), marginLeft: wp('4')},
 });
