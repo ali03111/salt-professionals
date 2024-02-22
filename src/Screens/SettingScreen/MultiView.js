@@ -1,7 +1,7 @@
 import {FlatList, Image, StyleSheet, View} from 'react-native';
 import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
-import IconBtnView from '../../Components/IconBtnView';
+// import IconBtnView from '../../Components/IconBtnView';
 import {divider} from '../../Assets';
 import {Touchable} from '../../Components/Touchable';
 
@@ -16,7 +16,7 @@ export const MultiView = ({data, viewStyle}) => {
           style={styles.divider}
         />
       )} */}
-        <IconBtnView
+        {/* <IconBtnView
           mainIcon={item.mainIcon}
           title={item?.title}
           leftIcon={item?.leftIcon}
@@ -24,7 +24,7 @@ export const MultiView = ({data, viewStyle}) => {
           rightText={item?.rightText}
           viewStyle={styles.innerView}
           onPress={item?.onPress}
-        />
+        /> */}
       </Touchable>
     );
   };
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     alignSelf: 'center',
-    paddingVertical: hp('2'),
+    // paddingVertical: hp('2'),
     marginTop: hp('3'),
     justifyContent: 'space-between',
     // height: hp('50'),

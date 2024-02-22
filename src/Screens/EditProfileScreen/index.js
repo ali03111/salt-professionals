@@ -89,7 +89,7 @@ const EditProfileScreen = ({navigation}) => {
           styles={{fontSize: hp('1.5')}}
         />
         <ProfileProgressView />
-        <IconBtnView
+        {/* <IconBtnView
           viewStyle={{marginTop: hp('5')}}
           title={userData?.name}
           leftIcon={profileWhite}
@@ -102,7 +102,7 @@ const EditProfileScreen = ({navigation}) => {
           title={'Where you willing to work'}
           leftIcon={locationWhite}
           rightText={'Select'}
-        />
+        /> */}
         <EditNameModal
           userData={userData}
           userNameModal={userNameModal}

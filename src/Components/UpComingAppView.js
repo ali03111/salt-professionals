@@ -33,7 +33,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import {UpcomingData} from '../Utils/localDB';
 import * as Animatable from 'react-native-animatable';
 import {SettingScreen} from '../Screens';
-import {MultiView} from '../Screens/SettingScreen/MultiView';
+// import {MultiView} from '../Screens/SettingScreen/MultiView';
 
 const centerView = [
   {
