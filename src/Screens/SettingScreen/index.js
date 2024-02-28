@@ -50,6 +50,7 @@ const bottomView = [
   {
     title: 'Log Out',
     leftIcon: logOutWhite,
+    // onPress: () => logoutFunc(),
   },
   {
     title: 'Delete Account',

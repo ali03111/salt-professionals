@@ -6,8 +6,11 @@ import {styles} from './styles';
 import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
 import ThemeButton from '../../Components/ThemeButton';
+import {useState} from 'react';
 
-const EditNameModal = ({userData, userNameModal, onBackPress}) => {
+const EditNameModal = ({userData, userNameModal, onBackPress, saveName}) => {
+  const [text, setText] = useState(userData?.name);
+
   return (
     <View
       key={userNameModal}
@@ -51,7 +54,8 @@ const EditNameModal = ({userData, userNameModal, onBackPress}) => {
                 placeholder="Please Enter Your Name"
                 placeholderTextColor={Colors.lightBlack}
                 style={{flex: 1, color: 'white'}}
-                defaultValue={userData?.name}
+                value={text}
+                onChangeText={t => setText(t)}
               />
             </View>
             <TextComponent
@@ -62,7 +66,7 @@ const EditNameModal = ({userData, userNameModal, onBackPress}) => {
             <ThemeButton
               title={'Save'}
               style={styles.btn}
-              onPress={onBackPress}
+              onPress={() => saveName(text)}
             />
           </View>
         </View>

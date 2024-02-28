@@ -4,8 +4,15 @@ import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
 import {Colors} from '../../Theme/Variables';
 import {styles} from './styles';
+import useReduxStore from '../../Hooks/UseReduxStore';
 
 export const ProfileProgressView = () => {
+  const {getState} = useReduxStore();
+
+  const {userData} = getState('Auth');
+
+  console.log('lsdnfklsdnkds', userData);
+
   return (
     <View style={styles.profileView}>
       <View>
@@ -22,7 +29,7 @@ export const ProfileProgressView = () => {
         />
       </View>
       <ProgressCircle
-        percent={90}
+        percent={userData?.percentage}
         radius={50}
         borderWidth={8}
         // containerStyle={{height: hp('10')}}
@@ -30,7 +37,7 @@ export const ProfileProgressView = () => {
         color="#3399FF"
         shadowColor="#fff"
         bgColor="#fff">
-        <TextComponent text={'90'} styles={styles.Per} />
+        <TextComponent text={userData?.percentage} styles={styles.Per} />
         <TextComponent
           text={'Complete'}
           styles={{color: 'black', fontSize: hp('1.4')}}

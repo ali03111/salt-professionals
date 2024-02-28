@@ -23,6 +23,7 @@ const Overlay = ({childern}) => (
         resizeMode="contain"
         loop
         autoPlay
+        // duration={1000}
         style={{width: wp('10'), height: hp('10')}}
       />
     )}

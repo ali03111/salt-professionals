@@ -5,25 +5,29 @@ import {CircleImage} from '../../Components/CircleImageComponent';
 import {TextComponent} from '../../Components/TextComponent';
 import {arrowLeftOld, arrowRightOld} from '../../Assets';
 import {Touchable} from '../../Components/Touchable';
+import useReduxStore from '../../Hooks/UseReduxStore';
+import {imageUrl} from '../../Utils/Urls';
 
 export const ProfileCardView = ({onpress}) => {
+  const {getState} = useReduxStore();
+  const {userData} = getState('Auth');
   return (
     <Touchable onPress={onpress} style={styles.mainView}>
       <View>
         <CircleImage
-          image={'userData?.image'}
+          image={imageUrl(userData?.image)}
           uri={true}
           styles={styles.imageView}
         />
       </View>
       <View style={styles.centerView}>
         <TextComponent
-          text={'Jason Miller'}
+          text={userData?.name}
           numberOfLines={1}
           styles={{fontSize: hp('3'), fontWeight: 'bold'}}
         />
         <TextComponent
-          text={'jason.miller@mail.com'}
+          text={userData?.email}
           fade={true}
           styles={{fontSize: hp('1.5')}}
         />

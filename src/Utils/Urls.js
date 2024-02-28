@@ -2,14 +2,14 @@ const getCredentials = () => {
   if (__DEV__)
     return {
       baseURL: 'https://virtualrealitycreators.com/salt/api/',
-      imageURL: 'https://virtualrealitycreators.com/trackpal/public/',
+      imageURL: 'https://virtualrealitycreators.com/salt/',
       twiloURL: 'https://verify.twilio.com/v2/Services',
     };
   else {
     console.log = () => {};
     return {
       baseURL: 'https://virtualrealitycreators.com/salt/api/',
-      imageURL: 'https://virtualrealitycreators.com/trackpal/public/',
+      imageURL: 'https://virtualrealitycreators.com/salt/',
       twiloURL: 'https://verify.twilio.com/v2/Services',
     };
   }
@@ -35,7 +35,12 @@ export const firebaseDataBaseURL =
 export const registerUrl = 'register-user';
 export const loginUrl = 'login';
 export const fcmToken = 'add-fcm-token';
-export const getAgoraTokenUrl = 'getAccessToken/';
+export const braidDataUrl = baseURL + 'braid-data';
+export const updatebraidDataUrl = 'professional/update-braid-data';
+export const updateUserNameUrl = 'professional/update-user-name';
+export const updateProfilePicNameUrl = 'professional/update-profile-picture';
+export const homeDataUrl = 'professional/home-data';
+
 export const userTrips = '/user-trips';
 export const notificationUrl = '/notifications';
 export const changeUserTripStatus = '/change-user-trip-status';

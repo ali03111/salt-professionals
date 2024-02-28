@@ -10,15 +10,25 @@ import {PersistGate} from 'redux-persist/integration/react';
 import FlashMessage from 'react-native-flash-message';
 import {persistor, store} from './src/Redux/Reducer';
 import 'react-native-gesture-handler';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  DehydrateOptions,
+} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const SaltStylelist = () => (
   <>
-    <Provider store={store}>
-      <PersistGate persistor={persistor} loading={null}>
-        <App />
-      </PersistGate>
-    </Provider>
-    <FlashMessage position="bottom" />
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor} loading={null}>
+          <App />
+        </PersistGate>
+      </Provider>
+      <FlashMessage position="top" />
+    </QueryClientProvider>
   </>
 );
 

@@ -3,4 +3,8 @@ const getSingleCharacter = text => {
   return letter;
 };
 
-export {getSingleCharacter};
+const getIdsFromObj = (arry, key) => {
+  return arry.map(res => res[key]);
+};
+
+export {getSingleCharacter, getIdsFromObj};

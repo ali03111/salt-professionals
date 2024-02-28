@@ -67,16 +67,25 @@ export const data = [
 ];
 
 const SpecialitiesScreen = ({navigation}) => {
-  const {activeTags, addTags, toggleModal, onOpenModal} =
-    useSpecialitiesScreen(navigation);
+  const {
+    activeTags,
+    addTags,
+    toggleModal,
+    onOpenModal,
+    allData,
+    modalVal,
+    userData,
+    onPressKey,
+  } = useSpecialitiesScreen(navigation);
   const ArryView = ({item}) => {
+    const arry = Boolean(item.length > 0);
     return (
-      <View style={styles.arryView}>
-        {item.length > 0 ? (
+      <View style={{...styles.arryView, display: arry ? 'flex' : 'none'}}>
+        {arry ? (
           item.map(res => {
             return (
               <View style={styles.textView}>
-                <TextComponent fade={true} text={res?.title} />
+                <TextComponent fade={true} text={res?.item} />
               </View>
             );
           })
@@ -103,7 +112,7 @@ const SpecialitiesScreen = ({navigation}) => {
         <HeadingView
           title={'Braid Types'}
           rightText={'Add more'}
-          onPress={() => onOpenModal(braidType)}
+          onPress={() => onOpenModal('braid_type')}
           childern={
             <Image
               source={plusCircle}
@@ -112,10 +121,11 @@ const SpecialitiesScreen = ({navigation}) => {
             />
           }
         />
-        <ArryView item={data} />
+        <ArryView item={activeTags?.braid_type} />
         <HeadingView
           title={'Braid Size'}
           rightText={'Add more'}
+          onPress={() => onOpenModal('braid_size')}
           childern={
             <Image
               source={plusCircle}
@@ -124,10 +134,11 @@ const SpecialitiesScreen = ({navigation}) => {
             />
           }
         />
-        <ArryView item={data} />
+        <ArryView item={activeTags?.braid_size} />
         <HeadingView
           title={'Braid Lengths'}
           rightText={'Add more'}
+          onPress={() => onOpenModal('braid_length')}
           childern={
             <Image
               source={plusCircle}
@@ -136,9 +147,18 @@ const SpecialitiesScreen = ({navigation}) => {
             />
           }
         />
-        <ArryView item={data} />
+        <ArryView item={activeTags?.braid_length} />
       </ScrollView>
-      {/* <TagModalView activeTags={activeTags} allData={braidType} /> */}
+      {modalVal && (
+        <TagModalView
+          activeTags={activeTags[onPressKey]}
+          allData={allData[onPressKey]}
+          heading={onPressKey}
+          isModal={modalVal}
+          onSelect={addTags}
+          onPress={toggleModal}
+        />
+      )}
     </View>
   );
 };

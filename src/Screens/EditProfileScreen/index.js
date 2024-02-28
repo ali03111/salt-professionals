@@ -30,6 +30,7 @@ import {MultiView} from '../SettingScreen/MultiView';
 import {styles} from './styles';
 import {Touchable} from '../../Components/Touchable';
 import EditNameModal from './EditNameModal';
+import {imageUrl} from '../../Utils/Urls';
 
 const EditProfileScreen = ({navigation}) => {
   const {
@@ -39,6 +40,7 @@ const EditProfileScreen = ({navigation}) => {
     userNameModal,
     onBackPress,
     dynamicRoute,
+    saveName,
   } = useEditProfileScreen(navigation);
   const middleView = [
     {
@@ -54,7 +56,6 @@ const EditProfileScreen = ({navigation}) => {
       onPress: () => {},
     },
   ];
-  console.log('userDatauserDatauserData', userData);
   return (
     <View style={styles.mainView}>
       <BackHeader
@@ -70,7 +71,7 @@ const EditProfileScreen = ({navigation}) => {
           resizeMode="contain"
           style={styles.whiteCircle}>
           <CircleImage
-            image={profileData?.uri ?? userData?.image}
+            image={profileData?.uri ?? imageUrl(userData?.image)}
             styles={styles.profileView}
             uri={true}
           />
@@ -107,6 +108,7 @@ const EditProfileScreen = ({navigation}) => {
           userData={userData}
           userNameModal={userNameModal}
           onBackPress={onBackPress}
+          saveName={saveName}
         />
       </ScrollView>
     </View>

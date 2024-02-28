@@ -16,8 +16,13 @@ import {Colors} from '../../Theme/Variables';
 import {AppointmentReqComp} from '../../Components/AppointmentReqComp';
 import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
+import useHomeScreen from './useHomeScreen';
 
 const HomeScreen = ({navigation}) => {
+  const {homeData} = useHomeScreen(navigation);
+
+  console.log('homeDatahomeDatahomeDatahomeDatahomeData', homeData);
+
   const renderItem = useCallback(
     ({item, index}) => {
       return <UpComingAppCards data={item} />;

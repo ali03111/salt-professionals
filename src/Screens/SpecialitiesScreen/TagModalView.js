@@ -7,27 +7,36 @@ import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
 import ThemeButton from '../../Components/ThemeButton';
 import {data} from '.';
+import {Touchable} from '../../Components/Touchable';
 
-const TagModalView = ({activeTags, allData, isModal}) => {
+const TagModalView = ({
+  activeTags,
+  allData,
+  isModal,
+  onPress,
+  heading,
+  onSelect,
+}) => {
+  function convertToTitleCase(str) {
+    return str
+      ?.split('_')
+      ?.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      ?.join(' ');
+  }
+
   return (
     <View
       // key={userNameModal}
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      style={styles.modalView}>
       <Modal
-        isVisible={false}
-        //   isVisible={userNameModal}
-        // hasBackdrop={false}
+        isVisible={isModal}
         animationInTiming={100}
         animationOutTiming={100}
         avoidKeyboard
         animationType="fade"
         hideModalContentWhileAnimating
         useNativeDriver
-        //   onBackButtonPress={onBackPress}
+        onBackButtonPress={onPress}
         style={styles.bottomModal}>
         <View
           style={{
@@ -46,33 +55,30 @@ const TagModalView = ({activeTags, allData, isModal}) => {
               styles={styles.headingText}
             />
             <TextComponent
-              text={'Braid Types'}
+              text={convertToTitleCase(heading)}
               styles={{marginVertical: hp('2')}}
             />
             <View
               style={{flexDirection: 'row', flexWrap: 'wrap', width: wp('90')}}>
-              {data?.map(res => {
+              {allData?.map(res => {
                 return (
-                  <View
-                    style={{
-                      paddingVertical: hp('1'),
-                      paddingHorizontal: wp('3'),
-                      marginVertical: hp('1'),
-                      marginRight: wp('1'),
-                      borderRadius: 20,
-                      borderWidth: 0.5,
-                      borderColor: Colors.lightBlack,
-                    }}>
-                    <TextComponent text={res.title} fade={true} />
-                  </View>
+                  <Touchable
+                    onPress={() => onSelect(res, heading)}
+                    style={styles.innerTextView(
+                      Boolean(activeTags.find(v => v.id == res.id)),
+                    )}>
+                    <TextComponent
+                      styles={styles.innerText(
+                        Boolean(activeTags.find(v => v.id == res.id)),
+                      )}
+                      text={res?.item}
+                      fade={true}
+                    />
+                  </Touchable>
                 );
               })}
             </View>
-            <ThemeButton
-              title={'Save'}
-              style={styles.btn}
-              // onPress={onBackPress}
-            />
+            <ThemeButton title={'Save'} style={styles.btn} onPress={onPress} />
           </View>
         </View>
       </Modal>

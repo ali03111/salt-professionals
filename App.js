@@ -26,9 +26,11 @@ import {Colors} from './src/Theme/Variables';
 import {hp, wp} from './src/Config/responsive';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {useIsFetching} from '@tanstack/react-query';
 
 const App = () => {
   const flexStyle = {flex: 1};
+  const isFetching = useIsFetching();
   const [isVisible, setIsVisible] = useState(true);
   const Hide_Splash_Screen = () => {
     setIsVisible(false);
@@ -78,7 +80,7 @@ const App = () => {
 
   return (
     <GestureHandlerRootView style={flexStyle}>
-      {isloading && <Overlay />}
+      {(isloading || isFetching >= 1) && <Overlay />}
       <StatusBar
         hidden={isVisible}
         backgroundColor={Platform.OS == 'ios' ? 'white' : '#F2F2F2'}

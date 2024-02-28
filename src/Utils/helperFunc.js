@@ -100,6 +100,89 @@ API.get = async (url, params, axiosConfig) => {
 // };
 
 // export {formDataFunc};
+
+const fetchPostWithToken = (url, body, isFormData, imageKey, isArray) => {
+  const {Auth} = store.getState('Auth');
+  const fullUrl = baseURL + url;
+
+  console.log(
+    'Auth Token',
+    createFormData(body, imageKey, isArray)?.getAll(),
+    createFormData(body, imageKey, isArray)?.getParts(),
+    isFormData,
+  );
+
+  var requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type':
+        isFormData == true ? 'multipart/form-data' : 'application/json',
+      Authorization: `Bearer ${Auth.token}`,
+    },
+    body:
+      isFormData == true
+        ? createFormData(body, imageKey, isArray)
+        : JSON.stringify(body),
+    redirect: 'follow',
+  };
+
+  return fetch(fullUrl, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+      }
+      console.log(response, 'respone');
+      return response.json();
+    })
+    .then(response => {
+      console.log('response1', response);
+      return {ok: true, res: response}; // Return the response data
+    })
+    .catch(error => {
+      console.error('error1', error);
+      throw {ok: false, res: error}; // Re-throw the error to propagate it to the caller
+    });
+};
+
+const createFormData = (photos, imageKey, isArray) => {
+  console.log(photos, isArray, 'oekleiaaake');
+  const data = new FormData();
+
+  Object.entries(photos).forEach(([key, val]) => {
+    if (key == imageKey) {
+      isArray
+        ? val.forEach((res, index) => {
+            data.append(imageKey, {
+              name: res?.fileName,
+              type: res?.type,
+              uri:
+                Platform.OS == 'ios'
+                  ? res?.uri.replace('file://', '')
+                  : res?.uri,
+            });
+          })
+        : data.append(imageKey, {
+            name: photos[imageKey]?.fileName,
+            type: photos[imageKey]?.type,
+            uri:
+              Platform.OS == 'ios'
+                ? photos[imageKey]?.uri.replace('file://', '')
+                : photos[imageKey]?.uri,
+          });
+    } else {
+      data.append(key, val);
+    }
+  });
+
+  console.log('sdkljbvkjlsdbvkljbsdkjvbsdkbvjsdv', data);
+
+  // Object.keys(body).forEach(key => {
+  //   console.log({body}, 'dldldlq');
+  //   data.append(key, body[key]);
+  // });
+
+  return data;
+};
+
 const formDataFunc = (url, body, imageKey, isArray) => {
   const {Auth} = store.getState();
 
@@ -109,15 +192,30 @@ const formDataFunc = (url, body, imageKey, isArray) => {
   myHeaders.append('Content-Type', 'multipart/form-data');
 
   const formData = new FormData();
-  Object.entries(body).forEach(([key, value]) => {
-    if (body?.profileData?.type) {
-      formData.append(imageKey, {
-        uri: body?.profileData.uri,
-        type: body?.profileData.type,
-        name: body?.profileData.fileName,
-      });
+  Object.entries(body).forEach(([key, val]) => {
+    if (key == imageKey) {
+      isArray
+        ? val.forEach((res, index) => {
+            formData.append(imageKey, {
+              name: res?.fileName,
+              type: res?.type,
+              uri:
+                Platform.OS == 'ios'
+                  ? res?.uri.replace('file://', '')
+                  : res?.uri,
+            });
+          })
+        : formData.append(imageKey, {
+            name: body[imageKey]?.fileName,
+            type: body[imageKey]?.type,
+            uri:
+              Platform.OS == 'ios'
+                ? body[imageKey]?.uri.replace('file://', '')
+                : body[imageKey]?.uri,
+          });
+    } else {
+      formData.append(key, val);
     }
-    formData.append(key, value);
   });
   console.log('asdasd123', formData);
   var requestOptions = {
@@ -145,6 +243,6 @@ const formDataFunc = (url, body, imageKey, isArray) => {
     });
 };
 
-export {formDataFunc};
+export {formDataFunc, fetchPostWithToken};
 
 export default API;
