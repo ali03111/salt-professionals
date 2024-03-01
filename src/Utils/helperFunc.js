@@ -148,29 +148,27 @@ const createFormData = (photos, imageKey, isArray) => {
   const data = new FormData();
 
   Object.entries(photos).forEach(([key, val]) => {
-    if (key == imageKey) {
-      isArray
-        ? val.forEach((res, index) => {
-            data.append(imageKey, {
-              name: res?.fileName,
-              type: res?.type,
-              uri:
-                Platform.OS == 'ios'
-                  ? res?.uri.replace('file://', '')
-                  : res?.uri,
-            });
-          })
-        : data.append(imageKey, {
-            name: photos[imageKey]?.fileName,
-            type: photos[imageKey]?.type,
-            uri:
-              Platform.OS == 'ios'
-                ? photos[imageKey]?.uri.replace('file://', '')
-                : photos[imageKey]?.uri,
-          });
-    } else {
-      data.append(key, val);
-    }
+    console.log(
+      'oisdhviosbdoivbosidbvoisdbiovbsiodbvoisdfdfdfddbivosbdovbsdiovboisd',
+    );
+    isArray
+      ? data.append(imageKey, {
+          name: val?.fileName,
+          type: val?.type,
+          uri:
+            Platform.OS == 'ios' ? val?.uri.replace('file://', '') : val?.uri,
+        })
+      : data.append(imageKey, {
+          name: photos[imageKey]?.fileName,
+          type: photos[imageKey]?.type,
+          uri:
+            Platform.OS == 'ios'
+              ? photos[imageKey]?.uri.replace('file://', '')
+              : photos[imageKey]?.uri,
+        });
+    // } else {
+    //   data.append(key, val);
+    // }
   });
 
   console.log('sdkljbvkjlsdbvkljbsdkjvbsdkbvjsdv', data);

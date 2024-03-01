@@ -9,3 +9,7 @@ export {default as SettingScreen} from './SettingScreen';
 export {default as EditProfileScreen} from './EditProfileScreen';
 export {default as SpecialitiesScreen} from './SpecialitiesScreen';
 export {default as ChatScreen} from './ChatScreen';
+export {default as PortfolioScreen} from './PortfolioScreen';
+export {default as LocationScreen} from './LocationScreen';
+export {default as MapScreen} from './MapScreen';
+export {default as ChangePasswordScreen} from './ChangePasswordScreen';

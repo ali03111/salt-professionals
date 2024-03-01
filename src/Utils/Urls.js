@@ -1,7 +1,7 @@
 const getCredentials = () => {
   if (__DEV__)
     return {
-      baseURL: 'https://virtualrealitycreators.com/salt/api/',
+      baseURL: 'https://c88c-175-107-236-153.ngrok-free.app/api/',
       imageURL: 'https://virtualrealitycreators.com/salt/',
       twiloURL: 'https://verify.twilio.com/v2/Services',
     };
@@ -40,6 +40,11 @@ export const updatebraidDataUrl = 'professional/update-braid-data';
 export const updateUserNameUrl = 'professional/update-user-name';
 export const updateProfilePicNameUrl = 'professional/update-profile-picture';
 export const homeDataUrl = 'professional/home-data';
+export const UploadPastWorkImagesUrl = 'professional/upload-past-work';
+export const getPastWorkImagesUrl = baseURL + 'professional/prof-past-works';
+export const selecteLocationUrl = 'professional/select-location';
+export const DeleteUserUrl = 'professional/deactive-user';
+export const logoutUserUrl = 'professional/logout';
 
 export const userTrips = '/user-trips';
 export const notificationUrl = '/notifications';
@@ -64,7 +69,7 @@ export const sendNumberToServerUrl = '/send-mobile-numbers';
 export const checkNumberBeforeRegisterUrl = '/check-number-before-signup/';
 export const sendUpdatedAtUrl = '/match-data';
 export const deleteAccUrl = '/delete-acc';
-export const logoutUrl = '/logout';
+// export const logoutUrl = '/logout';
 export const terminateStatusUrl = '/change-terminate-status';
 export const ResetMsgCountUrl = '/reset-msg-count';
 export const VerifyUserUrl = '/verify';

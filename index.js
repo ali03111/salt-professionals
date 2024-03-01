@@ -16,20 +16,21 @@ import {
   useQuery,
   DehydrateOptions,
 } from '@tanstack/react-query';
+import {PaperProvider} from 'react-native-paper';
 
 const queryClient = new QueryClient();
 
 const SaltStylelist = () => (
-  <>
-    <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-        <PersistGate persistor={persistor} loading={null}>
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}>
+        <PaperProvider>
           <App />
-        </PersistGate>
-      </Provider>
-      <FlashMessage position="top" />
-    </QueryClientProvider>
-  </>
+        </PaperProvider>
+      </PersistGate>
+    </Provider>
+    <FlashMessage position="top" />
+  </QueryClientProvider>
 );
 
 AppRegistry.registerComponent(appName, () => SaltStylelist);

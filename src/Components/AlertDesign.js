@@ -37,7 +37,7 @@ export const AlertDesign = ({
       onCancelPressed={onCancel}
       onConfirmPressed={onConfirm}
       overlayStyle={{
-        backgroundColor: 'rgba(255,255,255,0.8)',
+        backgroundColor: 'rgba(234, 67, 53,0.1)',
       }}
     />
   );

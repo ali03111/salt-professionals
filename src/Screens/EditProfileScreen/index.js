@@ -31,6 +31,7 @@ import {styles} from './styles';
 import {Touchable} from '../../Components/Touchable';
 import EditNameModal from './EditNameModal';
 import {imageUrl} from '../../Utils/Urls';
+import {locationType} from '../../Utils/localDB';
 
 const EditProfileScreen = ({navigation}) => {
   const {
@@ -53,9 +54,15 @@ const EditProfileScreen = ({navigation}) => {
       title: 'Portfolio',
       leftIcon: briefCase,
       rightIcon: arrowLeftOld,
-      onPress: () => {},
+      onPress: () => dynamicRoute('PortfolioScreen'),
     },
   ];
+
+  console.log(
+    locationType?.filter(res => res.locId == userData?.updated_data?.loc_data),
+    userData,
+  );
+
   return (
     <View style={styles.mainView}>
       <BackHeader
@@ -102,7 +109,12 @@ const EditProfileScreen = ({navigation}) => {
           viewStyle={{marginTop: hp('3')}}
           title={'Where you willing to work'}
           leftIcon={locationWhite}
-          rightText={'Select'}
+          rightText={
+            locationType?.filter(
+              res => res.locId == userData?.updated_data?.loc_data,
+            )[0]?.label ?? 'Select'
+          }
+          onPress={() => dynamicRoute('LocationScreen')}
         />
         <EditNameModal
           userData={userData}

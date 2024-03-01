@@ -34,7 +34,7 @@ export const ProfileProgressView = () => {
         borderWidth={8}
         // containerStyle={{height: hp('10')}}
         // outerCircleStyle={{height: hp('10')}}
-        color="#3399FF"
+        color={Colors.themeRed}
         shadowColor="#fff"
         bgColor="#fff">
         <TextComponent text={userData?.percentage} styles={styles.Per} />

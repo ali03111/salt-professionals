@@ -45,12 +45,6 @@ const loginSaga = function* ({payload: {datas, type}}) {
       const jwtToken = idTokenResult.token;
       if (jwtToken) {
         console.log('jwtToken', jwtToken);
-        // if (socialData.isNewUser || type == 'email') {
-        //   var {result} = yield call(createTelematicUser, {
-        //     token: deviceToken,
-        //     data: datas.name ? datas : socialData,
-        //   });
-        // }
         const {data, ok} = yield call(registerService, {
           token: jwtToken,
           name: datas?.name,
@@ -59,18 +53,10 @@ const loginSaga = function* ({payload: {datas, type}}) {
           phone: datas?.number,
           type: 'professional',
         });
-        console.log('data=========>>>>>>>', data);
         yield put(loadingTrue());
         if (ok) {
           yield put(loadingTrue());
           yield put(updateAuth(data));
-          // if (data.user.isNewUser) {
-          //   yield call(sendPhoneBookTOServer);
-          //   yield call(getContactFromSql);
-          // } else {
-          //   yield call(checkSqlDataBase);
-          //   yield call(getContactFromSql);
-          // }
         } else {
           errorMessage(data?.message);
         }
@@ -105,17 +91,6 @@ function* registerSaga({payload: {datas}}) {
         if (ok) {
           yield put(loadingTrue());
           yield put(updateAuth(data));
-          // if (data.user.is_verified == 0) {
-          //   delay('100');
-          //   yield call(NavigationService.navigate, 'EditPhoneNumberScreen');
-          // }
-          // if (data.user.isNewUser) {
-          //   yield call(sendPhoneBookTOServer);
-          //   yield call(getContactFromSql);
-          // } else {
-          //   yield call(checkSqlDataBase);
-          //   yield call(getContactFromSql);
-          // }
         } else {
           errorMessage(data?.message);
         }
@@ -137,7 +112,7 @@ action object as an argument, but it is not used in the function. The function p
 asynchronous operations using the `yield` keyword. */
 function* logOutSaga(action) {
   try {
-    // yield call(logoutService);
+    yield call(logoutService);
     yield put({type: types.LogoutType});
     yield call(logOutFirebase);
     yield put({type: types.ClearNotify});

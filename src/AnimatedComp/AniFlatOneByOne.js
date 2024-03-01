@@ -18,7 +18,12 @@ import * as Animatable from 'react-native-animatable';
 const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
-export const AniFlatOneByOne = ({data, InnerCompnonet, flatViewStyle}) => {
+export const AniFlatOneByOne = ({
+  data,
+  InnerCompnonet,
+  flatViewStyle,
+  flatListProps,
+}) => {
   const {width, height} = Dimensions.get('screen');
 
   const handlePress = () => {
@@ -37,11 +42,14 @@ export const AniFlatOneByOne = ({data, InnerCompnonet, flatViewStyle}) => {
 
   return (
     <FlatList
-      data={data}
-      renderItem={renderItem}
-      scrollEnabled
-      contentContainerStyle={{
-        ...flatViewStyle,
+      {...{
+        data: data,
+        renderItem: renderItem,
+        contentContainerStyle: {...flatViewStyle},
+        scrollEnabled: true,
+        showsVerticalScrollIndicator: false,
+        showsHorizontalScrollIndicator: false,
+        ...flatListProps,
       }}
     />
   );

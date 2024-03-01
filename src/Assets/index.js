@@ -86,6 +86,7 @@ export {default as locationWhite} from './Icons/locationWhite.png';
 export {default as boldDivider} from './Icons/boldDivider.png';
 export {default as plusCircle} from './Icons/plusCircle.png';
 export {default as userSearch} from './Icons/userSearch.png';
+export {default as uploadWithText} from './Icons/uploadWithText.png';
 
 export {default as google} from './Icons/google.png';
 export {default as apple} from './Icons/apple.png';
