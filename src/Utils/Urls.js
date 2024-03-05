@@ -1,15 +1,15 @@
 const getCredentials = () => {
   if (__DEV__)
     return {
-      baseURL: 'https://c88c-175-107-236-153.ngrok-free.app/api/',
-      imageURL: 'https://virtualrealitycreators.com/salt/',
+      baseURL: 'http://3.20.179.123/salt/api/',
+      imageURL: 'http://3.20.179.123/salt/',
       twiloURL: 'https://verify.twilio.com/v2/Services',
     };
   else {
     console.log = () => {};
     return {
-      baseURL: 'https://virtualrealitycreators.com/salt/api/',
-      imageURL: 'https://virtualrealitycreators.com/salt/',
+      baseURL: 'http://3.20.179.123/salt/api/',
+      imageURL: 'http://3.20.179.123/salt/',
       twiloURL: 'https://verify.twilio.com/v2/Services',
     };
   }

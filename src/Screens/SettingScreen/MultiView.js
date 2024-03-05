@@ -1,9 +1,10 @@
 import {FlatList, Image, StyleSheet, View} from 'react-native';
 import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
-import IconBtnView from '../../Components/IconBtnView';
+// import IconBtnView from '../../Components/IconBtnView';
 import {divider} from '../../Assets';
 import {Touchable} from '../../Components/Touchable';
+import IconBtnView from '../../Components/IconBtnView';
 
 export const MultiView = ({data, viewStyle}) => {
   const renderItem = ({item}) => {
@@ -17,6 +18,7 @@ export const MultiView = ({data, viewStyle}) => {
         />
       )} */}
         <IconBtnView
+          mainIcon={item.mainIcon}
           title={item?.title}
           leftIcon={item?.leftIcon}
           rightIcon={item?.rightIcon}
@@ -29,7 +31,12 @@ export const MultiView = ({data, viewStyle}) => {
   };
 
   return (
-    <View style={{...styles.mainView, ...viewStyle}}>
+    <View
+      style={{
+        ...styles.mainView,
+        ...viewStyle,
+        borderWidth: data[0].leftIcon ? 1 : 0,
+      }}>
       <FlatList
         scrollEnabled={false}
         renderItem={renderItem}
@@ -69,14 +76,14 @@ const styles = StyleSheet.create({
     // flexDirection: 'row',
     borderWidth: 0.3,
     borderColor: Colors.grayFaded,
-    // marginBottom: hp('2.5'),
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 5,
+    marginBottom: hp('2.5'),
+    // shadowColor: '#000000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 12,
+    // },
+    // shadowOpacity: 0.58,
+    // shadowRadius: 5,
     backgroundColor: Colors.themeBlack,
     elevation: 50,
     width: wp('92'),
@@ -99,5 +106,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     // marginTop: hp('1.8'),
   },
-  divider: {width: wp('78'), marginLeft: wp('7')},
+  divider: {width: wp('86'), marginLeft: wp('4')},
 });

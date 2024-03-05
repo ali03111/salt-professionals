@@ -13,7 +13,7 @@
 {
   [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyDQ_pjAQYvVcGWNLy-ND_ZtyufjXtiUAxs"]; // add this line using the api key obtained from Google Console
-  ...
+
 
   self.moduleName = @"saltstylelist";
   // You can add your custom initial props in the dictionary below.
