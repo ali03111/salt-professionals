@@ -26,9 +26,9 @@ const StackNavigatior = () => {
           headerTransparent: true,
           headerTitle: null,
           headerShown: false,
-          // statusBarAnimation: 'slide',
-          // statusBarStyle: 'light',
-          // ...statusBarColor,
+          statusBarAnimation: 'slide',
+          statusBarStyle: 'light',
+          ...statusBarColor,
         }}>
         {/* <Stack.Screen name="randomFile" component={randomFile} /> */}
         {!onboarding && (
