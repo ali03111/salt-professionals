@@ -7,7 +7,7 @@ const useHomeScreen = () => {
     queryKey: ['homeData'],
     queryFn: () => API.get(homeDataUrl),
   });
-
+  console.log('first', data?.data);
   return {
     homeData: data?.data,
   };

@@ -19,6 +19,7 @@ const Colors = {
   primaryColorFade: 'rgba(146,39,143,0.5)',
   themeExtraLight: '#e7bde6',
   fadeGreen: 'rgba(37, 204, 44, 1)',
+  textGreen: 'rgba(0, 215, 125, 1)',
   iconColor: 'rgba(238, 42, 123, 1)',
   grayFaded: 'rgba(255, 255, 255, 0.5)',
   textGray: 'rgba(154, 154, 154, 1)',

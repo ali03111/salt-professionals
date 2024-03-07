@@ -11,6 +11,7 @@ export {default as activeBar} from './Images/activeBar.png';
 export {default as handShake} from './Images/handShake.png';
 export {default as divider} from './Images/divider.png';
 export {default as blurImage} from './Images/blurImage.png';
+export {default as textureBg} from './Images/textureBg.png';
 
 export {default as splashOne} from './Images/splash-one.png';
 export {default as splashTwo} from './Images/splash-two.png';
