@@ -41,7 +41,7 @@ const useMapScreen = ({naviagte, goBack}, {params}) => {
 
   const onConfirm = () => {
     goBack();
-    params({currentLocation, range: max});
+    params({currentLocation: {...currentLocation, range: max}});
   };
 
   useEffect(useEffectFucn, []);

@@ -6,6 +6,8 @@ import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import usePortfolioScreen from './usePortfolioScreen';
+import {styles} from './styles';
+import {imageUrl} from '../../Utils/Urls';
 
 const PortfolioScreen = ({navigation}) => {
   const {portfolioImages, uploadFromGalary} = usePortfolioScreen();
@@ -25,16 +27,9 @@ const PortfolioScreen = ({navigation}) => {
         data={portfolioImages}
         InnerCompnonet={res => (
           <Image
-            source={{uri: res?.uri ?? res?.work_image}}
+            source={{uri: imageUrl(res?.uri) ?? res?.work_image}}
             progressiveRenderingEnabled
-            style={{
-              marginVertical: hp('2'),
-              marginHorizontal: wp('2'),
-              width: wp('45'),
-              height: hp('20'),
-              borderRadius: 10,
-              //   backgroundColor: 'red',
-            }}
+            style={styles.imageView}
           />
         )}
       />
