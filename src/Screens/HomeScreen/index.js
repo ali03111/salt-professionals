@@ -25,7 +25,12 @@ const HomeScreen = ({navigation}) => {
 
   const renderItem = useCallback(
     ({item, index}) => {
-      return <UpComingAppCards data={item} />;
+      return (
+        <UpComingAppCards
+          data={item}
+          onpress={() => navigation.navigate('AppointmentDetailScreen', item)}
+        />
+      );
     },
     [UpcomingData],
   );

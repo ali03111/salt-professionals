@@ -13,8 +13,12 @@ import {CircleImage} from '../../Components/CircleImageComponent';
 import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
 import {profleImg, textureBg} from '../../Assets';
+import {imageUrl} from '../../Utils/Urls';
+import {styles} from './styles';
 
-const AppointmentDetailScreen = () => {
+const AppointmentDetailScreen = ({route, navigation}) => {
+  const data = route.params;
+  const address = JSON.parse(data?.users?.location?.location);
   return (
     <View style={styles.container}>
       <Image
@@ -24,10 +28,13 @@ const AppointmentDetailScreen = () => {
       />
       <View style={styles.topContainer}>
         {/* {/ <CircleImage image={data?.image} uri={true} /> /} */}
-        <CircleImage image={profleImg} styles={styles.profileStyle} />
+        <CircleImage
+          image={imageUrl(data?.users?.image)}
+          styles={styles.profileStyle}
+        />
         <TextComponent
           numberOfLines={1}
-          text={'With - James Dean'}
+          text={data?.users?.name}
           styles={styles.titleStyle}
         />
         <TextComponent
@@ -47,7 +54,7 @@ const AppointmentDetailScreen = () => {
           numberOfLines={1}
           text={'Back to Home'}
           styles={styles.tagLineStyle}
-          // onPress={onPress}
+          onPress={() => navigation.navigate('MybottomTabs')}
           fade={true}
         />
       </View>
@@ -55,7 +62,7 @@ const AppointmentDetailScreen = () => {
         <View style={styles.cardInner}>
           <TextComponent text={'Braid Type'} styles={styles.braidTitle} />
           <TextComponent
-            text={'Pony tail'}
+            text={data?.braid_type?.item}
             fade={true}
             styles={styles.braidTitle}
           />
@@ -63,7 +70,7 @@ const AppointmentDetailScreen = () => {
         <View style={styles.cardInner}>
           <TextComponent text={'Braid Size'} styles={styles.braidTitle} />
           <TextComponent
-            text={'Extra small'}
+            text={data?.braid_size?.item}
             fade={true}
             styles={styles.braidTitle}
           />
@@ -71,7 +78,7 @@ const AppointmentDetailScreen = () => {
         <View style={styles.cardInner}>
           <TextComponent text={'Braid Lengths'} styles={styles.braidTitle} />
           <TextComponent
-            text={'chin length'}
+            text={data?.braid_length?.item}
             fade={true}
             styles={styles.braidTitle}
           />
@@ -79,7 +86,7 @@ const AppointmentDetailScreen = () => {
         <View style={styles.cardInner}>
           <TextComponent text={'Date & Time'} styles={styles.braidTitle} />
           <TextComponent
-            text={'Nov 27, 2023 - 11:00 AM'}
+            text={`${data?.date} ${data?.time}`}
             fade={true}
             styles={styles.braidTitle}
           />
@@ -88,6 +95,14 @@ const AppointmentDetailScreen = () => {
           <TextComponent text={'Location'} styles={styles.braidTitle} />
           <TextComponent
             text={'On Site'}
+            fade={true}
+            styles={styles.braidTitle}
+          />
+        </View>
+        <View style={styles.cardInner}>
+          <TextComponent text={'Address'} styles={styles.braidTitle} />
+          <TextComponent
+            text={`${address?.currentLocation?.description}`}
             fade={true}
             styles={styles.braidTitle}
           />
@@ -117,89 +132,3 @@ const AppointmentDetailScreen = () => {
 };
 
 export default memo(AppointmentDetailScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.black,
-  },
-  bgImg: {
-    width: wp('100'),
-    // height: hp('60'),
-    marginTop: hp('-1'),
-  },
-  topContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    marginTop: hp('-5'),
-  },
-  profileStyle: {
-    width: Dimensions.get('window').width * 0.2,
-    height: Dimensions.get('window').width * 0.2,
-  },
-  titleStyle: {
-    paddingVertical: hp('1'),
-    fontSize: hp('2.5'),
-    fontWeight: '500',
-  },
-  tagLineStyle: {
-    fontSize: hp('1.6'),
-  },
-  topTier: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: wp('90'),
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: hp('3'),
-  },
-  cardContainer: {
-    width: wp('90'),
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginVertical: hp('1.5'),
-    borderRadius: 10,
-    borderWidth: wp('0.1'),
-    borderColor: Colors.grayFaded,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 5,
-    elevation: 50,
-    backgroundColor: Colors.themeBlack,
-  },
-  cardInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: wp('1'),
-    paddingVertical: wp('3.5'),
-    marginHorizontal: wp('2'),
-    borderBottomWidth: wp('0.1'),
-    borderColor: Colors.grayFaded,
-  },
-  braidTitle: {
-    fontSize: hp('1.6'),
-  },
-  viewBtnView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: hp('2'),
-    alignItems: 'center',
-    width: wp('90'),
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  viewAppBtn: {
-    backgroundColor: Colors.grayFadedBtn,
-    width: wp('43'),
-    height: hp('5'),
-    alignItems: 'center',
-    fontSize: hp('1.5'),
-  },
-});

@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   loginBtn: {
-    backgroundColor: Colors.themeRed,
+    backgroundColor: Colors.lightBlack,
     width: wp('44'),
     height: hp('5'),
   },

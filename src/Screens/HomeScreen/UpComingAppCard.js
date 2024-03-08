@@ -16,7 +16,7 @@ import {imageUrl} from '../../Utils/Urls';
 const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
-export const UpComingAppCards = ({data}) => {
+export const UpComingAppCards = ({data, onpress}) => {
   console.log(
     'user',
     data?.users?.location?.location,
@@ -67,6 +67,7 @@ export const UpComingAppCards = ({data}) => {
         <ThemeButton
           title={'View Appointment Details'}
           style={styles.viewAppBtn}
+          onPress={onpress}
         />
         <Touchable>
           <Image
