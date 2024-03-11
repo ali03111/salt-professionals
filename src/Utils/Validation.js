@@ -4,16 +4,16 @@ import * as yup from 'yup';
 const passwordSchema = {
   password: yup
     .string()
-    .required('Please Enter your password')
-    .max(25, 'Password must be less than 25 characters')
+    .required('Please enter your password.')
+    .max(25, 'Password must be less than 25 characters.')
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       'Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character',
     ),
   confirm_password: yup
     .string()
-    .required('Confirm password is required')
-    .oneOf([yup.ref('password'), null], 'Password must match'),
+    .required('Confirm password is required.')
+    .oneOf([yup.ref('password'), null], 'Password must match.'),
 };
 const number = yup.object().shape({
   number: yup.string().required('Please Enter your number'),
@@ -24,17 +24,20 @@ const signUpschema = yup.object().shape({
   email: yup
     .string()
     // .email('Email must be valid')
-    .required('Please Enter your email')
-    .min(3, 'Email must be valid')
-    .max(50, 'Email must be valid'),
-  // .matches(emailRegex, 'email is not Valid'),
+    .max(50, 'Email must be valid.')
+    .required('Please enter your email.')
+    .matches(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+      'Please enter valid email.',
+    ),
+
   name: yup
     .string()
-    .required('Please Enter your fullname')
-    .max(100, 'Name must be less than 100 characters')
-    .matches(/^[A-Za-z ]*$/, 'Please Enter valid name')
-    .min(2, 'Name must be atleast 2 characters')
-    .max(50, 'Name must be of 50 characters'),
+    .required('Please enter your first name.')
+    .max(100, 'Name must be less than 100 characters.')
+    .matches(/^[A-Za-z ]*$/, 'Please enter valid name.')
+    .min(2, 'Name must be atleast 2 characters.')
+    .max(50, 'Name must be of 50 characters.'),
   // city: yup.string().required('Please Enter Your country'),
   // number: yup.string().required('Please enter your number'),
   // .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
@@ -57,14 +60,13 @@ const logInUpschema = yup.object().shape({
   email: yup
     .string()
     // .email('Email must be valid')
-    .min(3, 'Email must be valid')
-    .max(50, 'Email must be valid')
-    .required('Please Enter your email')
+    .max(50, 'Email must be valid.')
+    .required('Please enter your email.')
     .matches(
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-      'Please enter valid email',
+      'Please enter valid email.',
     ),
-  password: yup.string().required('Please Enter your password'),
+  password: yup.string().required('Please enter your password.'),
 });
 const forgotSchema = yup.object().shape({
   email: yup

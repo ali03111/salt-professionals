@@ -53,7 +53,7 @@ const RegisterScreen = ({navigation}) => {
         source={loginBgBlack}
         style={{
           width: wp('100'),
-          top: hp('-5'),
+          top: hp('-12'),
         }}
       />
       <TextComponent text={'Sign Up'} styles={styles.topImage(isIOS)} />
@@ -68,7 +68,7 @@ const RegisterScreen = ({navigation}) => {
             getValues,
             placeholder: 'Name',
             isImage: userIcon,
-            defaultValue: __DEV__ ? 'userHund' : '',
+            defaultValue: '',
             tintColor: Colors.themeRed,
           }}
         />
@@ -99,7 +99,7 @@ const RegisterScreen = ({navigation}) => {
             defaultValue: '',
             isSecure: true,
             inputIconStyle: styles.lockstyle,
-            defaultValue: __DEV__ ? 'Test@123' : '',
+            defaultValue: '',
             tintColor: Colors.themeRed,
           }}
         />
@@ -111,13 +111,13 @@ const RegisterScreen = ({navigation}) => {
             reset,
             control,
             getValues,
-            placeholder: 'Password',
+            placeholder: 'Confirm Password',
             isImage: lock,
             defaultValue: '',
             isSecure: true,
             inputIconStyle: styles.lockstyle,
             tintColor: Colors.themeRed,
-            defaultValue: __DEV__ ? 'Test@123' : '',
+            defaultValue: '',
           }}
         />
         <ThemeButton

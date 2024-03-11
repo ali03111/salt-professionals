@@ -48,7 +48,7 @@ API.addResponseTransform(response => {
     response?.originalError?.message == 'Request failed with status code 401' &&
     Auth.token != ''
   )
-    store.dispatch(logOutUser());
+    store.dispatch(logOutAuth());
 
   return response;
 });

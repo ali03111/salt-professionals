@@ -24,15 +24,19 @@ import {AppointmentReqComp} from '../../Components/AppointmentReqComp';
 import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import useHomeScreen from './useHomeScreen';
+import {TextComponent} from '../../Components/TextComponent';
+import NoDataFound from '../../Components/NoDataFound';
 
 const HomeScreen = ({navigation}) => {
   const {homeData, onAppPress, dynamicNav, onRefresh, refresh} =
     useHomeScreen(navigation);
 
-  // console.log('homeDatahomeDatahomeDatahomeDatahomeData', homeData?.requests);
+  console.log('homeDatahomeDatahomeDatahomeDatahomeData', homeData?.requests);
+  console.log('homeDatahomeData', homeData?.upcoming);
 
   const renderItem = useCallback(
     ({item, index}) => {
+      console.log('first', item);
       return (
         <UpComingAppCards
           data={item}
@@ -80,7 +84,11 @@ const HomeScreen = ({navigation}) => {
           data={UpcomingData}
           InnerCompoenet={item => <UpComingAppCards data={item} />}
         /> */}
-
+        <NoDataFound
+          heading={'Oops...'}
+          subHeading={'no upcoming appointments!'}
+          text={'Accept requests to view appintments here...'}
+        />
         <FlatList
           data={homeData?.upcoming}
           renderItem={renderItem}

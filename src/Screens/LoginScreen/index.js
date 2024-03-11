@@ -60,7 +60,7 @@ const LoginScreen = ({navigation}) => {
         source={loginBgBlack}
         style={{
           width: wp('100'),
-          top: hp('-5'),
+          top: hp('-12'),
         }}
       />
       <TextComponent text={'Log In'} styles={styles.topImage(isIOS)} />
@@ -112,7 +112,6 @@ const LoginScreen = ({navigation}) => {
         text={'Don’t have an account?'}
         ButtonText={'Sign Up'}
         onPress={() => navigation.navigate('RegisterScreen')}
-        viewStyle={{marginBottom: hp('2')}}
       />
     </ScrollView>
   );
