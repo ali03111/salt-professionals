@@ -104,7 +104,7 @@ API.get = async (url, params, axiosConfig) => {
 const fetchPostWithToken = (url, body, isFormData, imageKey, isArray) => {
   const {Auth} = store.getState('Auth');
   const fullUrl = baseURL + url;
-
+  store.dispatch(loadingTrue());
   console.log(
     'Auth Token',
     createFormData(body, imageKey, isArray)?.getAll(),

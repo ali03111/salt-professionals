@@ -1,6 +1,13 @@
 import React, {useCallback} from 'react';
 import {memo} from 'react';
-import {FlatList, ScrollView, StatusBar, Text, View} from 'react-native';
+import {
+  FlatList,
+  RefreshControl,
+  ScrollView,
+  StatusBar,
+  Text,
+  View,
+} from 'react-native';
 import HomeHeader from './homeHeader';
 import {HeadingView} from './headingView';
 import {UpComingAppCards} from './UpComingAppCard';
@@ -19,13 +26,19 @@ import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import useHomeScreen from './useHomeScreen';
 
 const HomeScreen = ({navigation}) => {
-  const {homeData} = useHomeScreen(navigation);
+  const {homeData, onAppPress, dynamicNav, onRefresh, refresh} =
+    useHomeScreen(navigation);
 
-  console.log('homeDatahomeDatahomeDatahomeDatahomeData', homeData);
+  // console.log('homeDatahomeDatahomeDatahomeDatahomeData', homeData?.requests);
 
   const renderItem = useCallback(
     ({item, index}) => {
-      return <UpComingAppCards data={item} />;
+      return (
+        <UpComingAppCards
+          data={item}
+          onpress={() => dynamicNav('AppointmentDetailScreen', item)}
+        />
+      );
     },
     [UpcomingData],
   );
@@ -37,27 +50,39 @@ const HomeScreen = ({navigation}) => {
           viewStyle={{
             marginRight: wp('3'),
           }}
+          onPress={({appId, status}) => onAppPress({appId, status})}
+          onInfo={() =>
+            dynamicNav('AppointmentDetailScreen', {...item, isPending: true})
+          }
         />
       );
     },
     [UpcomingData],
   );
 
+  // console.log('homeDatahomeDatahomeDatahomeDatahomeDatahomeData', homeData);
+
   return (
     <View style={{flex: 1}}>
       <StatusBar backgroundColor={Colors.themeRed} barStyle={'light-content'} />
       <HomeHeader />
       <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
+        }
         contentContainerStyle={{paddingBottom: hp('5')}}
         showsVerticalScrollIndicator={false}>
-        <HeadingView title={'Upcoming Appointments'} />
+        <HeadingView
+          title={'Upcoming Appointments'}
+          onPress={() => dynamicNav('AppointmentScreen')}
+        />
         {/* <AniLeftScroll
           data={UpcomingData}
           InnerCompoenet={item => <UpComingAppCards data={item} />}
         /> */}
 
         <FlatList
-          data={UpcomingData}
+          data={homeData?.upcoming}
           renderItem={renderItem}
           scrollEnabled
           refreshing={false}
@@ -68,11 +93,12 @@ const HomeScreen = ({navigation}) => {
         />
         <ProfileProgressView />
         <HeadingView
-          title={'Top-rated professionals '}
+          title={'Request Appointments'}
           viewStyle={{marginTop: hp('6')}}
+          onPress={() => dynamicNav('AppointmentScreen')}
         />
         <FlatList
-          data={UpcomingData}
+          data={homeData?.requests}
           renderItem={topRatedrenderItem}
           scrollEnabled
           refreshing={false}

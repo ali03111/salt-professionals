@@ -23,6 +23,7 @@ export const AniFlatOneByOne = ({
   InnerCompnonet,
   flatViewStyle,
   flatListProps,
+  onRefresh,
 }) => {
   const {width, height} = Dimensions.get('screen');
 
@@ -35,7 +36,7 @@ export const AniFlatOneByOne = ({
       <Animatable.View
         animation={'fadeIn'}
         delay={Number(index.toString() + '00')}>
-        {InnerCompnonet(item)}
+        {InnerCompnonet(item, index)}
       </Animatable.View>
     );
   };
@@ -49,6 +50,8 @@ export const AniFlatOneByOne = ({
         scrollEnabled: true,
         showsVerticalScrollIndicator: false,
         showsHorizontalScrollIndicator: false,
+        onRefresh,
+        refreshing: false,
         ...flatListProps,
       }}
     />

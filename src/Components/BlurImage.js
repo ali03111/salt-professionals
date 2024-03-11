@@ -25,7 +25,15 @@ const BlurImage = ({styles, uri, blurhash, radius, children, isURI}) => {
         <Blurhash
           shouldRasterizeIOS
           blurhash={blurhash || 'LTG*j6E0~VnLxV?ZMw%05P-pNZWB'}
-          style={[styles, {zIndex: 1, position: 'absolute'}]}
+          style={[
+            styles,
+            {
+              zIndex: 1,
+              position: 'absolute',
+              overflow: 'hidden',
+              borderRadius: 10,
+            },
+          ]}
         />
       )}
       {children}

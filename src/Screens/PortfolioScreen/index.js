@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, FlatList} from 'react-native';
 import React, {memo} from 'react';
 import BackHeader from '../../Components/BackHeader';
 import {uploadWithText} from '../../Assets';
@@ -8,10 +8,18 @@ import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import usePortfolioScreen from './usePortfolioScreen';
 import {styles} from './styles';
 import {imageUrl} from '../../Utils/Urls';
+import BlurImage from '../../Components/BlurImage';
+import {TextComponent} from '../../Components/TextComponent';
+import {keyExtractor} from '../../Utils';
+import {CircleImage} from '../../Components/CircleImageComponent';
 
 const PortfolioScreen = ({navigation}) => {
-  const {portfolioImages, uploadFromGalary} = usePortfolioScreen();
-
+  const {portfolioImages, serverImages, uploadFromGalary} =
+    usePortfolioScreen();
+  console.log(
+    'portfolioImagesportfolioImagesportfolioImagesportfolioImagesportfolioImages',
+    portfolioImages,
+  );
   return (
     <View style={{flex: 1, backgroundColor: Colors.themeBlack}}>
       <BackHeader
@@ -22,15 +30,21 @@ const PortfolioScreen = ({navigation}) => {
         onRightPress={uploadFromGalary}
         goBack={() => navigation.goBack()}
       />
-      <AniFlatOneByOne
-        flatListProps={{numColumns: 2}}
-        data={portfolioImages}
-        InnerCompnonet={res => (
-          <Image
-            source={{uri: imageUrl(res?.uri) ?? res?.work_image}}
-            progressiveRenderingEnabled
-            style={styles.imageView}
+      <FlatList
+        numColumns={2}
+        data={[...serverImages, ...portfolioImages]}
+        keyExtractor={keyExtractor}
+        renderItem={({item, index}) => (
+          <BlurImage
+            uri={item?.uri ?? imageUrl(item?.work_image)}
+            styles={styles.imageView}
+            isURI={true}
           />
+          // <Image
+          //   source={{uri: item?.uri ?? imageUrl(item?.work_image)}}
+          //   progressiveRenderingEnabled
+          //   style={styles.imageView}
+          // />
         )}
       />
     </View>

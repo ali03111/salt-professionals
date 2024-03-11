@@ -8,5 +8,6 @@ export const styles = StyleSheet.create({
     width: wp('45'),
     height: hp('20'),
     borderRadius: 10,
+    overflow: 'hidden',
   },
 });

@@ -5,34 +5,60 @@ import {TextComponent} from './TextComponent';
 import {divider, information} from '../Assets';
 import ThemeButton from './ThemeButton';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import {
+  extractTimeFromString,
+  getDateMonthYear,
+} from '../Utils/globalFunctions';
+import {Touchable} from './Touchable';
 
-export const AppointmentReqComp = ({item, viewStyle}) => {
+export const AppointmentReqComp = ({item, viewStyle, onPress, onInfo}) => {
+  const address = JSON.parse(item?.users?.location?.location);
+
+  console.log(
+    'lksdbvlkbsdklvblskdbvlksdbklvsd',
+    item,
+    extractTimeFromString(item?.time),
+  );
+
   return (
     <View style={{...styles.mainView, ...viewStyle}}>
       <View style={styles.leftView}>
-        <TextComponent text={'25'} styles={styles.dateText} />
-        <TextComponent text={'Nov'} />
+        <TextComponent
+          text={getDateMonthYear(item?.date)?.day}
+          styles={styles.dateText}
+        />
+        <TextComponent text={getDateMonthYear(item?.date)?.monthName} />
         <Image source={divider} resizeMode="contain" style={styles.divider} />
-        <TextComponent text={'11 : 00 AM'} />
+        <TextComponent text={extractTimeFromString(item?.time)} />
       </View>
       <View style={styles.rightView}>
         <View style={styles.upperView}>
-          <TextComponent text={'Ricky Jonathan'} />
-          <Image
-            source={information}
-            resizeMode="contain"
-            style={styles.infIcon}
-          />
+          <TextComponent text={item?.users?.name} />
+          <Touchable onPress={onInfo}>
+            <Image
+              source={information}
+              resizeMode="contain"
+              style={styles.infIcon}
+            />
+          </Touchable>
         </View>
         <TextComponent
-          text={'Street338 Catherine St, V9A 3S8, Columbia.'}
+          text={address?.currentLocation?.description}
           fade={true}
           styles={{fontSize: hp('1.4')}}
           numberOfLines={1}
         />
         <View style={styles.btnView}>
-          <ThemeButton title={'Accept'} style={styles.accBtn} />
-          <ThemeButton title={'Reject'} style={styles.rjBtn} />
+          <ThemeButton
+            title={'Accept'}
+            style={styles.accBtn}
+            onPress={() => onPress({appId: item?.id, status: true})}
+          />
+          <ThemeButton
+            title={'Reject'}
+            style={styles.rjBtn}
+            onPress={() => onPress({appId: item?.id, status: false})}
+          />
         </View>
       </View>
     </View>

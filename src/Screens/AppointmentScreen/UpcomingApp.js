@@ -8,49 +8,29 @@ import {styles} from './styles';
 import {hp} from '../../Config/responsive';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
+import useAppointmentScreen from './useAppointmentScreen';
 
-const UpcomingApp = () => {
-  // const renderItem = useCallback(({item, index}) => {
-  //   return (
-  //     <UpComingAppView
-  //       viewStyle={{
-  //         marginBottom: hp('2'),
-  //       }}
-  //     />
-  //   );
-  // }, []);
+const UpcomingApp = ({navigation}) => {
+  const {allData, onAppBook, onRefresh, dynamicNav} =
+    useAppointmentScreen(navigation);
 
   return (
     <View style={{flex: 1}}>
-      {/* <AniFlatOneByOne
-        data={UpcomingData}
+      <AniFlatOneByOne
+        data={allData?.upcoming}
         flatViewStyle={styles.upComingFlatlistView}
-        InnerCompnonet={item => (
-          )}
-      /> */}
-      <UpComingAppView
-        viewStyle={{
-          marginBottom: hp('2'),
-        }}
-        data={UpcomingData}
+        onRefresh={onRefresh}
+        InnerCompnonet={(item, index) => (
+          <UpComingAppView
+            viewStyle={{
+              marginBottom: hp('2'),
+            }}
+            item={item}
+            index={index}
+            onInfo={() => dynamicNav('AppointmentDetailScreen', item)}
+          />
+        )}
       />
-      {/* <AniLeftScroll /> */}
-
-      {/* <FlatList
-        data={UpcomingData}
-        renderItem={renderItem}
-        scrollEnabled
-        refreshing={false}
-        extraData={keyExtractor}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.upComingFlatlistView}
-      /> */}
-      {/* <AppointmentReqCompSkeleton /> */}
-      {/* <SkeletonPlaceholder>
-      <AppointmentReqCompSkeleton />
-      <AppointmentReqCompSkeleton />
-      <AppointmentReqCompSkeleton />
-    </SkeletonPlaceholder> */}
     </View>
   );
 };

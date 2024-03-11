@@ -43,6 +43,9 @@ export const homeDataUrl = 'professional/home-data';
 export const UploadPastWorkImagesUrl = 'professional/upload-past-work';
 export const getPastWorkImagesUrl = baseURL + 'professional/prof-past-works';
 export const selecteLocationUrl = 'professional/select-location';
+export const changeAppStatusUrl = 'professional/accept-appointment/';
+export const GetAllAppointUrl = 'professional/appointments';
+
 export const DeleteUserUrl = 'professional/deactive-user';
 export const logoutUserUrl = 'professional/logout';
 

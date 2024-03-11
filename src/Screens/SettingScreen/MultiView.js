@@ -35,7 +35,6 @@ export const MultiView = ({data, viewStyle}) => {
       style={{
         ...styles.mainView,
         ...viewStyle,
-        borderWidth: data[0].leftIcon ? 1 : 0,
       }}>
       <FlatList
         scrollEnabled={false}

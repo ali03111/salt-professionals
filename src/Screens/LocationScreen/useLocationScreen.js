@@ -17,6 +17,8 @@ const useLocationScreen = ({navigate}) => {
     userData?.updated_data?.loc_data,
   );
 
+  console.log('userDatauserDatauserDatauserDatauserData', userData);
+
   const {mutate} = useMutation({
     mutationFn: data => {
       return API.post(selecteLocationUrl, {

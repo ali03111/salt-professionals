@@ -13,3 +13,5 @@ export {default as PortfolioScreen} from './PortfolioScreen';
 export {default as LocationScreen} from './LocationScreen';
 export {default as MapScreen} from './MapScreen';
 export {default as ChangePasswordScreen} from './ChangePasswordScreen';
+export {default as NotificationScreen} from './NotificationScreen';
+export {default as AppointmentDetailScreen} from './AppointmentDetailScreen';

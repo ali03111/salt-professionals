@@ -10,7 +10,7 @@ const HistoryApp = () => {
   return (
     <View style={{flex: 1}}>
       <AniFlatOneByOne
-        data={UpcomingData}
+        data={[]}
         flatViewStyle={styles.upComingFlatlistView}
         InnerCompnonet={item => (
           <HistoryReqComp

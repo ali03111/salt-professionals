@@ -16,11 +16,13 @@ const IconBtnView = ({
   rightIcon,
   rightStyle,
   rightText,
+  disabled,
 }) => {
   return (
     <Touchable
       Opacity={0.7}
       onPress={onPress}
+      disabled={disabled}
       style={{...styles.button, ...viewStyle}}>
       {leftIcon && (
         <Image source={leftIcon} style={{...styles.iconStyle, ...leftStyle}} />
