@@ -10,6 +10,7 @@ import {styles} from './styles';
 import TagModalView from './TagModalView';
 import useSpecialitiesScreen from './userSpecialitiesScreen';
 import {braidType} from '../../Utils/localDB';
+import {Touchable} from '../../Components/Touchable';
 
 export const data = [
   {
@@ -114,11 +115,13 @@ const SpecialitiesScreen = ({navigation}) => {
           rightText={'Add more'}
           onPress={() => onOpenModal('braid_type')}
           childern={
-            <Image
-              source={plusCircle}
-              resizeMode="contain"
-              style={{width: wp('5'), height: hp('5')}}
-            />
+            <Touchable onPress={() => onOpenModal('braid_type')}>
+              <Image
+                source={plusCircle}
+                resizeMode="contain"
+                style={{width: wp('5'), height: hp('5')}}
+              />
+            </Touchable>
           }
         />
         <ArryView item={activeTags?.braid_type} />
@@ -127,11 +130,13 @@ const SpecialitiesScreen = ({navigation}) => {
           rightText={'Add more'}
           onPress={() => onOpenModal('braid_size')}
           childern={
-            <Image
-              source={plusCircle}
-              resizeMode="contain"
-              style={{width: wp('5'), height: hp('5')}}
-            />
+            <Touchable onPress={() => onOpenModal('braid_size')}>
+              <Image
+                source={plusCircle}
+                resizeMode="contain"
+                style={{width: wp('5'), height: hp('5')}}
+              />
+            </Touchable>
           }
         />
         <ArryView item={activeTags?.braid_size} />
@@ -140,11 +145,13 @@ const SpecialitiesScreen = ({navigation}) => {
           rightText={'Add more'}
           onPress={() => onOpenModal('braid_length')}
           childern={
-            <Image
-              source={plusCircle}
-              resizeMode="contain"
-              style={{width: wp('5'), height: hp('5')}}
-            />
+            <Touchable onPress={() => onOpenModal('braid_length')}>
+              <Image
+                source={plusCircle}
+                resizeMode="contain"
+                style={{width: wp('5'), height: hp('5')}}
+              />
+            </Touchable>
           }
         />
         <ArryView item={activeTags?.braid_length} />

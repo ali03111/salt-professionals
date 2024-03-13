@@ -28,12 +28,15 @@ const usePortfolioScreen = () => {
       dispatch(loadingFalse());
       console.log('osdibvklsdbvbsdlvkbsdklsdbvklsd', res);
       if (ok) {
-        queryClient.invalidateQueries({queryKey: ['pastWorkImages']});
         successMessage('Your profile updated sucessfully!');
       } else {
         dispatch(loadingFalse());
         errorMessage(data?.message);
       }
+    },
+    onError: () => {
+      errorMessage('Problem occurred while uploading images.');
+      dispatch(loadingFalse());
     },
   });
 

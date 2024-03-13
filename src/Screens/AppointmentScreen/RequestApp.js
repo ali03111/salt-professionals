@@ -11,6 +11,7 @@ import {styles} from './styles';
 import {hp} from '../../Config/responsive';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import useAppointmentScreen from './useAppointmentScreen';
+import {EmptyViewComp} from '../../Components/EmptyViewComp';
 
 const RequestApp = ({navigation, route}) => {
   const {allData, onAppBook, onRefresh, dynamicNav} =
@@ -24,6 +25,9 @@ const RequestApp = ({navigation, route}) => {
         data={allData?.requests}
         flatViewStyle={styles.upComingFlatlistView}
         onRefresh={onRefresh}
+        flatListProps={{
+          ListEmptyComponent: <EmptyViewComp onRefresh={onRefresh} />,
+        }}
         InnerCompnonet={item => (
           <AppointmentReqComp
             viewStyle={{

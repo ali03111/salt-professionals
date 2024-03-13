@@ -9,6 +9,7 @@ import {hp} from '../../Config/responsive';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
 import useAppointmentScreen from './useAppointmentScreen';
+import {EmptyViewComp} from '../../Components/EmptyViewComp';
 
 const UpcomingApp = ({navigation}) => {
   const {allData, onAppBook, onRefresh, dynamicNav} =
@@ -20,6 +21,9 @@ const UpcomingApp = ({navigation}) => {
         data={allData?.upcoming}
         flatViewStyle={styles.upComingFlatlistView}
         onRefresh={onRefresh}
+        flatListProps={{
+          ListEmptyComponent: <EmptyViewComp onRefresh={onRefresh} />,
+        }}
         InnerCompnonet={(item, index) => (
           <UpComingAppView
             viewStyle={{

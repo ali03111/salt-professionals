@@ -10,6 +10,7 @@ import {
 } from '../../Utils/Urls';
 import {types} from '../../Redux/types';
 import {errorMessage, successMessage} from '../../Config/NotificationMessage';
+import {loadingFalse} from '../../Redux/Action/isloadingAction';
 
 const useEditProfileScreen = navigation => {
   const {dispatch, getState} = useReduxStore();
@@ -28,6 +29,7 @@ const useEditProfileScreen = navigation => {
       );
     },
     onSuccess: ({ok, res}) => {
+      dispatch(loadingFalse());
       console.log('osdibvklsdbvbsdlvkbsdklsdbvklsd', res);
       if (ok) {
         dispatch({
@@ -37,7 +39,10 @@ const useEditProfileScreen = navigation => {
         successMessage('Your profile updated sucessfully!');
       }
     },
-    onError: ({message}) => errorMessage(message),
+    onError: ({message}) => {
+      dispatch(loadingFalse());
+      errorMessage('Problem occurred while uploading data.');
+    },
   });
 
   const onBackPress = () => setUserNameModal(!userNameModal);
@@ -65,10 +70,10 @@ const useEditProfileScreen = navigation => {
     );
   };
 
-  const saveName = text => {
+  const saveName = body => {
     onBackPress();
     endPointRef.current = updateUserNameUrl;
-    mutate({name: text});
+    mutate(body);
   };
 
   return {

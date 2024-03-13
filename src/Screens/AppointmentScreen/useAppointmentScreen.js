@@ -30,12 +30,12 @@ const useAppointmentScreen = ({navigate}) => {
   const dynamicNav = (key, item) => navigate(key, item);
 
   const onRefresh = useCallback(() => {
-    setRefresh(true);
+    // setRefresh(true);
     queryClient.fetchQuery({
       queryKey: ['allAppointData'],
       staleTime: 1000,
     });
-    setRefresh(false);
+    // setRefresh(false);
   }, []);
 
   return {
