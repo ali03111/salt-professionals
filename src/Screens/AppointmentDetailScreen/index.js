@@ -31,7 +31,9 @@ const AppointmentDetailScreen = ({route, navigation}) => {
   console.log('address?.loc_data', data);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}>
       <StatusBar
         backgroundColor={Colors.themeBlack}
         barStyle={'light-content'}
@@ -53,12 +55,12 @@ const AppointmentDetailScreen = ({route, navigation}) => {
           text={data?.users?.name}
           styles={styles.titleStyle}
         />
-        <TextComponent
+        {/* <TextComponent
           numberOfLines={1}
           text={`${data?.braid_type?.item} Professional`}
           styles={styles.tagLineStyle}
           fade={true}
-        />
+        /> */}
       </View>
       <View style={styles.topTier}>
         <TextComponent
@@ -159,7 +161,7 @@ const AppointmentDetailScreen = ({route, navigation}) => {
           onPress={onAcceptPress[data?.isPending]}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

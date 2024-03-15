@@ -16,6 +16,11 @@ import ThemeButton from '../../Components/ThemeButton';
 import {useState} from 'react';
 
 const EditNameModal = ({userData, userNameModal, onBackPress, saveName}) => {
+  console.log(
+    'experienceexperienceexperienceexperienceexperience',
+    userData?.experience,
+  );
+
   const [text, setText] = useState(userData?.name);
   const [year, setYear] = useState(userData?.experience);
   const [about, setAbout] = useState(userData?.about);
@@ -82,7 +87,7 @@ const EditNameModal = ({userData, userNameModal, onBackPress, saveName}) => {
                 placeholder="Years of Experience"
                 placeholderTextColor={Colors.lightBlack}
                 style={{flex: 1, color: 'white'}}
-                value={year}
+                value={year?.toString()}
                 onChangeText={t => setYear(t)}
                 keyboardType="numeric"
               />

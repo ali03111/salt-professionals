@@ -3,13 +3,13 @@ const getCredentials = () => {
     return {
       // baseURL: 'http://3.20.179.123/salt/api/',
       // imageURL: 'http://3.20.179.123/salt/',
-      baseURL: 'https://virtualrealitycreators.com/salt/api/',
+      baseURL: 'https://saltbraiding.com/api/',
       imageURL: 'https://virtualrealitycreators.com/salt/',
     };
   else {
     console.log = () => {};
     return {
-      baseURL: 'https://virtualrealitycreators.com/salt/api/',
+      baseURL: 'https://saltbraiding.com/api/',
       imageURL: 'https://virtualrealitycreators.com/salt/',
       // baseURL: 'http://3.20.179.123/salt/api/',
       // imageURL: 'http://3.20.179.123/salt/',
