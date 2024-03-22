@@ -59,7 +59,7 @@ const EditProfileScreen = ({navigation}) => {
   ];
 
   console.log(
-    locationType?.filter(res => res.locId == userData?.updated_data?.loc_data),
+    'locationType?.filter(res => res.locId == userData?.updated_data?.loc_data)',
     userData,
   );
 

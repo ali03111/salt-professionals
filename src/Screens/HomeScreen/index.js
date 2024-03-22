@@ -24,8 +24,7 @@ import {AppointmentReqComp} from '../../Components/AppointmentReqComp';
 import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import useHomeScreen from './useHomeScreen';
-import {TextComponent} from '../../Components/TextComponent';
-import NoDataFound from '../../Components/NoDataFound';
+import NoDataFoundVer from '../../Components/NoDataFoundVer';
 
 const HomeScreen = ({navigation}) => {
   const {homeData, onAppPress, dynamicNav, onRefresh, refresh} =
@@ -98,6 +97,13 @@ const HomeScreen = ({navigation}) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.upComingFlatlistView}
+          ListEmptyComponent={
+            <NoDataFoundVer
+              heading={'Oops...'}
+              subHeading={'no upcoming appointments !'}
+              text={'Book appintments please...'}
+            />
+          }
         />
         <ProfileProgressView />
         <HeadingView
@@ -114,6 +120,13 @@ const HomeScreen = ({navigation}) => {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.topRatedView}
+          ListEmptyComponent={
+            <NoDataFoundVer
+              heading={'Sorry...'}
+              subHeading={'appointments requests !'}
+              text={'Complete your profile to get maximum requests...'}
+            />
+          }
         />
       </ScrollView>
     </View>

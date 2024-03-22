@@ -22,7 +22,9 @@ export const ProfileProgressView = () => {
         />
         <TextComponent
           text={
-            'Please complete your profile to be on the search list of users.'
+            userData?.percentage == 100
+              ? 'Your profile has been completed now you will be available in the search list of users.'
+              : 'Please complete your profile to be on the search list of users.'
           }
           numberOfLines={2}
           styles={styles.pViewText}

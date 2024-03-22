@@ -60,7 +60,7 @@ const LoginScreen = ({navigation}) => {
         source={loginBgBlack}
         style={{
           width: wp('100'),
-          top: hp('-12'),
+          top: hp('-10'),
         }}
       />
       <TextComponent text={'Log In'} styles={styles.topImage(isIOS)} />

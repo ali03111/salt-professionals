@@ -37,7 +37,7 @@ const centerView = [
 ];
 
 export const UpComingAppView = ({item, viewStyle, index, onInfo}) => {
-  const [accordionItem, setAccordionItem] = useState(null);
+  const [accordionItem, setAccordionItem] = useState(false);
 
   const showData = Boolean(accordionItem == item?.id);
 
@@ -96,15 +96,15 @@ export const UpComingAppView = ({item, viewStyle, index, onInfo}) => {
           textStyle={{fontSize: hp('1.5')}}
         />
         <ThemeButton
-          onPress={() => setAccordionItem(item.id)}
+          onPress={() => setAccordionItem(!accordionItem)}
           title={'View Details'}
           style={styles.viewAppBtn}
-          image={showData ? upArrow : downArrow}
+          image={accordionItem ? upArrow : downArrow}
           imageStyle={styles.arrowBtn}
           textStyle={{fontSize: hp('1.5')}}
         />
       </View>
-      {showData ? (
+      {accordionItem ? (
         <Animatable.View animation={'fadeIn'} delay={Number('100')}>
           <IconBtnView
             title={'Braid Type'}

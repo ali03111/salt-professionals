@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 7.68,
     elevation: 20,
     width: wp('100'),
-    height: hp('40'),
+    height: hp('65'),
   },
   headingText: {
     fontWeight: '400',

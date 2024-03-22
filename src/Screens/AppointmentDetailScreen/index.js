@@ -18,6 +18,7 @@ import {imageUrl} from '../../Utils/Urls';
 import {styles} from './styles';
 import useAppointmentDetail from './useAppointmentDetail';
 import {locationType} from '../../Utils/localDB';
+import {openGoogleMaps} from '../../Utils/globalFunctions';
 
 const AppointmentDetailScreen = ({route, navigation}) => {
   const {data, onAcceptPress, onCancelPress, status} = useAppointmentDetail(
@@ -30,7 +31,9 @@ const AppointmentDetailScreen = ({route, navigation}) => {
   console.log('address?.loc_data', data);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}>
       <StatusBar
         backgroundColor={Colors.themeBlack}
         barStyle={'light-content'}
@@ -52,12 +55,12 @@ const AppointmentDetailScreen = ({route, navigation}) => {
           text={data?.users?.name}
           styles={styles.titleStyle}
         />
-        <TextComponent
+        {/* <TextComponent
           numberOfLines={1}
           text={`${data?.braid_type?.item} Professional`}
           styles={styles.tagLineStyle}
           fade={true}
-        />
+        /> */}
       </View>
       <View style={styles.topTier}>
         <TextComponent
@@ -108,15 +111,27 @@ const AppointmentDetailScreen = ({route, navigation}) => {
         </View>
         <View style={styles.cardInner}>
           <TextComponent text={'Location'} styles={styles.braidTitle} />
-          <TextComponent
-            text={
-              locationType.filter(
-                res => res?.locId == data?.users?.location?.loc_data,
-              )[0]?.label
-            }
-            fade={true}
-            styles={styles.braidTitle}
-          />
+          <View style={{flexDirection: 'row'}}>
+            <TextComponent
+              text={`( ${
+                locationType.filter(
+                  res => res?.locId == data?.users?.location?.loc_data,
+                )[0]?.label
+              } ) `}
+              fade={true}
+              styles={styles.braidTitle}
+            />
+            <TextComponent
+              text={'View on map'}
+              styles={{color: Colors.themeRed, fontSize: hp('1.5')}}
+              onPress={() =>
+                openGoogleMaps(
+                  address?.currentLocation?.coords?.latitude,
+                  address?.currentLocation?.coords?.longitude,
+                )
+              }
+            />
+          </View>
         </View>
         <View style={styles.cardInner}>
           <TextComponent text={'Address'} styles={styles.braidTitle} />
@@ -137,7 +152,7 @@ const AppointmentDetailScreen = ({route, navigation}) => {
             onPress={onCancelPress[data?.isPending]}
           />
         ) : (
-          <TextComponent text={'hufhucvjvcc'} />
+          <TextComponent text={'Rejected'} />
         )}
         <ThemeButton
           title={data?.isPending ? 'Accept' : 'Chat'}
@@ -146,7 +161,7 @@ const AppointmentDetailScreen = ({route, navigation}) => {
           onPress={onAcceptPress[data?.isPending]}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
