@@ -3,14 +3,14 @@ const getCredentials = () => {
     return {
       // baseURL: 'http://3.20.179.123/salt/api/',
       // imageURL: 'http://3.20.179.123/salt/',
-      baseURL: 'https://saltbraiding.com/api/',
-      imageURL: 'https://virtualrealitycreators.com/salt/',
+      baseURL: 'https://saltbraiding.com/salt/api/',
+      imageURL: 'https://saltbucket1.s3.us-east-2.amazonaws.com/',
     };
   else {
     console.log = () => {};
     return {
-      baseURL: 'https://saltbraiding.com/api/',
-      imageURL: 'https://virtualrealitycreators.com/salt/',
+      baseURL: 'https://saltbraiding.com/salt/api/',
+      imageURL: 'https://saltbucket1.s3.us-east-2.amazonaws.com/',
       // baseURL: 'http://3.20.179.123/salt/api/',
       // imageURL: 'http://3.20.179.123/salt/',
     };
@@ -26,10 +26,9 @@ export const imageUrl = url => {
   return url ? imageURL + url : '';
   // : 'https://res.cloudinary.com/dd6tdswt5/image/upload/v1684830799/UserImages/mhysa2zj0sbmvnw69b35.jpg';
 };
-
-export const aboutUrl = baseURL + 'about_us';
-export const privacyUrl = baseURL + 'privacy_policy';
-export const termsUrl = baseURL + 'terms_and_conditions';
+export const aboutUrl = 'https://saltbraiding.com/deletion_policy';
+export const privacyUrl = 'https://saltbraiding.com/privacy_policy';
+export const termsUrl = 'https://saltbraiding.com/terms_and_conditions';
 
 export const firebaseDataBaseURL =
   'https://track-pal-e4e07-default-rtdb.firebaseio.com/';
@@ -47,8 +46,9 @@ export const getPastWorkImagesUrl = baseURL + 'professional/prof-past-works';
 export const selecteLocationUrl = 'professional/select-location';
 export const changeAppStatusUrl = 'professional/accept-appointment/';
 export const GetAllAppointUrl = 'professional/appointments';
+export const VerifyUserUrl = 'professional/verify-user';
 
-export const DeleteUserUrl = 'professional/deactive-user';
+export const DeleteUserUrl = 'professional/deactive-prof';
 export const logoutUserUrl = 'professional/logout';
 
 export const userTrips = '/user-trips';
@@ -77,4 +77,3 @@ export const deleteAccUrl = '/delete-acc';
 // export const logoutUrl = '/logout';
 export const terminateStatusUrl = '/change-terminate-status';
 export const ResetMsgCountUrl = '/reset-msg-count';
-export const VerifyUserUrl = '/verify';

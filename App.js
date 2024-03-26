@@ -44,7 +44,6 @@ const App = () => {
   };
 
   const useEffectFun = () => {
-    dispatch(verifyUser());
     GoogleSignin.configure({
       webClientId:
         '841728114130-msqkiovn6969b3e1erfbarob0i1lu407.apps.googleusercontent.com',

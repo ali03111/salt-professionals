@@ -1,7 +1,7 @@
 import {Alert, Linking, PermissionsAndroid, Platform} from 'react-native';
 import Geolocationios from '@react-native-community/geolocation';
-// import Geolocation from 'react-native-geolocation-service';
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
+// import Geolocation from '@react-native-community/geolocation';
 import {openSettings} from 'react-native-permissions';
 import {store} from '../Redux/Reducer';
 import {loadingFalse, loadingTrue} from '../Redux/Action/isloadingAction';
@@ -59,17 +59,72 @@ const getIdsFromObj = (arry, key) => {
   return arry.map(res => res[key]);
 };
 
+const getCurrentLocation = async () => {
+  try {
+    // Request permission to access geolocation if needed
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      const position = await new Promise((resolve, reject) => {
+        Geolocation.getCurrentPosition(
+          info => resolve(info),
+          error => reject(error),
+        );
+      });
+    } else {
+      console.log('Location permission denied');
+    }
+  } catch (error) {
+    console.log(error, 'Error occurred');
+  }
+};
+
+const requestLocationPermission = async () => {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Location Permission',
+        message: 'This app needs access to your location.',
+        buttonPositive: 'OK',
+      },
+    );
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      Geolocation.getCurrentPosition(
+        position => {
+          const {latitude, longitude} = position.coords;
+          console.log({latitude, longitude}, 'aklsjfldjsflkjaklsdj');
+          // setCurrentLocation({coords: {latitude, longitude}});
+          // setCurrentLocation({
+          //   latitude: latitude,
+          //   longitude: longitude,
+          // });
+        },
+        error => {
+          console.log(error.message);
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
+    } else {
+      console.log('Location permission denied');
+    }
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
 const getProperLocation = () => {
   store.dispatch(loadingTrue());
 
-  Geolocation.setRNConfiguration({
-    config: {
-      skipPermissionRequests: true,
-      authorizationLevel: 'always' | 'whenInUse' | 'auto',
-      enableBackgroundLocationUpdates: true,
-      locationProvider: 'playServices' | 'android' | 'auto',
-    },
-  });
+  // Geolocation.setRNConfiguration({
+  //   config: {
+  //     skipPermissionRequests: true,
+  //     authorizationLevel: 'always' | 'whenInUse' | 'auto',
+  //     enableBackgroundLocationUpdates: true,
+  //     locationProvider: 'playServices' | 'android' | 'auto',
+  //   },
+  // });
 
   return new Promise(async (resolve, reject) => {
     console.log('first');
@@ -79,6 +134,11 @@ const getProperLocation = () => {
       if (Platform.OS === 'android') {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          {
+            title: 'Location Permission',
+            message: 'This app needs access to your location.',
+            buttonPositive: 'OK',
+          },
         );
         if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
           store.dispatch(loadingFalse());

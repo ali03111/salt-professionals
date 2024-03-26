@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Dimensions} from 'react-native';
+import {Dimensions, Platform} from 'react-native';
 import {getProperLocation} from '../../Utils/globalFunctions';
 
 const useMapScreen = ({naviagte, goBack}, {params}) => {
@@ -34,6 +34,7 @@ const useMapScreen = ({naviagte, goBack}, {params}) => {
     const location = await getProperLocation();
     console.log(
       'locationlocationlocationlocationlocationlocationlocation',
+      Platform.OS,
       location,
     );
     setCurrentLocation(location);

@@ -18,7 +18,7 @@ const PortfolioScreen = ({navigation}) => {
     usePortfolioScreen();
   console.log(
     'portfolioImagesportfolioImagesportfolioImagesportfolioImagesportfolioImages',
-    portfolioImages,
+    serverImages,
   );
   return (
     <View style={{flex: 1, backgroundColor: Colors.themeBlack}}>

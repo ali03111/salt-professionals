@@ -61,7 +61,7 @@ const HomeScreen = ({navigation}) => {
     [UpcomingData],
   );
 
-  // console.log('homeDatahomeDatahomeDatahomeDatahomeDatahomeData', homeData);
+  console.log('homeDatahomeDatahomeDatahomeDatahomeDatahomeData', homeData);
 
   return (
     <View style={{flex: 1}}>

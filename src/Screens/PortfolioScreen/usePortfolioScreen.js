@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {launchImageLibrary} from 'react-native-image-picker';
 import API, {fetchPostWithToken} from '../../Utils/helperFunc';
 import {UploadPastWorkImagesUrl, getPastWorkImagesUrl} from '../../Utils/Urls';
@@ -7,9 +7,13 @@ import {errorMessage, successMessage} from '../../Config/NotificationMessage';
 import {loadingFalse} from '../../Redux/Action/isloadingAction';
 import {store} from '../../Redux/Reducer';
 import useReduxStore from '../../Hooks/UseReduxStore';
+import {types} from '../../Redux/types';
 
 const usePortfolioScreen = () => {
   const {dispatch} = useReduxStore();
+
+  const [serverImages, setServerImages] = useState([]);
+  const [portfolioImages, setPorfolioImage] = useState([]);
 
   // Get QueryClient from the context
   const queryClient = useQueryClient();
@@ -28,8 +32,13 @@ const usePortfolioScreen = () => {
       dispatch(loadingFalse());
       console.log('osdibvklsdbvbsdlvkbsdklsdbvklsd', res);
       if (ok) {
-        successMessage('Your profile updated sucessfully!');
+        successMessage('Your past work updated sucessfully!');
+        dispatch({
+          type: types.UpdateProfile,
+          payload: res.user,
+        });
       } else {
+        setPorfolioImage([]);
         dispatch(loadingFalse());
         errorMessage(data?.message);
       }
@@ -37,6 +46,7 @@ const usePortfolioScreen = () => {
     onError: () => {
       errorMessage('Problem occurred while uploading images.');
       dispatch(loadingFalse());
+      setPorfolioImage([]);
     },
   });
 
@@ -45,9 +55,13 @@ const usePortfolioScreen = () => {
     queryFn: () => API.get(getPastWorkImagesUrl),
   });
 
-  const [portfolioImages, setPorfolioImage] = useState(
-    data?.data?.prof_past_work ?? [],
-  );
+  const getImages = async () => {
+    const {ok, data} = await API.get(getPastWorkImagesUrl);
+    if (ok) setServerImages(data?.prof_past_work);
+    else errorMessage(data?.message);
+  };
+
+  useEffect(getImages, []);
 
   const uploadFromGalary = () => {
     launchImageLibrary(
@@ -69,7 +83,7 @@ const usePortfolioScreen = () => {
   return {
     portfolioImages,
     uploadFromGalary,
-    serverImages: data?.data?.prof_past_work ?? [],
+    serverImages,
   };
 };
 

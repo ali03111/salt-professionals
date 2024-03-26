@@ -4,7 +4,7 @@ import {changeAppStatusUrl} from '../../Utils/Urls';
 import {errorMessage, successMessage} from '../../Config/NotificationMessage';
 import {useState} from 'react';
 
-const useAppointmentDetail = ({naviagte}, {params}) => {
+const useAppointmentDetail = ({naviagte, goBack}, {params}) => {
   const data = params;
 
   const [status, setStatus] = useState(null);
@@ -33,7 +33,7 @@ const useAppointmentDetail = ({naviagte}, {params}) => {
         appointment_id: data?.id,
         aor: false,
       }),
-    false: () => console.log('klsnvlksdnlkvnsdkl'),
+    false: () => goBack(),
   };
   const onAcceptPress = {
     true: () =>

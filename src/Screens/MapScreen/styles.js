@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
 
@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   mainView: {flex: 1, backgroundColor: Colors.themeBlack},
   modalView: {
     width: wp('100'),
-    height: hp('40'),
+    height: Platform.OS == 'ios' ? hp('45') : hp('40'),
     backgroundColor: Colors.themeBlack,
     borderTopStartRadius: 30,
     borderTopEndRadius: 30,

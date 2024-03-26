@@ -19,6 +19,8 @@ import {
 import {MultiView} from './MultiView';
 import useSettingScreen from './useSettingScreen';
 import {AlertDesign} from '../../Components/AlertDesign';
+import {privacyUrl, termsUrl} from '../../Utils/Urls';
+import InAppBrowser from '../../Components/InAppBrowser';
 
 const centerView = [
   {
@@ -31,19 +33,19 @@ const centerView = [
     title: 'About Salt',
     leftIcon: information,
     rightIcon: arrowLeftOld,
-    onPress: () => {},
+    onPress: () => InAppBrowser.open(privacyUrl),
   },
   {
     title: 'Privacy Policy',
     leftIcon: receiptWhite,
     rightIcon: arrowLeftOld,
-    onPress: () => {},
+    onPress: () => InAppBrowser.open(privacyUrl),
   },
   {
     title: 'Terms and Conditions',
     leftIcon: termsWhite,
     rightIcon: arrowLeftOld,
-    onPress: () => {},
+    onPress: () => InAppBrowser.open(termsUrl),
   },
   {
     title: 'Rate Us',
@@ -102,8 +104,8 @@ const SettingScreen = ({navigation}) => {
           (logoutAlert == true && logoutAlert)
         }
         message={
-          (logoutAlert && 'Are you sure you want to logout!') ||
-          (deleteAlert && 'Are you sure that you want to delete your account!')
+          (logoutAlert && 'Are you sure you want to logout?') ||
+          (deleteAlert && 'Are you sure that you want to delete your account?')
         }
         title={'Warning'}
         onConfirm={() =>

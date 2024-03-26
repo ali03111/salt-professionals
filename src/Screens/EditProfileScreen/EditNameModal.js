@@ -1,4 +1,4 @@
-import {Image, TextInput, View} from 'react-native';
+import {Image, Platform, TextInput, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {Colors} from '../../Theme/Variables';
 import {
@@ -15,7 +15,13 @@ import {TextComponent} from '../../Components/TextComponent';
 import ThemeButton from '../../Components/ThemeButton';
 import {useState} from 'react';
 
-const EditNameModal = ({userData, userNameModal, onBackPress, saveName}) => {
+const EditNameModal = ({
+  userData,
+  userNameModal,
+  onBackPress,
+  saveName,
+  errorMessage,
+}) => {
   console.log(
     'experienceexperienceexperienceexperienceexperience',
     userData?.experience,
@@ -72,6 +78,9 @@ const EditNameModal = ({userData, userNameModal, onBackPress, saveName}) => {
                 onChangeText={t => setText(t)}
               />
             </View>
+            {errorMessage != null && errorMessage != '' && (
+              <TextComponent text={errorMessage} styles={styles.errorMessage} />
+            )}
             <TextComponent
               text={'You can change your user name whenever you want.'}
               fade={true}
@@ -107,7 +116,11 @@ const EditNameModal = ({userData, userNameModal, onBackPress, saveName}) => {
               <TextInput
                 placeholder="Write About your self"
                 placeholderTextColor={Colors.lightBlack}
-                style={{flex: 1, color: 'white'}}
+                style={{
+                  flex: 1,
+                  color: 'white',
+                  marginTop: Platform.OS == 'ios' ? hp('1.5') : 0,
+                }}
                 value={about}
                 onChangeText={t => setAbout(t)}
                 multiline={true}

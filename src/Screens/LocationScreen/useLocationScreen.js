@@ -8,7 +8,7 @@ import {getProperLocation} from '../../Utils/globalFunctions';
 import useReduxStore from '../../Hooks/UseReduxStore';
 import {types} from '../../Redux/types';
 
-const useLocationScreen = ({navigate}) => {
+const useLocationScreen = ({navigate, goBack}) => {
   const {getState, dispatch} = useReduxStore();
 
   const {userData} = getState('Auth');
@@ -33,6 +33,7 @@ const useLocationScreen = ({navigate}) => {
           type: types.UpdateProfile,
           payload: data.user,
         });
+        goBack();
         successMessage(data?.message);
       }
     },

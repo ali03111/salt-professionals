@@ -42,6 +42,8 @@ const EditProfileScreen = ({navigation}) => {
     onBackPress,
     dynamicRoute,
     saveName,
+    errorMess,
+    setErrorMessage,
   } = useEditProfileScreen(navigation);
   const middleView = [
     {
@@ -121,6 +123,7 @@ const EditProfileScreen = ({navigation}) => {
           userNameModal={userNameModal}
           onBackPress={onBackPress}
           saveName={saveName}
+          errorMessage={errorMess}
         />
       </ScrollView>
     </View>

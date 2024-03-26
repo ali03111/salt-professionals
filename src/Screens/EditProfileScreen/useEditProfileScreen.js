@@ -18,6 +18,7 @@ const useEditProfileScreen = navigation => {
   const endPointRef = useRef('');
   const [userNameModal, setUserNameModal] = useState(false);
   const [profileData, setProfileData] = useState(null);
+  const [errorMess, setErrorMessage] = useState(null);
 
   const {mutate} = useMutation({
     mutationFn: data => {
@@ -37,6 +38,8 @@ const useEditProfileScreen = navigation => {
           payload: res.user,
         });
         successMessage('Your profile updated sucessfully!');
+      } else {
+        errorMessage(res?.message);
       }
     },
     onError: ({message}) => {
@@ -70,10 +73,18 @@ const useEditProfileScreen = navigation => {
     );
   };
 
+  const regex = /^[A-Za-z ]*$/;
+
   const saveName = body => {
-    onBackPress();
-    endPointRef.current = updateUserNameUrl;
-    mutate(body);
+    if (body.name != null && body.name != '' && regex.test(body.name)) {
+      onBackPress();
+      endPointRef.current = updateUserNameUrl;
+      mutate(body);
+      setErrorMessage(null);
+    } else
+      setErrorMessage(
+        `Please enter${regex.test(body.name) ? ' your name' : ' correct name'}`,
+      );
   };
 
   return {
@@ -84,6 +95,8 @@ const useEditProfileScreen = navigation => {
     onBackPress,
     dynamicRoute,
     saveName,
+    errorMess,
+    setErrorMessage,
   };
 };
 export default useEditProfileScreen;

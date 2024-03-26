@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {hp, wp} from '../../Config/responsive';
 
 export const styles = StyleSheet.create({
@@ -17,5 +17,9 @@ export const styles = StyleSheet.create({
     marginVertical: hp('2'),
     alignSelf: 'center',
   },
-  btn: {width: wp('90'), alignSelf: 'center', marginBottom: hp('2')},
+  btn: {
+    width: wp('90'),
+    alignSelf: 'center',
+    marginBottom: Platform.OS == 'ios' ? hp('5') : hp('2'),
+  },
 });

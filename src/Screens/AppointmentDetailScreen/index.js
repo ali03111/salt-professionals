@@ -33,6 +33,7 @@ const AppointmentDetailScreen = ({route, navigation}) => {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
+      bounces={false}
       showsVerticalScrollIndicator={false}>
       <StatusBar
         backgroundColor={Colors.themeBlack}
@@ -73,7 +74,6 @@ const AppointmentDetailScreen = ({route, navigation}) => {
           text={'Back to Home'}
           styles={styles.tagLineStyle}
           onPress={() => navigation.navigate('MybottomTabs')}
-          fade={true}
         />
       </View>
       <View style={styles.cardContainer}>

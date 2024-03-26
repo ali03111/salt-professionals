@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp('5'),
     paddingBottom: hp('3'),
     backgroundColor: Colors.themeRed,
-    paddingTop: Platform.OS == 'ios' ? hp('6') : hp('2'),
+    paddingTop: Platform.OS == 'ios' ? hp('8') : hp('2'),
     height: Platform.OS == 'ios' ? hp('12') : hp('8'),
     alignItems: 'center',
   },

@@ -100,6 +100,6 @@ export const styles = StyleSheet.create({
     paddingRight: wp('3'),
     fontSize: hp('2'),
     flex: 1,
-    color: 'black',
+    color: 'white',
   },
 });

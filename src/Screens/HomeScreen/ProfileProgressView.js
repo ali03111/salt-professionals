@@ -5,6 +5,8 @@ import {TextComponent} from '../../Components/TextComponent';
 import {Colors} from '../../Theme/Variables';
 import {styles} from './styles';
 import useReduxStore from '../../Hooks/UseReduxStore';
+import NavigationService from '../../Services/NavigationService';
+import {Touchable} from '../../Components/Touchable';
 
 export const ProfileProgressView = () => {
   const {getState} = useReduxStore();
@@ -14,7 +16,9 @@ export const ProfileProgressView = () => {
   console.log('lsdnfklsdnkds', userData);
 
   return (
-    <View style={styles.profileView}>
+    <Touchable
+      style={styles.profileView}
+      onPress={() => NavigationService.navigate('EditProfileScreen')}>
       <View>
         <TextComponent
           styles={styles.pViewHeading}
@@ -45,6 +49,6 @@ export const ProfileProgressView = () => {
           styles={{color: 'black', fontSize: hp('1.4')}}
         />
       </ProgressCircle>
-    </View>
+    </Touchable>
   );
 };

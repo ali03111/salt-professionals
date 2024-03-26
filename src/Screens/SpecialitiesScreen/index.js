@@ -77,6 +77,7 @@ const SpecialitiesScreen = ({navigation}) => {
     modalVal,
     userData,
     onPressKey,
+    setModalVal,
   } = useSpecialitiesScreen(navigation);
   const ArryView = ({item}) => {
     const arry = Boolean(item.length > 0);
@@ -158,12 +159,13 @@ const SpecialitiesScreen = ({navigation}) => {
       </ScrollView>
       {modalVal && (
         <TagModalView
-          activeTags={activeTags[onPressKey]}
-          allData={allData[onPressKey]}
+          activeTags={activeTags[onPressKey] ?? []}
+          allData={allData != undefined ? allData[onPressKey] : []}
           heading={onPressKey}
           isModal={modalVal}
           onSelect={addTags}
           onPress={toggleModal}
+          onBackPress={() => setModalVal(false)}
         />
       )}
     </View>

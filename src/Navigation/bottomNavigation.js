@@ -34,6 +34,8 @@ import {
 } from '../Assets';
 import useReduxStore from '../Hooks/UseReduxStore';
 import Lottie from 'lottie-react-native';
+import {fetchGetWithToken} from '../Utils/helperFunc';
+import {VerifyUserUrl} from '../Utils/Urls';
 
 globalStyles = {};
 const isIOS = Boolean(Platform.OS == 'ios');
@@ -41,6 +43,8 @@ const isIOS = Boolean(Platform.OS == 'ios');
 const Tab = createBottomTabNavigator();
 function MybottomTabs() {
   const {getState} = useReduxStore();
+
+  fetchGetWithToken(VerifyUserUrl);
 
   const {inviNotify} = getState('inviNotify');
   const {generalNotify} = getState('generalNotify');

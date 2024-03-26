@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
   btn: {
     width: wp('93'),
     alignSelf: 'center',
-    marginTop: hp('7'),
+    marginTop: hp('2'),
     marginBottom: hp('2'),
   },
   modalView: {

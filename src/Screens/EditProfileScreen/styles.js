@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {Dimensions, Platform, StyleSheet} from 'react-native';
 import {Colors} from '../../Theme/Variables';
 import {hp, wp} from '../../Config/responsive';
 
@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 7.68,
     elevation: 20,
     width: wp('100'),
-    height: hp('65'),
+    height: Platform.OS ? hp('70') : hp('65'),
   },
   headingText: {
     fontWeight: '400',
@@ -86,5 +86,16 @@ export const styles = StyleSheet.create({
     marginLeft: wp('5'),
     marginTop: hp('1'),
   },
-  btn: {width: wp('93'), alignSelf: 'center', marginTop: hp('7')},
+  btn: {
+    width: wp('93'),
+    alignSelf: 'center',
+    marginTop: hp('7'),
+    marginBottom: hp('2'),
+  },
+  errorMessage: {
+    color: Colors.themeRed,
+    fontSize: hp('1.5'),
+    marginLeft: wp('5'),
+    marginTop: hp('1'),
+  },
 });

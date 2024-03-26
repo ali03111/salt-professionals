@@ -1,4 +1,4 @@
-import {Image, TextInput, View} from 'react-native';
+import {Image, ScrollView, TextInput, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {Colors} from '../../Theme/Variables';
 import {blurImage, boldDivider, divider, profileWhite} from '../../Assets';
@@ -8,6 +8,7 @@ import {TextComponent} from '../../Components/TextComponent';
 import ThemeButton from '../../Components/ThemeButton';
 import {data} from '.';
 import {Touchable} from '../../Components/Touchable';
+import {useState} from 'react';
 
 const TagModalView = ({
   activeTags,
@@ -16,6 +17,7 @@ const TagModalView = ({
   onPress,
   heading,
   onSelect,
+  onBackPress,
 }) => {
   function convertToTitleCase(str) {
     return str
@@ -23,6 +25,8 @@ const TagModalView = ({
       ?.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       ?.join(' ');
   }
+
+  const [firstHit, setFirstHit] = useState(false);
 
   return (
     <View
@@ -36,7 +40,7 @@ const TagModalView = ({
         animationType="fade"
         hideModalContentWhileAnimating
         useNativeDriver
-        onBackButtonPress={onPress}
+        onBackButtonPress={onBackPress}
         style={styles.bottomModal}>
         <View
           style={{
@@ -58,12 +62,21 @@ const TagModalView = ({
               text={convertToTitleCase(heading)}
               styles={{marginVertical: hp('2')}}
             />
-            <View
-              style={{flexDirection: 'row', flexWrap: 'wrap', width: wp('90')}}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                width: wp('90'),
+                paddingBottom: firstHit ? hp('0') : hp('5'),
+              }}>
               {allData?.map(res => {
                 return (
                   <Touchable
-                    onPress={() => onSelect(res, heading)}
+                    onPress={() => {
+                      setFirstHit(true);
+                      onSelect(res, heading);
+                    }}
                     style={styles.innerTextView(
                       Boolean(activeTags.find(v => v.id == res.id)),
                     )}>
@@ -77,8 +90,14 @@ const TagModalView = ({
                   </Touchable>
                 );
               })}
-            </View>
-            <ThemeButton title={'Save'} style={styles.btn} onPress={onPress} />
+            </ScrollView>
+            {firstHit && activeTags.length > 0 && (
+              <ThemeButton
+                title={'Save'}
+                style={styles.btn}
+                onPress={onPress}
+              />
+            )}
           </View>
         </View>
       </Modal>

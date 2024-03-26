@@ -82,6 +82,7 @@ const useSpecialitiesScreen = () => {
     modalVal,
     userData,
     onPressKey: onPressKeyRef.current,
+    setModalVal,
   };
 };
 

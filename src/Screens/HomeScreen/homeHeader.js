@@ -22,6 +22,7 @@ const HomeHeader = () => {
   const {getState} = useReduxStore();
 
   const {userData} = getState('Auth');
+  let firstName = userData?.name?.split(' ')[0];
 
   return (
     <View style={styles.headerView}>
@@ -29,7 +30,7 @@ const HomeHeader = () => {
         <View style={{maxWidth: wp('70')}}>
           <TextComponent
             omponent
-            text={`Hello ${userData?.name}`}
+            text={`Hello ${firstName}`}
             styles={styles.nameText}
             numberOfLines={1}
           />

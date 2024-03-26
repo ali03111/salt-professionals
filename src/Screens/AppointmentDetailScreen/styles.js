@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    marginTop: hp('-8'),
+    marginTop: Platform.OS == 'ios' ? 0 : hp('-8'),
   },
   profileStyle: {
     width: Dimensions.get('window').width * 0.2,
