@@ -83,7 +83,7 @@ const useEditProfileScreen = navigation => {
       setErrorMessage(null);
     } else
       setErrorMessage(
-        `Please enter${regex.test(body.name) ? ' your name' : ' correct name'}`,
+        `Please enter${regex.test(body.name) ? ' your name' : ' valid name'}`,
       );
   };
 

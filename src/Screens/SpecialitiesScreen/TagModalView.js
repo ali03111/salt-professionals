@@ -40,7 +40,9 @@ const TagModalView = ({
         animationType="fade"
         hideModalContentWhileAnimating
         useNativeDriver
-        onBackButtonPress={onBackPress}
+        onBackButtonPress={
+          firstHit && activeTags.length == 0 ? onPress : onBackPress
+        }
         style={styles.bottomModal}>
         <View
           style={{

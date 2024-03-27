@@ -197,7 +197,6 @@ const fetchGetWithToken = async url => {
       },
     });
     if (!response.ok) {
-      await logOutFirebase();
       store.dispatch({type: types.LogoutType});
       throw new Error('Network response was not ok.');
     }
