@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   Text,
+  Alert,
 } from 'react-native';
 import * as Screens from '../Screens/index';
 import {Colors} from '../Theme/Variables';
@@ -46,6 +47,8 @@ function MybottomTabs() {
   const {getState} = useReduxStore();
 
   const {type, isConnected} = useNetInfo();
+
+  if (isConnected == false) Alert.alert('Please connect to the network!');
 
   fetchGetWithToken(VerifyUserUrl);
 
