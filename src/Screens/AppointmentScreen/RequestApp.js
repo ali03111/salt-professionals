@@ -17,7 +17,10 @@ const RequestApp = ({navigation, route}) => {
   const {allData, onAppBook, onRefresh, dynamicNav} =
     useAppointmentScreen(navigation);
 
-  console.log('allDataallDataallDataallDataallDataallDataallData', allData);
+  console.log(
+    'allDataallDataallDataallDataallDataallDataallData',
+    JSON.stringify(allData),
+  );
 
   return (
     <View style={{flex: 1}}>

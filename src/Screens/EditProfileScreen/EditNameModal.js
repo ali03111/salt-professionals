@@ -129,7 +129,9 @@ const EditNameModal = ({
             <ThemeButton
               title={'Save'}
               style={styles.btn}
-              onPress={() => saveName({name: text, about, experience: year})}
+              onPress={() =>
+                saveName({name: text, about, experience: Number(year)})
+              }
             />
           </View>
         </View>

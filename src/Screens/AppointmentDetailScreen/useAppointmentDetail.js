@@ -1,27 +1,58 @@
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import API from '../../Utils/helperFunc';
-import {changeAppStatusUrl} from '../../Utils/Urls';
+import {
+  changeAppStatusUrl,
+  sendOTPUrl,
+  startORendAppUrl,
+} from '../../Utils/Urls';
 import {errorMessage, successMessage} from '../../Config/NotificationMessage';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
-const useAppointmentDetail = ({naviagte, goBack}, {params}) => {
+const useAppointmentDetail = ({navigate, goBack}, {params}) => {
   const data = params;
 
   const [status, setStatus] = useState(null);
+
+  const [appointData, setAppointData] = useState(null);
 
   // Get QueryClient from the context
   const queryClient = useQueryClient();
 
   const {mutate} = useMutation({
     mutationFn: body => {
-      console.log('bodybodybodybodybodybodybodybodybodybodybody', body);
       return API.post(changeAppStatusUrl, body);
     },
     onSuccess: ({ok, data}) => {
-      console.log('dbhvjklsdbjkvbdsjkbvkdsbvsbdjkvbsdkjbvsdbkvsdbvsdjk', data);
       if (ok) {
         queryClient.invalidateQueries({queryKey: ['homeData']});
         setStatus(data?.aor);
+        successMessage(data?.message);
+      } else errorMessage(data?.message);
+    },
+  });
+
+  const {mutateAsync} = useMutation({
+    mutationFn: body => {
+      return API.post(sendOTPUrl, body);
+    },
+    onSuccess: ({ok, data}) => {
+      if (ok) {
+        navigate('OTPScreen', {
+          item: params,
+          afterBackFun: data => setAppointData(data),
+        });
+        successMessage(data?.message);
+      } else errorMessage(data?.message);
+    },
+  });
+
+  const statusChangeFun = useMutation({
+    mutationFn: body => {
+      return API.post(startORendAppUrl, body);
+    },
+    onSuccess: ({ok, data}) => {
+      if (ok) {
+        queryClient.invalidateQueries({queryKey: ['homeData']});
         successMessage(data?.message);
       } else errorMessage(data?.message);
     },
@@ -33,7 +64,14 @@ const useAppointmentDetail = ({naviagte, goBack}, {params}) => {
         appointment_id: data?.id,
         aor: false,
       }),
-    false: () => goBack(),
+    undefined: () => {
+      if (data?.is_current_date == 1) goBack();
+      else
+        mutateAsync({
+          id: data?.users?.id,
+          app_id: data?.appointment_request[0]?.appointment_id,
+        });
+    },
   };
   const onAcceptPress = {
     true: () =>
@@ -44,7 +82,7 @@ const useAppointmentDetail = ({naviagte, goBack}, {params}) => {
     false: () => console.log('klsnvlksdnlkvnsdkl'),
   };
 
-  return {data, onAcceptPress, onCancelPress, status};
+  return {data: appointData ?? data, onAcceptPress, onCancelPress, status};
 };
 
 export default useAppointmentDetail;

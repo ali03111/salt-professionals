@@ -14,7 +14,7 @@ const HistoryApp = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <AniFlatOneByOne
-        data={[]}
+        data={allData?.history}
         flatViewStyle={styles.upComingFlatlistView}
         flatListProps={{
           ListEmptyComponent: <EmptyViewComp onRefresh={onRefresh} />,
@@ -25,6 +25,7 @@ const HistoryApp = ({navigation}) => {
               marginBottom: hp('2'),
             }}
             data={item}
+            onInfo={() => dynamicNav('AppointmentDetailScreen', {...item})}
           />
         )}
       />

@@ -146,7 +146,13 @@ const AppointmentDetailScreen = ({route, navigation}) => {
       <View style={styles.viewBtnView}>
         {status == null ? (
           <ThemeButton
-            title={data?.isPending ? 'Reject' : 'Cancel'}
+            title={
+              data?.isPending
+                ? 'Reject'
+                : data?.is_current_date == 0
+                ? 'Cancel'
+                : 'Start Job'
+            }
             style={styles.viewAppBtn}
             textStyle={{fontSize: hp('1.5')}}
             onPress={onCancelPress[data?.isPending]}

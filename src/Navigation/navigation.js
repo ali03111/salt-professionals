@@ -86,6 +86,7 @@ const StackNavigatior = () => {
               name="NotificationScreen"
               component={Screens.NotificationScreen}
             />
+            <Stack.Screen name="OTPScreen" component={Screens.OTPScreen} />
             {/* <Stack.Screen
               name="EditPhoneNumberScreen"
               component={Screens.EditPhoneNumberScreen}

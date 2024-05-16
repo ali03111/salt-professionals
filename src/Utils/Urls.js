@@ -47,6 +47,9 @@ export const selecteLocationUrl = 'professional/select-location';
 export const changeAppStatusUrl = 'professional/accept-appointment/';
 export const GetAllAppointUrl = 'professional/appointments';
 export const VerifyUserUrl = 'professional/verify-user';
+export const startORendAppUrl = 'professional/appointment_status';
+export const sendOTPUrl = 'professional/verify-code';
+export const verifyOTPUrl = 'professional/check-code';
 
 export const DeleteUserUrl = 'professional/deactive-prof';
 export const logoutUserUrl = 'professional/logout';
