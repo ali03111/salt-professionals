@@ -10,47 +10,40 @@ import {UpcomingData} from '../../Utils/localDB';
 import {styles} from './styles';
 import {hp} from '../../Config/responsive';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
+import useAppointmentScreen from './useAppointmentScreen';
+import {EmptyViewComp} from '../../Components/EmptyViewComp';
 
-const RequestApp = () => {
-  const renderItem = useCallback(({item, index}) => {
-    return (
-      <AppointmentReqComp
-        viewStyle={{
-          marginBottom: hp('2'),
-        }}
-      />
-    );
-  }, []);
+const RequestApp = ({navigation, route}) => {
+  const {allData, onAppBook, onRefresh, dynamicNav} =
+    useAppointmentScreen(navigation);
+
+  console.log(
+    'allDataallDataallDataallDataallDataallDataallData',
+    JSON.stringify(allData),
+  );
 
   return (
     <View style={{flex: 1}}>
       <AniFlatOneByOne
-        data={UpcomingData}
+        data={allData?.requests}
         flatViewStyle={styles.upComingFlatlistView}
+        onRefresh={onRefresh}
+        flatListProps={{
+          ListEmptyComponent: <EmptyViewComp onRefresh={onRefresh} />,
+        }}
         InnerCompnonet={item => (
           <AppointmentReqComp
             viewStyle={{
               marginBottom: hp('2'),
             }}
+            item={item}
+            onPress={({appId, status}) => onAppBook({appId, status})}
+            onInfo={() =>
+              dynamicNav('AppointmentDetailScreen', {...item, isPending: true})
+            }
           />
         )}
       />
-
-      {/* <FlatList
-        data={UpcomingData}
-        renderItem={renderItem}
-        scrollEnabled
-        refreshing={false}
-        extraData={keyExtractor}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.upComingFlatlistView}
-      /> */}
-      {/* <AppointmentReqCompSkeleton /> */}
-      {/* <SkeletonPlaceholder>
-        <AppointmentReqCompSkeleton />
-        <AppointmentReqCompSkeleton />
-        <AppointmentReqCompSkeleton />
-      </SkeletonPlaceholder> */}
     </View>
   );
 };

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet, Image} from 'react-native';
 import {Controller} from 'react-hook-form';
-import {Colors} from '../Theme/Variables';
+import {Colors, Sizes} from '../Theme/Variables';
 import {Touchable} from './Touchable';
 import {hp, wp} from '../Config/responsive';
 import {eye, eyeOff} from '../Assets';
@@ -28,6 +28,7 @@ export const InputComponent = ({
   inputLines,
   multiline,
   tintColor,
+  errorTextStyle,
 }) => {
   const [show, setShow] = useState(!isSecure);
   const handleClick = () => setShow(!show);
@@ -95,13 +96,7 @@ export const InputComponent = ({
         }}
       />
       {errors[name]?.message && (
-        <View
-          style={
-            {
-              // width: Platform.OS == 'ios' ? width * 0.875 : Sizes.width * 0.9,
-              // width: Sizes.width * 0.9,
-            }
-          }>
+        <View style={errorTextStyle}>
           <Text style={[styles.error]}>{errors[name]?.message}</Text>
         </View>
       )}

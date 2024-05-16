@@ -88,33 +88,8 @@ const OnboardScreen = ({navigation}) => {
           animation={startAnimation ? animationValue : 0}
         />
         <Animatable.View animation={startAnimation ? animationValue : 0}>
-          <SwipeButton
-            // thumbIconImageSource={redArrow}
-            onSwipeSuccess={startAnimationFunc}
-            containerStyles={{
-              borderRadius: 50,
-              height: hp('7.2'),
-              width: wp('90'),
-              alignSelf: 'center',
-              paddingLeft: wp('1'),
-              marginTop: hp('4'),
-            }}
-            thumbIconStyles={{
-              height: hp('2'),
-              backgroundColor: 'blue',
-            }}
-            thumbIconComponent={arrowIcon}
-            title=""
-            railBackgroundColor={'transparent'}
-            railBorderColor={Colors.grayFaded}
-            railFillBackgroundColor={'transparent'}
-            railFillBorderColor={'transparent'}
-            thumbIconBackgroundColor={Colors.themeRed}
-            thumbIconBorderColor="transparent"
-          />
-          {/* <Animated.Text>sadsdf</Animated.Text> */}
-          {/* <SlideButton
-            title=""
+          <SlideButton
+            title="Swipe right"
             icon={<Images />}
             height={hp('7.2')}
             thumbStyle={{backgroundColor: Colors.themeRed}}
@@ -125,7 +100,7 @@ const OnboardScreen = ({navigation}) => {
             reverseSlideEnabled={false}
             onReachedToEnd={startAnimationFunc}
             underlayStyle={{backgroundColor: 'transparent'}}
-          /> */}
+          />
         </Animatable.View>
       </>
     );

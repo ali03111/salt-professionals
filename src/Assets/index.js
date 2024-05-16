@@ -11,6 +11,7 @@ export {default as activeBar} from './Images/activeBar.png';
 export {default as handShake} from './Images/handShake.png';
 export {default as divider} from './Images/divider.png';
 export {default as blurImage} from './Images/blurImage.png';
+export {default as textureBg} from './Images/textureBg.png';
 
 export {default as splashOne} from './Images/splash-one.png';
 export {default as splashTwo} from './Images/splash-two.png';
@@ -86,6 +87,7 @@ export {default as locationWhite} from './Icons/locationWhite.png';
 export {default as boldDivider} from './Icons/boldDivider.png';
 export {default as plusCircle} from './Icons/plusCircle.png';
 export {default as userSearch} from './Icons/userSearch.png';
+export {default as uploadWithText} from './Icons/uploadWithText.png';
 
 export {default as google} from './Icons/google.png';
 export {default as apple} from './Icons/apple.png';

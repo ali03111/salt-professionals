@@ -61,5 +61,28 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: hp('2'),
   },
-  btn: {width: wp('93'), alignSelf: 'center', marginTop: hp('7')},
+  btn: {
+    width: wp('93'),
+    alignSelf: 'center',
+    marginTop: hp('2'),
+    marginBottom: hp('2'),
+  },
+  modalView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  innerTextView: isActive => ({
+    paddingVertical: hp('1'),
+    paddingHorizontal: wp('3'),
+    marginVertical: hp('1'),
+    marginRight: wp('1'),
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: isActive ? 'transparent' : Colors.lightBlack,
+    backgroundColor: isActive ? 'white' : 'transparent',
+  }),
+  innerText: isActive => ({
+    color: isActive ? 'black' : Colors.grayFaded,
+  }),
 });

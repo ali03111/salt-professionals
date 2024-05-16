@@ -5,6 +5,7 @@ import {
   fcmToken,
   loginUrl,
   logoutUrl,
+  logoutUserUrl,
   registerUrl,
 } from '../Utils/Urls';
 import API from '../Utils/helperFunc';
@@ -18,7 +19,7 @@ const registerService = param => API.post(registerUrl, param);
 const checkNumberService = param =>
   API.get(checkNumberBeforeRegisterUrl + param);
 
-const logoutService = async () => await API.get(logoutUrl);
+const logoutService = async () => await API.get(logoutUserUrl);
 
 const fcmRegService = async params =>
   await API.post(fcmToken, {fcm_token: params});

@@ -4,10 +4,21 @@ import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
 import {Colors} from '../../Theme/Variables';
 import {styles} from './styles';
+import useReduxStore from '../../Hooks/UseReduxStore';
+import NavigationService from '../../Services/NavigationService';
+import {Touchable} from '../../Components/Touchable';
 
 export const ProfileProgressView = () => {
+  const {getState} = useReduxStore();
+
+  const {userData} = getState('Auth');
+
+  console.log('lsdnfklsdnkds', userData);
+
   return (
-    <View style={styles.profileView}>
+    <Touchable
+      style={styles.profileView}
+      onPress={() => NavigationService.navigate('EditProfileScreen')}>
       <View>
         <TextComponent
           styles={styles.pViewHeading}
@@ -15,27 +26,29 @@ export const ProfileProgressView = () => {
         />
         <TextComponent
           text={
-            'Please complete your profile to be on the search list of users.'
+            userData?.percentage == 100
+              ? 'Your profile has been completed now you will be available in the search list of users.'
+              : 'Please complete your profile to be on the search list of users.'
           }
           numberOfLines={2}
           styles={styles.pViewText}
         />
       </View>
       <ProgressCircle
-        percent={90}
+        percent={userData?.percentage}
         radius={50}
         borderWidth={8}
         // containerStyle={{height: hp('10')}}
         // outerCircleStyle={{height: hp('10')}}
-        color="#3399FF"
+        color={Colors.themeRed}
         shadowColor="#fff"
         bgColor="#fff">
-        <TextComponent text={'90'} styles={styles.Per} />
+        <TextComponent text={userData?.percentage} styles={styles.Per} />
         <TextComponent
           text={'Complete'}
           styles={{color: 'black', fontSize: hp('1.4')}}
         />
       </ProgressCircle>
-    </View>
+    </Touchable>
   );
 };

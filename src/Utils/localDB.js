@@ -108,114 +108,87 @@ export const UpcomingData = [
   },
 ];
 
-export const Invitation = [
+export const notifyData = [
   {
     id: 0,
-    name: 'Gregory Hayes',
-    description: 'Gregory added you to the  ',
-    groupName: 'Business Trip',
-    image: DemoProfileImage1,
+    name: 'Benjamin Luis',
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage1,
     time: '4:32 PM',
-    initialStatus: 'pending',
+    initialStatus: 'null',
   },
   {
     id: 1,
     name: 'Louis Frank',
-    description: 'Benjamin Luis sent a message to',
-    groupName: 'trip Home',
-    image: DemoProfileImage2,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage2,
     time: '4:32 PM',
-    initialStatus: 'rejected',
+    initialStatus: 'accepted',
   },
   {
     id: 2,
     name: 'Liam Andrew',
-    description: 'Gregory added you to the',
-    groupName: 'Office Meets',
-    image: DemoProfileImage3,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage3,
     time: '4:32 PM',
     initialStatus: 'rejected',
   },
   {
     id: 3,
     name: 'Benjamin Luis',
-    description: 'William James sent an alert to',
-    groupName: 'Office Meets',
-    image: DemoProfileImage4,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage4,
     time: '4:32 PM',
     initialStatus: 'accepted',
   },
   {
     id: 4,
     name: 'Louis Frank',
-    description: 'Lissa Desouza added you to the',
-    groupName: 'Home',
-    image: DemoProfileImage5,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage5,
     time: '4:32 PM',
     initialStatus: 'rejected',
   },
   {
     id: 5,
     name: 'Liam Andrew',
-    description: 'Gregory added you to the',
-    groupName: 'Gentle Mans.',
-    image: DemoProfileImage6,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage6,
     time: '4:32 PM',
     initialStatus: 'accepted',
   },
   {
     id: 6,
     name: 'Benjamin Luis',
-    description: 'Gregory added you to the',
-    groupName: 'Business Trip',
-    image: DemoProfileImage1,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage1,
     time: '4:32 PM',
     initialStatus: 'accepted',
   },
   {
     id: 7,
     name: 'Louis Frank',
-    description: 'Benjamin Luis sent a message to',
-    groupName: 'trip Home',
-    image: DemoProfileImage2,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage2,
     time: '4:32 PM',
     initialStatus: 'rejected',
   },
   {
     id: 8,
-    name: 'Liam Andrew',
-    description: 'Gregory added you to the',
-    groupName: 'Office Meets',
-    image: DemoProfileImage3,
-    time: '4:32 PM',
-    initialStatus: 'accepted',
-  },
-  {
-    id: 9,
     name: 'Louis Frank',
-    description: 'William James sent an alert to',
-    groupName: 'Office Meets',
-    image: DemoProfileImage4,
+    description:
+      'Benjamin Luis has Accepted your request for butterfly braiding service.',
+    // image: DemoProfileImage2,
     time: '4:32 PM',
     initialStatus: 'rejected',
-  },
-  {
-    id: 10,
-    name: 'Liam Andrew',
-    description: 'Lissa Desouza added you to',
-    groupName: 'Home',
-    image: DemoProfileImage5,
-    time: '4:32 PM',
-    initialStatus: 'accepted',
-  },
-  {
-    id: 11,
-    name: 'Benjamin Luis',
-    description: 'Gregory added you to the',
-    groupName: 'Gentle Mans.',
-    image: DemoProfileImage6,
-    time: '4:32 PM',
-    initialStatus: 'accepted',
   },
 ];
 
@@ -355,66 +328,18 @@ export const msgs = [
   },
 ];
 
-export const trips = [
+export const locationType = [
   {
-    tripProfile: DemoProfileImage1,
-    tripName: 'Business trip',
-    member: '15 members',
-    status: 'Active',
+    locId: 'houseCall',
+    label: 'House Call',
   },
   {
-    tripProfile: DemoProfileImage2,
-    tripName: 'Outings',
-    member: '10 members',
-    status: 'Inactive',
+    locId: 'onSite',
+    label: 'On Site',
   },
   {
-    tripProfile: DemoProfileImage3,
-    tripName: 'Home',
-    member: '5 members',
-    status: 'Active',
-  },
-  {
-    tripProfile: DemoProfileImage1,
-    tripName: 'Business trip',
-    member: '15 members',
-    status: 'Active',
-  },
-  {
-    tripProfile: DemoProfileImage2,
-    tripName: 'Outings',
-    member: '10 members',
-    status: 'Inactive',
-  },
-  {
-    tripProfile: DemoProfileImage3,
-    tripName: 'Home',
-    member: '5 members',
-    status: 'Active',
-  },
-];
-
-export const tripsTypes = [
-  {
-    id: 'myTrip',
-    des: 'Track where your loved ones are - keep them safe!',
-    title: 'Keep A Track',
-    details:
-      'Stay in the loop during your events or trips with our Real-Time Location Sharing feature. As the host, you can effortlessly keep track of all participants who have accepted the invitation.',
-  },
-  {
-    id: 'groupTrip',
-    des: 'Track each other across every mile by location sharing',
-    title: 'Mutual Tracking',
-    details:
-      "Whether it's a meetup, adventure, or any group activity, stay connected and aware of each other's movements. Enjoy a seamless and secure tracking experience that fosters teamwork and ensures safety throughout your shared journey.",
-  },
-  {
-    id: 'personalTrip',
-    des: 'Stay safe, stay connected! Share your real-time location with just a tap.',
-    title: 'Share Location',
-    details:
-      'Easily connect with your loved ones. As the host, you can share your real-time location with friends and family, allowing them to track you throughout your journey.',
+    locId: 'both',
+    label: 'Both',
   },
 ];
 

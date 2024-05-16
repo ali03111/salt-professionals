@@ -16,15 +16,17 @@ const IconBtnView = ({
   rightIcon,
   rightStyle,
   rightText,
+  disabled,
 }) => {
   return (
     <Touchable
       Opacity={0.7}
       onPress={onPress}
+      disabled={disabled}
       style={{...styles.button, ...viewStyle}}>
-      {leftIcon ? (
+      {leftIcon && (
         <Image source={leftIcon} style={{...styles.iconStyle, ...leftStyle}} />
-      ) : null}
+      )}
       <TextComponent text={title} styles={{...styles.text, ...textStyle}} />
       {rightText ? (
         <TextComponent
@@ -52,13 +54,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.3,
     borderColor: Colors.grayFaded,
     // marginBottom: hp('2.5'),
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 5,
+    // shadowColor: '#000000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 12,
+    // },
+    // shadowOpacity: 0.58,
+    // shadowRadius: 5,
     backgroundColor: Colors.themeBlack,
     elevation: 50,
     width: wp('92'),
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   text: {
-    fontSize: FontSize.scale16,
+    fontSize: hp('1.8'),
     textAlign: 'left',
     marginLeft: wp('3'),
     flex: 1,

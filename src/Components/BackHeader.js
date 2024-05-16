@@ -18,6 +18,8 @@ const BackHeader = ({
   titleStyle,
   numberOfLines,
   isBack,
+  rightIconStyle,
+  onRightPress,
 }) => {
   return (
     <View style={[styles.TopHeader, {...style}]}>
@@ -46,11 +48,11 @@ const BackHeader = ({
         />
       </View>
       <View style={styles.HeaderRight}>
-        <Touchable style={styles.backMain}>
+        <Touchable style={styles.backMain} onPress={onRightPress}>
           <Image
             source={icon}
             resizeMode={'contain'}
-            style={styles.rightIcon}
+            style={{...styles.rightIcon, ...rightIconStyle}}
           />
         </Touchable>
       </View>
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: wp('5'),
     paddingBottom: hp('3'),
     backgroundColor: Colors.themeRed,
-    paddingTop: Platform.OS == 'ios' ? hp('6') : hp('2'),
+    paddingTop: Platform.OS == 'ios' ? hp('8') : hp('2'),
     height: Platform.OS == 'ios' ? hp('12') : hp('8'),
     alignItems: 'center',
   },
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'blue',
     height: hp('5'),
     textAlignVertical: 'center',
-    marginTop: hp('3'),
+    marginTop: hp('1'),
   },
   HeaderRight: {
     flex: 0.5,

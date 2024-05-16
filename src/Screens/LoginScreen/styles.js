@@ -1,17 +1,18 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
 
 export const styles = StyleSheet.create({
   logInMain: {
     flex: 1,
-    paddingBottom: hp('10'),
     // paddingHorizontal: wp('3.5'),
+    position: 'relative',
+    // backgroundColor: 'red',
   },
   topImage: isIOS => ({
     position: 'absolute',
     fontSize: hp('4'),
-    marginTop: isIOS ? hp('11') : hp('13'),
+    marginTop: isIOS ? hp('6') : hp('9'),
     alignSelf: 'center',
     marginLeft: wp('7'),
   }),
@@ -19,11 +20,12 @@ export const styles = StyleSheet.create({
     width: wp('90'),
     backgroundColor: 'white',
     alignSelf: 'center',
-    marginTop: hp('-26'),
+    marginTop: Platform.OS == 'ios' ? hp('-30') : hp('-32'),
     // position: 'absolute',
     zIndex: 1,
     borderRadius: 20,
     paddingHorizontal: wp('3'),
+    paddingVertical: wp('2'),
     // height: hp('100'),
     overflow: 'visible',
     shadowColor: '#011111',
@@ -36,7 +38,7 @@ export const styles = StyleSheet.create({
     elevation: 10,
   },
   forgotText: {
-    marginBottom: hp('3'),
+    marginBottom: hp('2'),
     color: Colors.textGray,
     textAlign: 'right',
     marginTop: hp('2'),
@@ -46,15 +48,22 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     width: wp('90'),
     alignSelf: 'center',
-    marginTop: hp('2'),
+    marginTop: hp('6'),
+    marginBottom: hp('2'),
     justifyContent: 'center',
     alignItems: 'center',
+    // position: 'absolute',
+    // bottom: hp('4'),
+    // backgroundColor:'green',
+    // flex: 1
   },
   socialView: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignSelf: 'center',
+    // marginTop: Platform.OS == 'ios' ? hp('5') : 0,
   },
+
   imageStyle: {width: wp('30'), height: hp('15')},
   lockstyle: {
     flex: 0.3,

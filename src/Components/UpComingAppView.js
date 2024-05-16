@@ -1,39 +1,17 @@
-import {
-  Button,
-  Image,
-  Pressable,
-  StyleSheet,
-  View,
-  Animated,
-  Dimensions,
-  ScrollView,
-  Text,
-  FlatList,
-} from 'react-native';
+import {Image, StyleSheet, View, FlatList} from 'react-native';
 import {hp, wp} from '../Config/responsive';
 import {TextComponent} from './TextComponent';
 import {CircleImage} from './CircleImageComponent';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  arrowLeftOld,
-  arrows,
-  calendarWhite,
-  chatBtn,
-  divider,
-  downArrow,
-  information,
-  upArrow,
-} from '../Assets';
+import {downArrow, information, upArrow} from '../Assets';
 import ThemeButton from './ThemeButton';
-import {Touchable} from './Touchable';
 import {Colors, FontSize} from '../Theme/Variables';
-import Animatedd, {useSharedValue, withSpring} from 'react-native-reanimated';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import Accordion from 'react-native-collapsible/Accordion';
-import {UpcomingData} from '../Utils/localDB';
+import React, {useState} from 'react';
 import * as Animatable from 'react-native-animatable';
-import {SettingScreen} from '../Screens';
-// import {MultiView} from '../Screens/SettingScreen/MultiView';
+import {MultiView} from '../Screens/SettingScreen/MultiView';
+import IconBtnView from './IconBtnView';
+import {imageUrl} from '../Utils/Urls';
+import {Touchable} from './Touchable';
 
 const centerView = [
   {
@@ -57,142 +35,101 @@ const centerView = [
     leftIcon: false,
   },
 ];
-const url =
-  'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
-export const UpComingAppView = ({data, viewStyle}) => {
-  // console.log(data.date, 'ALJKAKLJALJKALKJAKLj');
-  const [accordionItem, setAccordionItem] = useState('');
-  // const [accordionItem, setAccordionItem] = useState('');
+export const UpComingAppView = ({item, viewStyle, index, onInfo}) => {
+  const [accordionItem, setAccordionItem] = useState(false);
 
-  const renderHeader = (item, index) => {
-    const i = [index].toString() == accordionItem.toString();
-    return (
-      <View style={{...styles.comingView, ...viewStyle}}>
-        <View style={styles.bottomView}>
-          <MaterialCommunityIcons
-            name="calendar-month-outline"
-            color="white"
-            size={hp('2.4')}
+  const showData = Boolean(accordionItem == item?.id);
+
+  const address = JSON.parse(item?.users?.location?.location);
+
+  console.log(
+    'accordionItemaccordionItemaccordionItemaccordionItemaccordionItemaccordionItem',
+    item?.users?.location,
+  );
+
+  return (
+    <View style={{...styles.comingView, ...viewStyle}}>
+      <View style={styles.bottomView}>
+        <MaterialCommunityIcons
+          name="calendar-month-outline"
+          color="white"
+          size={hp('2.4')}
+        />
+        <TextComponent text={item?.date} fade={true} styles={styles.dateText} />
+        <MaterialCommunityIcons
+          name="clock-outline"
+          color="white"
+          size={hp('2.4')}
+        />
+        <TextComponent text={item?.time} fade={true} styles={styles.timeText} />
+      </View>
+      <View style={styles.userView}>
+        <CircleImage image={imageUrl(item?.users?.image)} uri={true} />
+        <View style={styles.nameView}>
+          <TextComponent
+            text={`${item?.users?.name}`}
+            styles={{fontSize: hp('1.8'), fontWeight: 'bold'}}
           />
           <TextComponent
-            text={data[0]?.date}
+            text={address?.currentLocation?.description}
             fade={true}
-            styles={styles.dateText}
-          />
-          <MaterialCommunityIcons
-            name="clock-outline"
-            color="white"
-            size={hp('2.4')}
-          />
-          <TextComponent
-            text={data[0]?.time}
-            fade={true}
-            styles={styles.timeText}
+            styles={{
+              fontSize: hp('1.8'),
+              width: wp('65'),
+            }}
+            numberOfLines={1}
           />
         </View>
-        <View style={styles.userView}>
-          <CircleImage image={data[0]?.image} uri={true} />
-          <View style={styles.nameView}>
-            <TextComponent
-              text={`${data[0]?.name}`}
-              styles={{fontSize: hp('1.8'), fontWeight: 'bold'}}
-            />
-            <TextComponent
-              text={`${data[0]?.location}`}
-              fade={true}
-              styles={{
-                fontSize: hp('1.8'),
-                width: wp('65'),
-              }}
-              numberOfLines={1}
-            />
-          </View>
+        <Touchable onPress={onInfo}>
           <Image
             source={information}
             resizeMode="contain"
             style={styles.infIcon}
           />
-        </View>
-        <View style={styles.viewBtnView}>
-          <ThemeButton
-            title={'Chat'}
-            style={{...styles.viewAppBtn, backgroundColor: 'red'}}
-            textStyle={{fontSize: hp('1.5')}}
-          />
-          <ThemeButton
-            onPress={() => setAccordionItem(item.id)}
-            // onPress={() => setAccordionItem([item.id])}
-            title={'View Details'}
-            style={styles.viewAppBtn}
-            image={i ? upArrow : downArrow}
-            imageStyle={{
-              tintColor: 'white',
-              width: wp('2.5'),
-              marginLeft: wp('2'),
-            }}
-            textStyle={{fontSize: hp('1.5')}}
-          />
-        </View>
-        {i ? (
-          <Animatable.View animation={'fadeIn'} delay={Number('100')}>
-            <MultiView data={centerView} />
-          </Animatable.View>
-        ) : (
-          <View
-            style={{
-              // ...styles.comingView,
-              padding: 10,
-            }}></View>
-        )}
+        </Touchable>
       </View>
-    );
-  };
-
-  // const renderContent = item => {
-  //   console.log('check asd', item);
-  //   return (
-  //     <View
-  //       style={{
-  //         ...styles.comingView,
-  //         borderTopWidth: 0,
-  //         top: hp('-20'),
-  //         backgroundColor: 'red',
-  //       }}>
-  //       <TextComponent text={'Hellow OWrld'} />
-  //     </View>
-  //   );
-  // };
-
-  //   const renderAccordion = useCallback(() => {
-  //     return (
-  //       <>
-  //         <Accordion
-  //           underlayColor={Colors.themeBlack}
-  //           activeSections={accordionItem}
-  //           sections={data}
-  //           containerStyle={{alignItems: 'center'}}
-  //           expandFromBottom={false}
-  //           // renderSectionTitle={this._renderSectionTitle}
-  //           renderHeader={renderHeader}
-  //           renderContent={renderContent}
-  //           onChange={(i, index) => {
-  //             // setAccordionItem(i);
-  //             console.log('i', i);
-  //           }}
-  //         />
-  //       </>
-  //     );
-  //   });
-
-  //   return renderAccordion();
-  return (
-    <View>
-      <FlatList
-        contentContainerStyle={{alignSelf: 'center', marginBottom: hp('2')}}
-        data={data}
-        renderItem={({item, index}) => renderHeader(item, index)}
-      />
+      <View style={styles.viewBtnView}>
+        <ThemeButton
+          title={'Chat'}
+          style={{...styles.viewAppBtn, backgroundColor: 'red'}}
+          textStyle={{fontSize: hp('1.5')}}
+        />
+        <ThemeButton
+          onPress={() => setAccordionItem(!accordionItem)}
+          title={'View Details'}
+          style={styles.viewAppBtn}
+          image={accordionItem ? upArrow : downArrow}
+          imageStyle={styles.arrowBtn}
+          textStyle={{fontSize: hp('1.5')}}
+        />
+      </View>
+      {accordionItem ? (
+        <Animatable.View animation={'fadeIn'} delay={Number('100')}>
+          <IconBtnView
+            title={'Braid Type'}
+            rightText={item?.braid_type?.item}
+            viewStyle={styles.hideView}
+          />
+          <IconBtnView
+            title={'Braid Size'}
+            rightText={item?.braid_size?.item}
+            viewStyle={styles.hideView}
+          />
+          <IconBtnView
+            title={'Braid Length'}
+            rightText={item?.braid_length?.item}
+            viewStyle={styles.hideView}
+          />
+          <IconBtnView
+            title={'Location'}
+            rightText={item?.users?.location?.loc_data}
+            viewStyle={styles.hideView}
+          />
+        </Animatable.View>
+      ) : (
+        <View style={{paddingVertical: hp('1')}} />
+      )}
     </View>
   );
 };
@@ -212,14 +149,12 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 50,
     backgroundColor: Colors.themeBlack,
-    // height: hp('22'),
-    // backgroundColor: 'white',
+    borderWidth: 0.2,
+    borderColor: Colors.grayFaded,
   },
   bottomView: {
     flexDirection: 'row',
     alignItems: 'center',
-    // marginLeft: wp('2'),
-    // marginTop: hp('1'),
     width: wp('90'),
     overflow: 'hidden',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -228,7 +163,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     justifyContent: 'center',
     paddingHorizontal: wp('0'),
-    // borderRadius: 10,
   },
   dateText: {
     fontSize: FontSize.scale12,
@@ -266,5 +200,16 @@ const styles = StyleSheet.create({
     height: hp('5'),
     alignItems: 'center',
     fontSize: hp('1.5'),
+  },
+  arrowBtn: {
+    tintColor: 'white',
+    width: wp('2.5'),
+    marginLeft: wp('2'),
+  },
+  hideView: {
+    borderWidth: 0,
+    width: wp('85'),
+    // marginTop: hp(''),
+    backgroundColor: 'transparent',
   },
 });

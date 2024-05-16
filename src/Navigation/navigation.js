@@ -26,8 +26,8 @@ const StackNavigatior = () => {
           headerTransparent: true,
           headerTitle: null,
           headerShown: false,
-          // statusBarAnimation: 'slide',
-          // statusBarStyle: 'light',
+          statusBarAnimation: 'slide',
+          statusBarStyle: 'light',
           // ...statusBarColor,
         }}>
         {/* <Stack.Screen name="randomFile" component={randomFile} /> */}
@@ -54,16 +54,39 @@ const StackNavigatior = () => {
                 component={Screens.EditPhoneNumberScreen}
               />
             )} */}
+
             <Stack.Screen name="MybottomTabs" component={MybottomTabs} />
             <Stack.Screen
               name="EditProfileScreen"
               component={Screens.EditProfileScreen}
             />
             <Stack.Screen name="ChatScreen" component={Screens.ChatScreen} />
+            <Stack.Screen name="MapScreen" component={Screens.MapScreen} />
+            <Stack.Screen
+              name="ChangePasswordScreen"
+              component={Screens.ChangePasswordScreen}
+            />
+            <Stack.Screen
+              name="LocationScreen"
+              component={Screens.LocationScreen}
+            />
+            <Stack.Screen
+              name="PortfolioScreen"
+              component={Screens.PortfolioScreen}
+            />
             <Stack.Screen
               name="SpecialitiesScreen"
               component={Screens.SpecialitiesScreen}
             />
+            <Stack.Screen
+              name="AppointmentDetailScreen"
+              component={Screens.AppointmentDetailScreen}
+            />
+            <Stack.Screen
+              name="NotificationScreen"
+              component={Screens.NotificationScreen}
+            />
+            <Stack.Screen name="OTPScreen" component={Screens.OTPScreen} />
             {/* <Stack.Screen
               name="EditPhoneNumberScreen"
               component={Screens.EditPhoneNumberScreen}

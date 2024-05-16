@@ -14,6 +14,7 @@ import {Touchable} from '../../Components/Touchable';
 import Lottie from 'lottie-react-native';
 import {CircleImage} from '../../Components/CircleImageComponent';
 import useReduxStore from '../../Hooks/UseReduxStore';
+import {imageUrl} from '../../Utils/Urls';
 const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
@@ -21,6 +22,7 @@ const HomeHeader = () => {
   const {getState} = useReduxStore();
 
   const {userData} = getState('Auth');
+  let firstName = userData?.name?.split(' ')[0];
 
   return (
     <View style={styles.headerView}>
@@ -28,7 +30,7 @@ const HomeHeader = () => {
         <View style={{maxWidth: wp('70')}}>
           <TextComponent
             omponent
-            text={`Hello ${userData?.name}`}
+            text={`Hello ${firstName}`}
             styles={styles.nameText}
             numberOfLines={1}
           />
@@ -44,7 +46,7 @@ const HomeHeader = () => {
       </View>
       <View style={{marginTop: hp('3')}}>
         <CircleImage
-          image={userData?.image}
+          image={imageUrl(userData?.image)}
           uri={true}
           styles={{
             width: Dimensions.get('window').width * 0.15,

@@ -13,7 +13,7 @@ import {loadingFalse, loadingTrue} from '../Redux/Action/isloadingAction';
 import {Platform} from 'react-native';
 import {logOutUser} from '../Redux/Action/AuthAction';
 import {types} from '../Redux/types';
-import {logoutService} from '../Services/AuthServices';
+import {logOutFirebase, logoutService} from '../Services/AuthServices';
 
 const API = create({
   baseURL,
@@ -100,6 +100,120 @@ API.get = async (url, params, axiosConfig) => {
 // };
 
 // export {formDataFunc};
+
+const fetchPostWithToken = (url, body, isFormData, imageKey, isArray) => {
+  const {Auth} = store.getState('Auth');
+  const fullUrl = baseURL + url;
+  store.dispatch(loadingTrue());
+  console.log(
+    'Auth Token',
+    createFormData(body, imageKey, isArray)?.getAll(),
+    createFormData(body, imageKey, isArray)?.getParts(),
+    isFormData,
+  );
+
+  var requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type':
+        isFormData == true ? 'multipart/form-data' : 'application/json',
+      Authorization: `Bearer ${Auth.token}`,
+    },
+    body:
+      isFormData == true
+        ? createFormData(body, imageKey, isArray)
+        : JSON.stringify(body),
+    redirect: 'follow',
+  };
+
+  return fetch(fullUrl, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        return {ok: false, res: response}; // Return the response data
+      } else {
+        return response.json();
+      }
+    })
+    .then(response => {
+      console.log('response1', response);
+      return {ok: response?.ok ?? true, res: response}; // Return the response data
+    })
+    .catch(error => {
+      console.error('error1', error);
+      throw {ok: false, res: error}; // Re-throw the error to propagate it to the caller
+    });
+};
+
+const createFormData = (photos, imageKey, isArray) => {
+  console.log(photos, isArray, 'oekleiaaake');
+  const data = new FormData();
+
+  Object.entries(photos).forEach(([key, val]) => {
+    console.log(
+      'oisdhviosbdoivbosidbvoisdbiovbsiodbvoisdfdfdfddbivosbdovbsdiovboisd',
+    );
+    isArray
+      ? data.append(imageKey, {
+          name: val?.fileName,
+          type: val?.type,
+          uri:
+            Platform.OS == 'ios' ? val?.uri.replace('file://', '') : val?.uri,
+        })
+      : data.append(imageKey, {
+          name: photos[imageKey]?.fileName,
+          type: photos[imageKey]?.type,
+          uri:
+            Platform.OS == 'ios'
+              ? photos[imageKey]?.uri.replace('file://', '')
+              : photos[imageKey]?.uri,
+        });
+    // } else {
+    //   data.append(key, val);
+    // }
+  });
+
+  console.log('sdkljbvkjlsdbvkljbsdkjvbsdkbvjsdv', data);
+
+  // Object.keys(body).forEach(key => {
+  //   console.log({body}, 'dldldlq');
+  //   data.append(key, body[key]);
+  // });
+
+  return data;
+};
+
+const fetchGetWithToken = async url => {
+  const {Auth} = store.getState('Auth');
+  const fullUrl = baseURL + url;
+  // console.log(Auth.token, Auth.userData, 'Auth Token', fullUrl);
+
+  try {
+    const response = await fetch(fullUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${Auth.token}`, // Assuming a Bearer token authentication
+        // Add other headers if needed
+      },
+    });
+    if (!response.ok) {
+      store.dispatch({type: types.LogoutType});
+      throw new Error('Network response was not ok.');
+    }
+
+    // console.log(data, 'alskdjfklajsdfkljadlsfjaklsdjfl2kds444ajf2lkdjs');
+    const data = await response.json();
+
+    console.log('datadatadatadatadatadatadatadata', data);
+
+    return data; // Return the fetched data
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Rethrow the error to handle it at the caller's level if needed
+  }
+  // store.dispatch({type: types.LogoutType});
+};
+
 const formDataFunc = (url, body, imageKey, isArray) => {
   const {Auth} = store.getState();
 
@@ -109,15 +223,30 @@ const formDataFunc = (url, body, imageKey, isArray) => {
   myHeaders.append('Content-Type', 'multipart/form-data');
 
   const formData = new FormData();
-  Object.entries(body).forEach(([key, value]) => {
-    if (body?.profileData?.type) {
-      formData.append(imageKey, {
-        uri: body?.profileData.uri,
-        type: body?.profileData.type,
-        name: body?.profileData.fileName,
-      });
+  Object.entries(body).forEach(([key, val]) => {
+    if (key == imageKey) {
+      isArray
+        ? val.forEach((res, index) => {
+            formData.append(imageKey, {
+              name: res?.fileName,
+              type: res?.type,
+              uri:
+                Platform.OS == 'ios'
+                  ? res?.uri.replace('file://', '')
+                  : res?.uri,
+            });
+          })
+        : formData.append(imageKey, {
+            name: body[imageKey]?.fileName,
+            type: body[imageKey]?.type,
+            uri:
+              Platform.OS == 'ios'
+                ? body[imageKey]?.uri.replace('file://', '')
+                : body[imageKey]?.uri,
+          });
+    } else {
+      formData.append(key, val);
     }
-    formData.append(key, value);
   });
   console.log('asdasd123', formData);
   var requestOptions = {
@@ -145,6 +274,6 @@ const formDataFunc = (url, body, imageKey, isArray) => {
     });
 };
 
-export {formDataFunc};
+export {formDataFunc, fetchPostWithToken, fetchGetWithToken};
 
 export default API;

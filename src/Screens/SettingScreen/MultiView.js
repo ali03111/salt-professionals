@@ -4,6 +4,7 @@ import {Colors} from '../../Theme/Variables';
 // import IconBtnView from '../../Components/IconBtnView';
 import {divider} from '../../Assets';
 import {Touchable} from '../../Components/Touchable';
+import IconBtnView from '../../Components/IconBtnView';
 
 export const MultiView = ({data, viewStyle}) => {
   const renderItem = ({item}) => {
@@ -16,7 +17,7 @@ export const MultiView = ({data, viewStyle}) => {
           style={styles.divider}
         />
       )} */}
-        {/* <IconBtnView
+        <IconBtnView
           mainIcon={item.mainIcon}
           title={item?.title}
           leftIcon={item?.leftIcon}
@@ -24,7 +25,7 @@ export const MultiView = ({data, viewStyle}) => {
           rightText={item?.rightText}
           viewStyle={styles.innerView}
           onPress={item?.onPress}
-        /> */}
+        />
       </Touchable>
     );
   };
@@ -34,7 +35,6 @@ export const MultiView = ({data, viewStyle}) => {
       style={{
         ...styles.mainView,
         ...viewStyle,
-        borderWidth: data[0].leftIcon && 1,
       }}>
       <FlatList
         scrollEnabled={false}
@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
     borderWidth: 0.3,
     borderColor: Colors.grayFaded,
     marginBottom: hp('2.5'),
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 5,
+    // shadowColor: '#000000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 12,
+    // },
+    // shadowOpacity: 0.58,
+    // shadowRadius: 5,
     backgroundColor: Colors.themeBlack,
     elevation: 50,
     width: wp('92'),

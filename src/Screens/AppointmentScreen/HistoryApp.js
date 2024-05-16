@@ -5,19 +5,27 @@ import {UpcomingData} from '../../Utils/localDB';
 import {styles} from './styles';
 import {HistoryReqComp} from '../../Components/HistoryReqComp';
 import {hp} from '../../Config/responsive';
+import {EmptyViewComp} from '../../Components/EmptyViewComp';
+import useAppointmentScreen from './useAppointmentScreen';
 
-const HistoryApp = () => {
+const HistoryApp = ({navigation}) => {
+  const {allData, onAppBook, onRefresh, dynamicNav} =
+    useAppointmentScreen(navigation);
   return (
     <View style={{flex: 1}}>
       <AniFlatOneByOne
-        data={UpcomingData}
+        data={allData?.history}
         flatViewStyle={styles.upComingFlatlistView}
+        flatListProps={{
+          ListEmptyComponent: <EmptyViewComp onRefresh={onRefresh} />,
+        }}
         InnerCompnonet={item => (
           <HistoryReqComp
             viewStyle={{
               marginBottom: hp('2'),
             }}
             data={item}
+            onInfo={() => dynamicNav('AppointmentDetailScreen', {...item})}
           />
         )}
       />

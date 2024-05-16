@@ -45,12 +45,6 @@ const loginSaga = function* ({payload: {datas, type}}) {
       const jwtToken = idTokenResult.token;
       if (jwtToken) {
         console.log('jwtToken', jwtToken);
-        // if (socialData.isNewUser || type == 'email') {
-        //   var {result} = yield call(createTelematicUser, {
-        //     token: deviceToken,
-        //     data: datas.name ? datas : socialData,
-        //   });
-        // }
         const {data, ok} = yield call(registerService, {
           token: jwtToken,
           name: datas?.name,
@@ -59,18 +53,10 @@ const loginSaga = function* ({payload: {datas, type}}) {
           phone: datas?.number,
           type: 'professional',
         });
-        console.log('data=========>>>>>>>', data);
         yield put(loadingTrue());
         if (ok) {
           yield put(loadingTrue());
           yield put(updateAuth(data));
-          // if (data.user.isNewUser) {
-          //   yield call(sendPhoneBookTOServer);
-          //   yield call(getContactFromSql);
-          // } else {
-          //   yield call(checkSqlDataBase);
-          //   yield call(getContactFromSql);
-          // }
         } else {
           errorMessage(data?.message);
         }
@@ -105,27 +91,24 @@ function* registerSaga({payload: {datas}}) {
         if (ok) {
           yield put(loadingTrue());
           yield put(updateAuth(data));
-          // if (data.user.is_verified == 0) {
-          //   delay('100');
-          //   yield call(NavigationService.navigate, 'EditPhoneNumberScreen');
-          // }
-          // if (data.user.isNewUser) {
-          //   yield call(sendPhoneBookTOServer);
-          //   yield call(getContactFromSql);
-          // } else {
-          //   yield call(checkSqlDataBase);
-          //   yield call(getContactFromSql);
-          // }
         } else {
           errorMessage(data?.message);
         }
       }
     }
   } catch (error) {
-    errorMessage(
-      error?.message.split(' ').slice(1).join(' ') ?? error ?? error?.message,
+    const newError = error;
+    const errorValidation = Boolean(
+      newError.toString() ==
+        'Error: [auth/internal-error] An internal error has occurred, please try again.' ||
+        'Error: [auth/internal-error] The supplied auth credential is incorrect, malformed or has expired.',
     );
-    console.log('slbklsdbbsdfkgbsdklbgs', error);
+    errorMessage(
+      errorValidation
+        ? 'Credentials are wrong'
+        : error.message.split(' ').slice(1).join(' ') ?? error,
+    );
+    console.log('err', newError.toString());
   } finally {
     // delay(4000);
     yield put(loadingFalse());
@@ -137,7 +120,7 @@ action object as an argument, but it is not used in the function. The function p
 asynchronous operations using the `yield` keyword. */
 function* logOutSaga(action) {
   try {
-    // yield call(logoutService);
+    yield call(logoutService);
     yield put({type: types.LogoutType});
     yield call(logOutFirebase);
     yield put({type: types.ClearNotify});

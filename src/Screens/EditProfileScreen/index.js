@@ -30,6 +30,8 @@ import {MultiView} from '../SettingScreen/MultiView';
 import {styles} from './styles';
 import {Touchable} from '../../Components/Touchable';
 import EditNameModal from './EditNameModal';
+import {imageUrl} from '../../Utils/Urls';
+import {locationType} from '../../Utils/localDB';
 
 const EditProfileScreen = ({navigation}) => {
   const {
@@ -39,6 +41,9 @@ const EditProfileScreen = ({navigation}) => {
     userNameModal,
     onBackPress,
     dynamicRoute,
+    saveName,
+    errorMess,
+    setErrorMessage,
   } = useEditProfileScreen(navigation);
   const middleView = [
     {
@@ -51,10 +56,15 @@ const EditProfileScreen = ({navigation}) => {
       title: 'Portfolio',
       leftIcon: briefCase,
       rightIcon: arrowLeftOld,
-      onPress: () => {},
+      onPress: () => dynamicRoute('PortfolioScreen'),
     },
   ];
-  console.log('userDatauserDatauserData', userData);
+
+  console.log(
+    'locationType?.filter(res => res.locId == userData?.updated_data?.loc_data)',
+    userData,
+  );
+
   return (
     <View style={styles.mainView}>
       <BackHeader
@@ -70,7 +80,7 @@ const EditProfileScreen = ({navigation}) => {
           resizeMode="contain"
           style={styles.whiteCircle}>
           <CircleImage
-            image={profileData?.uri ?? userData?.image}
+            image={profileData?.uri ?? imageUrl(userData?.image)}
             styles={styles.profileView}
             uri={true}
           />
@@ -89,7 +99,7 @@ const EditProfileScreen = ({navigation}) => {
           styles={{fontSize: hp('1.5')}}
         />
         <ProfileProgressView />
-        {/* <IconBtnView
+        <IconBtnView
           viewStyle={{marginTop: hp('5')}}
           title={userData?.name}
           leftIcon={profileWhite}
@@ -101,12 +111,19 @@ const EditProfileScreen = ({navigation}) => {
           viewStyle={{marginTop: hp('3')}}
           title={'Where you willing to work'}
           leftIcon={locationWhite}
-          rightText={'Select'}
-        /> */}
+          rightText={
+            locationType?.filter(
+              res => res.locId == userData?.updated_data?.loc_data,
+            )[0]?.label ?? 'Select'
+          }
+          onPress={() => dynamicRoute('LocationScreen')}
+        />
         <EditNameModal
           userData={userData}
           userNameModal={userNameModal}
           onBackPress={onBackPress}
+          saveName={saveName}
+          errorMessage={errorMess}
         />
       </ScrollView>
     </View>

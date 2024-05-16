@@ -7,8 +7,10 @@ import {downArrow, information} from '../Assets';
 import ThemeButton from './ThemeButton';
 import {Colors} from '../Theme/Variables';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Touchable} from './Touchable';
 
-export const HistoryReqComp = ({data, viewStyle}) => {
+export const HistoryReqComp = ({data, viewStyle, onInfo}) => {
+  const address = JSON.parse(data?.users?.location?.location);
   return (
     <View style={{...styles.comingView, ...viewStyle}}>
       <View style={styles.bottomView}>
@@ -26,14 +28,14 @@ export const HistoryReqComp = ({data, viewStyle}) => {
         <TextComponent text={data?.time} fade={true} styles={styles.timeText} />
       </View>
       <View style={styles.userView}>
-        <CircleImage image={data?.image} uri={true} />
+        <CircleImage image={data?.users?.image} uri={true} />
         <View style={styles.nameView}>
           <TextComponent
-            text={`${data?.name}`}
+            text={`${data?.users?.name}`}
             styles={{fontSize: hp('1.8'), fontWeight: 'bold'}}
           />
           <TextComponent
-            text={`${data?.location}`}
+            text={address?.currentLocation?.description}
             fade={true}
             styles={{
               fontSize: hp('1.8'),
@@ -42,20 +44,34 @@ export const HistoryReqComp = ({data, viewStyle}) => {
             numberOfLines={1}
           />
         </View>
-        <Image
-          source={information}
-          resizeMode="contain"
-          style={styles.infIcon}
-        />
+        <Touchable onPress={onInfo}>
+          <Image
+            source={information}
+            resizeMode="contain"
+            style={styles.infIcon}
+          />
+        </Touchable>
       </View>
       <TextComponent
         text={'Appointment Details'}
         styles={{marginTop: hp('3'), marginLeft: wp('3')}}
       />
       <View style={styles.bottomTextView}>
-        {['pny tall', 'Extra Small', 'CHain legth', 'House Call'].map(res => {
+        <TextComponent
+          text={data?.braid_type?.item}
+          styles={styles.roundText}
+        />
+        <TextComponent
+          text={data?.braid_length?.item}
+          styles={styles.roundText}
+        />
+        <TextComponent
+          text={data?.braid_size?.item}
+          styles={styles.roundText}
+        />
+        {/* {['pny tall', 'Extra Small', 'CHain legth', 'House Call'].map(res => {
           return <TextComponent text={res} styles={styles.roundText} />;
-        })}
+        })} */}
       </View>
       {/* <View style={styles.viewBtnView}>
         <ThemeButton
@@ -159,15 +175,17 @@ const styles = StyleSheet.create({
     width: 'auto',
     borderRadius: 5,
     fontSize: hp('1.8'),
-    marginVertical: hp('1.5'),
+    marginVertical: hp('0.5'),
+    marginHorizontal: wp('2'),
   },
   bottomTextView: {
     flexDirection: 'row',
-    width: wp('85'),
-    justifyContent: 'space-between',
+    width: wp('90'),
+    // justifyContent: 'space-between',
     alignSelf: 'center',
     //   marginVertical: hp('2'),
     flexWrap: 'wrap',
     marginBottom: hp('0.5'),
+    marginTop: hp('0.5'),
   },
 });

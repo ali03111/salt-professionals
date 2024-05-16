@@ -11,11 +11,19 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {calendarWhite, chatBtn, divider, information} from '../../Assets';
 import ThemeButton from '../../Components/ThemeButton';
 import {Touchable} from '../../Components/Touchable';
+import {imageUrl} from '../../Utils/Urls';
 
 const url =
   'https://images.pexels.com/photos/19321447/pexels-photo-19321447/free-photo-of-needle-branch-with-christmas-ornament.jpeg';
 
-export const UpComingAppCards = ({data}) => {
+export const UpComingAppCards = ({data, onpress}) => {
+  console.log(
+    'user',
+    data?.users?.location?.location,
+    JSON.parse(data?.users?.location?.location),
+  );
+  const address = JSON.parse(data?.users?.location?.location);
+  console.log('first', address?.currentLocation?.description);
   return (
     <View style={styles.comingView}>
       <View style={styles.bottomView}>
@@ -33,14 +41,14 @@ export const UpComingAppCards = ({data}) => {
         <TextComponent text={data?.time} fade={true} styles={styles.timeText} />
       </View>
       <View style={styles.userView}>
-        <CircleImage image={data?.image} uri={true} />
+        <CircleImage image={imageUrl(data?.users?.image)} uri={true} />
         <View style={styles.nameView}>
           <TextComponent
-            text={`${data?.name}`}
+            text={`${data?.users?.name}`}
             styles={{fontSize: hp('1.8'), fontWeight: 'bold'}}
           />
           <TextComponent
-            text={`${data?.location}`}
+            text={`${address?.currentLocation?.description}`}
             fade={true}
             styles={{
               fontSize: hp('1.8'),
@@ -59,6 +67,7 @@ export const UpComingAppCards = ({data}) => {
         <ThemeButton
           title={'View Appointment Details'}
           style={styles.viewAppBtn}
+          onPress={onpress}
         />
         <Touchable>
           <Image
