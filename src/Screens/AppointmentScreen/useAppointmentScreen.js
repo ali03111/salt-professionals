@@ -20,7 +20,10 @@ const useAppointmentScreen = ({navigate}) => {
     onSuccess: ({ok, data}) => {
       if (ok) {
         queryClient.invalidateQueries({
-          queryKey: ['allAppointData', 'homeData'],
+          queryKey: ['allAppointData'],
+        });
+        queryClient.invalidateQueries({
+          queryKey: ['homeData'],
         });
         successMessage(data?.message);
       } else errorMessage(data?.message);

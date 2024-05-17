@@ -141,6 +141,14 @@ const AppointmentDetailScreen = ({route, navigation}) => {
             styles={styles.braidTitle}
           />
         </View>
+        <View style={styles.cardInner}>
+          <TextComponent text={'Job Status'} styles={styles.braidTitle} />
+          <TextComponent
+            text={data?.appointment_status ?? 'Pending'}
+            fade={true}
+            styles={styles.braidTitle}
+          />
+        </View>
       </View>
 
       <View style={styles.viewBtnView}>
@@ -151,11 +159,14 @@ const AppointmentDetailScreen = ({route, navigation}) => {
                 ? 'Reject'
                 : data?.is_current_date == 0
                 ? 'Cancel'
+                : data?.appointment_status == 'started'
+                ? 'Job Started'
                 : 'Start Job'
             }
             style={styles.viewAppBtn}
             textStyle={{fontSize: hp('1.5')}}
             onPress={onCancelPress[data?.isPending]}
+            isDisable={data?.appointment_status == 'started' ? true : false}
           />
         ) : (
           <TextComponent text={'Rejected'} />

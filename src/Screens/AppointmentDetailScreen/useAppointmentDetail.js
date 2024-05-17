@@ -1,6 +1,7 @@
 import {useMutation, useQueryClient} from '@tanstack/react-query';
 import API from '../../Utils/helperFunc';
 import {
+  CheckIsCurrentDateUrl,
   changeAppStatusUrl,
   sendOTPUrl,
   startORendAppUrl,
@@ -14,6 +15,23 @@ const useAppointmentDetail = ({navigate, goBack}, {params}) => {
   const [status, setStatus] = useState(null);
 
   const [appointData, setAppointData] = useState(null);
+
+  const checkIsDate = useMutation({
+    mutationFn: body => {
+      return API.post(CheckIsCurrentDateUrl, {
+        app_id: data?.appointment_request[0]?.appointment_id,
+        current_date: new Date()?.getDate(),
+      });
+    },
+    onSuccess: ({ok, data}) => {
+      console.log('jksdbvjksdkbvdjksbvjkldsjklvbdsklvbdlvks', data);
+      if (ok) {
+        setAppointData(data?.data);
+      } else errorMessage(data?.message);
+    },
+  });
+
+  useEffect(checkIsDate.mutate, []);
 
   // Get QueryClient from the context
   const queryClient = useQueryClient();
@@ -65,7 +83,7 @@ const useAppointmentDetail = ({navigate, goBack}, {params}) => {
         aor: false,
       }),
     undefined: () => {
-      if (data?.is_current_date == 1) goBack();
+      if (data?.is_current_date == 0) goBack();
       else
         mutateAsync({
           id: data?.users?.id,

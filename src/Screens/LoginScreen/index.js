@@ -54,7 +54,10 @@ const LoginScreen = ({navigation}) => {
   const isIOS = Boolean(Platform.OS == 'ios');
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.logInMain}>
+    <ScrollView
+      bounces={false}
+      showsVerticalScrollIndicator={false}
+      style={styles.logInMain}>
       <StatusBar barStyle={'light-content'} backgroundColor={'black'} />
       <Image
         source={loginBgBlack}
