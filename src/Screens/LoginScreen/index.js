@@ -58,7 +58,7 @@ const LoginScreen = ({navigation}) => {
       bounces={false}
       showsVerticalScrollIndicator={false}
       style={styles.logInMain}>
-      <StatusBar barStyle={'light-content'} backgroundColor={'black'} />
+      {/* <StatusBar barStyle={'light-content'} backgroundColor={'black'} /> */}
       <Image
         source={loginBgBlack}
         style={{

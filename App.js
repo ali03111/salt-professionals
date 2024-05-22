@@ -15,6 +15,8 @@ import {
   StatusBar,
   Platform,
   TextInput,
+  AppState,
+  Alert,
 } from 'react-native';
 import StackNavigatior from './src/Navigation/navigation';
 import {SplashScreen} from './src/Assets';
@@ -27,17 +29,24 @@ import {hp, wp} from './src/Config/responsive';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useIsFetching} from '@tanstack/react-query';
-
+import {fcmService} from './src/Services/Notifications';
+import notifee, {
+  EventType,
+  AndroidLaunchActivityFlag,
+} from '@notifee/react-native';
 const App = () => {
   const flexStyle = {flex: 1};
   const isFetching = useIsFetching();
   const [isVisible, setIsVisible] = useState(true);
+
   const Hide_Splash_Screen = () => {
     setIsVisible(false);
   };
   const {getState, dispatch} = useReduxStore();
   const {isloading} = getState('isloading');
   const {isAlert} = getState('isAlert');
+
+  const {isLogin} = getState('Auth');
 
   const time = () => {
     return 2000;
@@ -69,6 +78,31 @@ const App = () => {
     View.defaultProps.allowFontScaling = false;
   };
 
+  const appState = useRef(AppState.currentState);
+  useEffect(() => {
+    /* It's a function that registers the device to receive push notifications. */
+    if (isLogin) {
+      setTimeout(() => {
+        fcmService.register(
+          onRegister,
+          () => {},
+          appState.current,
+          () => {},
+        );
+      }, 5000);
+    }
+    return () => {
+      /* It's a function that unregisters the device from receiving push notifications. */
+      if (isLogin) {
+        fcmService.unRegister();
+      }
+    };
+  }, [isLogin]);
+  const onRegister = fcm_token => {
+    console.log('fcm_token', Platform.OS, fcm_token);
+    dispatch(fcmRegister(fcm_token));
+  };
+
   useEffect(useEffectFun, []);
 
   let Splash_Screen = (
@@ -77,13 +111,35 @@ const App = () => {
       style={styles.SplashScreen_RootView}></ImageBackground>
   );
 
+  useEffect(() => {
+    const unsubscribeNotifee = notifee.onForegroundEvent(
+      async ({type, detail}) => {
+        console.log(`The type is`, type, 'the detail is', detail);
+        switch (type) {
+          case EventType.PRESS:
+            if (detail.notification?.remote) {
+              console.log('It was a remote notification');
+              // Do some navigation logic
+            }
+            break;
+          case EventType.ACTION_PRESS:
+            console.log(`It was an ACTION PRESS THO`);
+            break;
+        }
+      },
+    );
+    return () => {
+      unsubscribeNotifee();
+    };
+  }, []);
+
   return (
     <GestureHandlerRootView style={flexStyle}>
       {(isloading || isFetching >= 1) && <Overlay />}
       <StatusBar
         hidden={isVisible}
         backgroundColor={Platform.OS == 'ios' ? 'white' : '#F2F2F2'}
-        barStyle={'dark-content'}
+        barStyle={Platform.OS == 'ios' ? 'light-content' : 'dark-content'}
       />
       {isVisible === true ? Splash_Screen : <StackNavigatior />}
     </GestureHandlerRootView>

@@ -254,6 +254,17 @@ const openGoogleMaps = (latitude, longitude) => {
   Linking.openURL(url);
 };
 
+function removeTimeFromDate(datetimeStr) {
+  // input value ""2024-03-12T08:00:15.000000Z""
+  // output value "2024-03-12"
+
+  const dateInString = datetimeStr.toISOString();
+
+  // Split the string at 'T' and take the first part (the date)
+  const datePart = dateInString.split('T')[0];
+  return datePart;
+}
+
 export {
   getSingleCharacter,
   getIdsFromObj,
@@ -261,4 +272,5 @@ export {
   extractTimeFromString,
   getDateMonthYear,
   openGoogleMaps,
+  removeTimeFromDate,
 };

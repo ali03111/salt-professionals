@@ -8,19 +8,19 @@ import {
 } from '../../Utils/Urls';
 import {errorMessage, successMessage} from '../../Config/NotificationMessage';
 import {useEffect, useState} from 'react';
+import {removeTimeFromDate} from '../../Utils/globalFunctions';
 
 const useAppointmentDetail = ({navigate, goBack}, {params}) => {
   const data = params;
 
   const [status, setStatus] = useState(null);
-
   const [appointData, setAppointData] = useState(null);
 
   const checkIsDate = useMutation({
     mutationFn: body => {
       return API.post(CheckIsCurrentDateUrl, {
         app_id: data?.appointment_request[0]?.appointment_id,
-        current_date: new Date()?.getDate(),
+        current_date: removeTimeFromDate(new Date()),
       });
     },
     onSuccess: ({ok, data}) => {
@@ -83,7 +83,7 @@ const useAppointmentDetail = ({navigate, goBack}, {params}) => {
         aor: false,
       }),
     undefined: () => {
-      if (data?.is_current_date == 0) goBack();
+      if (appointData?.is_current_date == 0) goBack();
       else
         mutateAsync({
           id: data?.users?.id,

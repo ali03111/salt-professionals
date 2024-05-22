@@ -11,6 +11,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  
   [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyDQ_pjAQYvVcGWNLy-ND_ZtyufjXtiUAxs"]; // add this line using the api key obtained from Google Console
 
@@ -20,7 +21,9 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
+
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+
 }
 
 // AppDelegate.m
@@ -41,5 +44,6 @@
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 }
+
 
 @end

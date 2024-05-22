@@ -233,7 +233,7 @@ class FCMService {
       async ({type, detail}) => {
         const {notification} = detail;
         console.log(
-          'notificationnotificationnotificationnotificatioasdasdasdasdasdasnnotificationnotification',
+          'notificationnotificationnotificationno11tificatioasdasdasdasdasdasnnotificationnotification',
           notification,
         );
 

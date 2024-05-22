@@ -81,3 +81,4 @@ export const deleteAccUrl = '/delete-acc';
 // export const logoutUrl = '/logout';
 export const terminateStatusUrl = '/change-terminate-status';
 export const ResetMsgCountUrl = '/reset-msg-count';
+export const FcmTokenUrl = 'customer/add-fcm-token';
