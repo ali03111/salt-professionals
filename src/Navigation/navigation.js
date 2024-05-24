@@ -83,6 +83,10 @@ const StackNavigatior = () => {
               component={Screens.AppointmentDetailScreen}
             />
             <Stack.Screen
+              name="AppointmentScreen"
+              component={Screens.AppointmentScreen}
+            />
+            <Stack.Screen
               name="NotificationScreen"
               component={Screens.NotificationScreen}
             />

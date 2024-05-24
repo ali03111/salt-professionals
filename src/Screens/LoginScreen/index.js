@@ -115,7 +115,7 @@ const LoginScreen = ({navigation}) => {
         text={'Don’t have an account?'}
         ButtonText={'Sign Up'}
         onPress={() => navigation.navigate('RegisterScreen')}
-        viewStyle={{marginBottom: hp('2')}}
+        viewStyle={{marginTop: hp('3')}}
       />
     </ScrollView>
   );

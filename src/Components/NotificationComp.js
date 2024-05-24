@@ -14,53 +14,52 @@ import {checked} from '../Assets';
 import {Colors} from '../Theme/Variables';
 import {imageUrl} from '../Utils/Urls';
 import moment from 'moment';
+import {Touchable} from './Touchable';
 
-const NotificationComp = ({item}) => {
+const NotificationComp = ({item, onPress, disabled}) => {
   return (
-    <View>
+    <Touchable onPress={onPress} disabled={disabled}>
       <View style={styles.mainView}>
         <CircleImage
-          image={imageUrl(item?.appointments?.professional?.image)}
-          isURI={true}
+          image={imageUrl(item?.appointments?.users?.image)}
+          uri={true}
           styles={styles.imageView}
         />
         <View style={styles.upperMainView}>
           <View style={styles.upperView}>
             <TextComponent text={item?.title} styles={{fontWeight: '600'}} />
             <TextComponent
-              text={moment(created_at).calendar()}
+              text={moment(item?.created_at).calendar()}
               styles={styles.time}
             />
           </View>
           <TextComponent text={item?.body} fade={true} styles={styles.des} />
         </View>
       </View>
-      {item?.appointnement_status && (
+      {item?.appointment_status != null && (
         <View style={styles.statusView}>
           <Image
             source={checked}
             style={styles.statusImg}
             tintColor={
-              item?.appointnement_status == 0
-                ? Colors.fadeGreen
-                : Colors.themeRed
+              item?.appointment_status == 1 ? Colors.fadeGreen : Colors.themeRed
             }
           />
           <TextComponent
-            text={`Request ${
-              item?.appointnement_status == 0 ? 'Rejected' : 'Accepted'
+            text={`Request${
+              item?.appointment_status == 0 ? ' Rejected' : ' Accepted'
             }`}
             styles={{
               fontSize: hp('1.5'),
               color:
-                item?.appointnement_status == 0
+                item?.appointment_status == 1
                   ? Colors.fadeGreen
                   : Colors.themeRed,
             }}
           />
         </View>
       )}
-    </View>
+    </Touchable>
   );
 };
 // moment(time).calendar()
@@ -79,12 +78,13 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: wp('2'),
     marginTop: hp('0.5'),
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
   },
   upperView: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: hp('1'),
   },
   time: {
     textAlign: 'right',

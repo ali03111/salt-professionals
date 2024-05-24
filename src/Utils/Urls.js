@@ -51,6 +51,7 @@ export const startORendAppUrl = 'professional/appointment_status';
 export const sendOTPUrl = 'professional/verify-code';
 export const verifyOTPUrl = 'professional/check-code';
 export const CheckIsCurrentDateUrl = 'professional/current-date';
+export const getNotificationUrl = 'professional/all-notifications';
 
 export const DeleteUserUrl = 'professional/deactive-prof';
 export const logoutUserUrl = 'professional/logout';

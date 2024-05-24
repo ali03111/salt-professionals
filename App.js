@@ -34,7 +34,13 @@ import notifee, {
   EventType,
   AndroidLaunchActivityFlag,
 } from '@notifee/react-native';
+import NavigationService from './src/Services/NavigationService';
 const App = () => {
+  useEffect(() => {
+    // App launched, remove the badge count
+    notifee.setBadgeCount(0).then(() => console.log('Badge count removed'));
+  }, []);
+
   const flexStyle = {flex: 1};
   const isFetching = useIsFetching();
   const [isVisible, setIsVisible] = useState(true);
@@ -85,7 +91,7 @@ const App = () => {
       setTimeout(() => {
         fcmService.register(
           onRegister,
-          () => {},
+          onOpenNotification,
           appState.current,
           () => {},
         );
@@ -101,6 +107,56 @@ const App = () => {
   const onRegister = fcm_token => {
     console.log('fcm_token', Platform.OS, fcm_token);
     dispatch(fcmRegister(fcm_token));
+  };
+
+  useEffect(() => {
+    return notifee.onForegroundEvent(({type, detail}) => {
+      switch (type) {
+        case EventType.DISMISSED:
+          console.log('User dismissed notification', detail.notification);
+          break;
+        case EventType.PRESS:
+          const notify = detail.notification;
+          console.log('dksbvjksbdjkvbsdjkbvdjksbvjds', notify);
+          if (notify?.data?.payload) {
+            const payloadData = JSON.parse(notify?.data?.payload);
+            console.log(
+              'payloadDatapayloadDatapayloadDatapayloadDatapayloadData',
+              payloadData,
+            );
+            if (payloadData?.isRoute) {
+              NavigationService.navigate(
+                payloadData?.screenRoute,
+                payloadData?.app_data?.id && payloadData?.app_data,
+              );
+            }
+          }
+          console.log('User pressed notification', detail.notification);
+          break;
+      }
+    });
+  }, []);
+
+  const onOpenNotification = notify => {
+    if (notify?.data?.payload) {
+      console.log(
+        'payloadDatapayloadDatapayloadDatapayloadDasdfsfsddftapayloadData',
+        notify?.data,
+      );
+      const payloadData = JSON.parse(notify?.data?.payload);
+      console.log(
+        'payloadDatapayloadDatapayloadDatapayloadDatapayloadData',
+        payloadData,
+      );
+      if (payloadData?.isRoute) {
+        NavigationService.navigate(
+          payloadData?.screenRoute,
+          payloadData?.app_data?.id && payloadData?.app_data,
+        );
+      }
+    } else {
+      NavigationService.navigate('NotificationScreen');
+    }
   };
 
   useEffect(useEffectFun, []);
@@ -136,11 +192,15 @@ const App = () => {
   return (
     <GestureHandlerRootView style={flexStyle}>
       {(isloading || isFetching >= 1) && <Overlay />}
-      <StatusBar
-        hidden={isVisible}
-        backgroundColor={Platform.OS == 'ios' ? 'white' : '#F2F2F2'}
-        barStyle={Platform.OS == 'ios' ? 'light-content' : 'dark-content'}
-      />
+      {Platform.OS == 'ios' ? (
+        <StatusBar
+          hidden={isVisible}
+          backgroundColor={'white'}
+          barStyle={'light-content'}
+        />
+      ) : (
+        <StatusBar hidden={isVisible} />
+      )}
       {isVisible === true ? Splash_Screen : <StackNavigatior />}
     </GestureHandlerRootView>
   );

@@ -24,6 +24,7 @@ const useNotificationScreen = () => {
 
   return {
     notiData: data?.data,
+    onRefresh,
   };
 };
 

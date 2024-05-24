@@ -32,6 +32,8 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
   //   // You can decide what to do if react navigation is not ready
   //   // You can ignore this, or add these actions to a queue you can call later
   // }
+
+  await notifee.incrementBadgeCount();
 });
 
 const queryClient = new QueryClient();
