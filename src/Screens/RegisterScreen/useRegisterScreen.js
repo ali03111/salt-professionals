@@ -27,6 +27,10 @@ const useRegister = ({navigate, goBack}) => {
     setRemember(!remember);
   };
 
+  const onSocialLogin = async name => {
+    dispatch(loginUser({type: name, datas: {}}));
+  };
+
   const signUpButton = ({name, email, password, confirm_password}) => {
     // if (number != '' && number != null) {
     //   setError(null);
@@ -53,6 +57,7 @@ const useRegister = ({navigate, goBack}) => {
     error,
     number,
     setNumber,
+    onSocialLogin,
   };
 };
 

@@ -107,7 +107,7 @@ const LoginScreen = ({navigation}) => {
         />
       </View>
       <DashText text={'Log In'} />
-      <SocialBottomView onPress={name => onSocialLogin(name)} />
+      <SocialBottomView onSocialPress={name => onSocialLogin(name)} />
       <BottomText
         text={'Don’t have an account?'}
         ButtonText={'Sign Up'}
