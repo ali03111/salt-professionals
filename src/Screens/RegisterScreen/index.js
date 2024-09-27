@@ -41,7 +41,6 @@ const RegisterScreen = ({navigation}) => {
     error,
     number,
     setNumber,
-    onSocialLogin,
   } = useRegister(navigation);
   const isIOS = Boolean(Platform.OS == 'ios');
 
@@ -49,7 +48,7 @@ const RegisterScreen = ({navigation}) => {
     <KeyBoardWrapper
       showsVerticalScrollIndicator={false}
       styles={styles.logInMain}>
-      <StatusBar barStyle={'light-content'} backgroundColor={'black'} />
+      {/* <StatusBar barStyle={'light-content'} backgroundColor={'black'} /> */}
       <Image
         source={loginBgBlack}
         style={{
@@ -128,7 +127,7 @@ const RegisterScreen = ({navigation}) => {
         />
       </View>
       <DashText text={'Sign Up'} styles={{marginTop: hp('2')}} />
-      <SocialBottomView onSocialPress={name => onSocialLogin(name)} />
+      <SocialBottomView />
       <BottomText
         text={'Already have an account?'}
         ButtonText={'Log In'}

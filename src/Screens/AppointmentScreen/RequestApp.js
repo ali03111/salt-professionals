@@ -1,12 +1,7 @@
 import {memo, useCallback} from 'react';
 import {FlatList, View} from 'react-native';
-import {
-  AppointmentReqComp,
-  AppointmentReqCompSkeleton,
-} from '../../Components/AppointmentReqComp';
-import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
-import {keyExtractor} from '../../Utils';
-import {UpcomingData} from '../../Utils/localDB';
+import {AppointmentReqComp} from '../../Components/AppointmentReqComp';
+
 import {styles} from './styles';
 import {hp} from '../../Config/responsive';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';

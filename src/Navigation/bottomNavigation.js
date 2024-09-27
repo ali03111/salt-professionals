@@ -159,9 +159,9 @@ function MybottomTabs() {
         component={Screens.AppointmentScreen}
       />
       <Tab.Screen
-        name="FavouriteScreen"
+        name="NotificationScreen"
         options={tabarComponent(heartFill, heart)}
-        component={Screens.FavouriteScreen}
+        component={Screens.NotificationScreen}
       />
       <Tab.Screen
         name="SettingScreen"

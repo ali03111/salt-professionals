@@ -26,7 +26,9 @@ const AppointmentDetailScreen = ({route, navigation}) => {
     route,
   );
 
-  const address = JSON.parse(data?.users?.location?.location);
+  const address = data?.users?.location?.location
+    ? JSON.parse(data?.users?.location?.location)
+    : 'kjdsbklvsbdk';
 
   console.log('address?.loc_data', data);
 
@@ -35,10 +37,10 @@ const AppointmentDetailScreen = ({route, navigation}) => {
       contentContainerStyle={styles.container}
       bounces={false}
       showsVerticalScrollIndicator={false}>
-      <StatusBar
+      {/* <StatusBar
         backgroundColor={Colors.themeBlack}
         barStyle={'light-content'}
-      />
+      /> */}
       <Image
         source={textureBg}
         style={{...styles.bgImg}}
@@ -110,6 +112,14 @@ const AppointmentDetailScreen = ({route, navigation}) => {
           />
         </View>
         <View style={styles.cardInner}>
+          <TextComponent text={'Price'} styles={styles.braidTitle} />
+          <TextComponent
+            text={data?.braid_type?.price}
+            fade={true}
+            styles={styles.braidTitle}
+          />
+        </View>
+        <View style={styles.cardInner}>
           <TextComponent text={'Location'} styles={styles.braidTitle} />
           <View style={{flexDirection: 'row'}}>
             <TextComponent
@@ -141,30 +151,41 @@ const AppointmentDetailScreen = ({route, navigation}) => {
             styles={styles.braidTitle}
           />
         </View>
+        <View style={styles.cardInner}>
+          <TextComponent text={'Job Status'} styles={styles.braidTitle} />
+          <TextComponent
+            text={data?.appointment_status ?? 'Pending'}
+            fade={true}
+            styles={styles.braidTitle}
+          />
+        </View>
       </View>
 
       <View style={styles.viewBtnView}>
         {status == null ? (
           <ThemeButton
             title={
-              data?.isPending
+              data?.status == 'Pending'
                 ? 'Reject'
                 : data?.is_current_date == 0
                 ? 'Cancel'
+                : data?.appointment_status == 'started'
+                ? 'Job Started'
                 : 'Start Job'
             }
             style={styles.viewAppBtn}
             textStyle={{fontSize: hp('1.5')}}
-            onPress={onCancelPress[data?.isPending]}
+            onPress={onCancelPress[Boolean(data?.status == 'Pending')]}
+            isDisable={data?.appointment_status == 'started' ? true : false}
           />
         ) : (
           <TextComponent text={'Rejected'} />
         )}
         <ThemeButton
-          title={data?.isPending ? 'Accept' : 'Chat'}
+          title={data?.status == 'Pending' ? 'Accept' : 'Chat'}
           style={{...styles.viewAppBtn, backgroundColor: 'red'}}
           textStyle={{fontSize: hp('1.5')}}
-          onPress={onAcceptPress[data?.isPending]}
+          onPress={onAcceptPress[Boolean(data?.status == 'Pending')]}
         />
       </View>
     </ScrollView>

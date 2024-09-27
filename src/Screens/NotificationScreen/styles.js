@@ -1,11 +1,17 @@
 import {hp, wp} from '../../Config/responsive';
-import {Colors} from '../../Theme/Variables';
-import {StyleSheet} from 'react-native';
+
+const {StyleSheet, Platform} = require('react-native');
+const {Colors} = require('../../Theme/Variables');
 
 export const styles = StyleSheet.create({
-  notifyMain: {
+  container: {
+    flex: 1,
     backgroundColor: Colors.themeBlack,
     paddingHorizontal: wp('4'),
-    paddingVertical: hp('1'),
+    paddingTop: hp('2.5'),
+  },
+  upComingFlatlistView: {
+    alignItems: 'center',
+    paddingVertical: hp('2'),
   },
 });

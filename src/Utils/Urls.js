@@ -3,13 +3,15 @@ const getCredentials = () => {
     return {
       // baseURL: 'http://3.20.179.123/salt/api/',
       // imageURL: 'http://3.20.179.123/salt/',
-      baseURL: 'https://saltbraiding.com/salt/api/',
+      // baseURL: 'https://saltbraiding.com/salt/api/',
+      baseURL: 'https://virtualrealitycreators.com/salt/api/',
       imageURL: 'https://saltbucket1.s3.us-east-2.amazonaws.com/',
     };
   else {
     console.log = () => {};
     return {
-      baseURL: 'https://saltbraiding.com/salt/api/',
+      // baseURL: 'https://saltbraiding.com/salt/api/',
+      baseURL: 'https://virtualrealitycreators.com/salt/api/',
       imageURL: 'https://saltbucket1.s3.us-east-2.amazonaws.com/',
       // baseURL: 'http://3.20.179.123/salt/api/',
       // imageURL: 'http://3.20.179.123/salt/',
@@ -33,6 +35,8 @@ export const termsUrl = 'https://saltbraiding.com/terms_and_conditions';
 export const firebaseDataBaseURL =
   'https://track-pal-e4e07-default-rtdb.firebaseio.com/';
 
+export const APIKey = 'AIzaSyDQ_pjAQYvVcGWNLy-ND_ZtyufjXtiUAxs';
+
 export const registerUrl = 'register-user';
 export const loginUrl = 'login';
 export const fcmToken = 'add-fcm-token';
@@ -50,6 +54,9 @@ export const VerifyUserUrl = 'professional/verify-user';
 export const startORendAppUrl = 'professional/appointment_status';
 export const sendOTPUrl = 'professional/verify-code';
 export const verifyOTPUrl = 'professional/check-code';
+export const CheckIsCurrentDateUrl = 'professional/current-date';
+export const getNotificationUrl = 'professional/all-notifications';
+export const GetDetailsUrl = 'professional/appointment-detail/';
 
 export const DeleteUserUrl = 'professional/deactive-prof';
 export const logoutUserUrl = 'professional/logout';
@@ -80,3 +87,4 @@ export const deleteAccUrl = '/delete-acc';
 // export const logoutUrl = '/logout';
 export const terminateStatusUrl = '/change-terminate-status';
 export const ResetMsgCountUrl = '/reset-msg-count';
+export const FcmTokenUrl = 'customer/add-fcm-token';

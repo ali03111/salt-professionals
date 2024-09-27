@@ -1,5 +1,5 @@
 import {memo, useCallback} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, ScrollView, Text, View} from 'react-native';
 // import UpComingAppView from '../../Components/UpComingAppView';
 import {UpComingAppView} from '../../Components/UpComingAppView';
 import {UpcomingData} from '../../Utils/localDB';

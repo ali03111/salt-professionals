@@ -65,7 +65,7 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <StatusBar backgroundColor={Colors.themeRed} barStyle={'light-content'} />
+      {/* <StatusBar backgroundColor={Colors.themeRed} barStyle={'light-content'} /> */}
       <HomeHeader />
       <ScrollView
         refreshControl={
@@ -117,7 +117,7 @@ const HomeScreen = ({navigation}) => {
           ListEmptyComponent={
             <NoDataFoundVer
               heading={'Sorry...'}
-              subHeading={'appointments requests !'}
+              subHeading={'no appointments requests !'}
               text={'Complete your profile to get maximum requests...'}
             />
           }

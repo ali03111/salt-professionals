@@ -126,11 +126,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     height: hp('5'),
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
     justifyContent: 'center',
     paddingHorizontal: wp('0'),
-    // borderRadius: 10,
   },
   dateText: {
     fontSize: hp('1.8'),

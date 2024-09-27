@@ -17,8 +17,6 @@ const useLocationScreen = ({navigate, goBack}) => {
     userData?.updated_data?.loc_data,
   );
 
-  console.log('userDatauserDatauserDatauserDatauserData', userData);
-
   const {mutate} = useMutation({
     mutationFn: data => {
       return API.post(selecteLocationUrl, {
@@ -27,7 +25,6 @@ const useLocationScreen = ({navigate, goBack}) => {
       });
     },
     onSuccess: ({ok, data}) => {
-      console.log('osdibvklsdbvbsdlvkbsdklsdbvklsd', data);
       if (ok) {
         dispatch({
           type: types.UpdateProfile,

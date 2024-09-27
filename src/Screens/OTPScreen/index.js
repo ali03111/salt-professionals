@@ -38,10 +38,10 @@ const OTPScreen = ({route, navigation}) => {
       contentContainerStyle={styles.container}
       bounces={false}
       showsVerticalScrollIndicator={false}>
-      <StatusBar
+      {/* <StatusBar
         backgroundColor={Colors.themeBlack}
         barStyle={'light-content'}
-      />
+      /> */}
       <Image
         source={textureBg}
         style={{...styles.bgImg}}

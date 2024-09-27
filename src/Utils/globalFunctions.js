@@ -6,6 +6,7 @@ import {openSettings} from 'react-native-permissions';
 import {store} from '../Redux/Reducer';
 import {loadingFalse, loadingTrue} from '../Redux/Action/isloadingAction';
 import {errorMessage} from '../Config/NotificationMessage';
+import {APIKey} from './Urls';
 
 const getSingleCharacter = text => {
   let letter = text?.charAt(0).toUpperCase();
@@ -175,16 +176,16 @@ const getProperLocation = () => {
                 'kjsdbvjklsbdklvbsdklbvlksdbvlksdbvkljsblkvbsdlkvblskdbvlsdbvbsdkvds',
                 info,
               );
-              // const locationName = await getLocationName(
-              //   info.coords.latitude,
-              //   info.coords.longitude,
-              // );
+              const locationName = await getLocationName(
+                info.coords.latitude,
+                info.coords.longitude,
+              );
               resolve({
                 coords: {
                   latitude: info.coords.latitude,
                   longitude: info.coords.longitude,
                 },
-                description: 'Street338 Catherine St, Columbia.',
+                description: locationName,
               });
             },
             error => {
@@ -198,16 +199,16 @@ const getProperLocation = () => {
       } else {
         Geolocationios.getCurrentPosition(
           async info => {
-            // const locationName = await getLocationName(
-            //   info.coords.latitude,
-            //   info.coords.longitude,
-            // );
+            const locationName = await getLocationName(
+              info.coords.latitude,
+              info.coords.longitude,
+            );
             resolve({
               coords: {
                 latitude: info.coords.latitude,
                 longitude: info.coords.longitude,
               },
-              description: 'Street338 Catherine St, Columbia.',
+              description: locationName,
             });
           },
           error => {
@@ -232,7 +233,7 @@ const getProperLocation = () => {
 const getLocationName = async (latitude, longitude) => {
   console.log('third');
 
-  const geocodingAPI = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDQ_pjAQYvVcGWNLy-ND_ZtyufjXtiUAxs`;
+  const geocodingAPI = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${APIKey}`;
 
   // Replace "YOUR_API_KEY" with your actual Google Maps Geocoding API key
 
@@ -254,6 +255,17 @@ const openGoogleMaps = (latitude, longitude) => {
   Linking.openURL(url);
 };
 
+function removeTimeFromDate(datetimeStr) {
+  // input value ""2024-03-12T08:00:15.000000Z""
+  // output value "2024-03-12"
+
+  const dateInString = datetimeStr.toISOString();
+
+  // Split the string at 'T' and take the first part (the date)
+  const datePart = dateInString.split('T')[0];
+  return datePart;
+}
+
 export {
   getSingleCharacter,
   getIdsFromObj,
@@ -261,4 +273,5 @@ export {
   extractTimeFromString,
   getDateMonthYear,
   openGoogleMaps,
+  removeTimeFromDate,
 };

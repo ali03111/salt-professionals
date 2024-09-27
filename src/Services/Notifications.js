@@ -233,7 +233,7 @@ class FCMService {
       async ({type, detail}) => {
         const {notification} = detail;
         console.log(
-          'notificationnotificationnotificationnotificatioasdasdasdasdasdasnnotificationnotification',
+          'notificationnotificationnotificationno11tificatioasdasdasdasdasdasnnotificationnotification',
           notification,
         );
 
@@ -246,12 +246,8 @@ class FCMService {
     );
     this.backgroundListner = notifee.onBackgroundEvent(
       async ({type, detail}) => {
-        const {notification} = detail;
-        console.log(
-          'notificationnotificationnotificatisdsdsonnoasdasdastificationnotificationnotification',
-          notification,
-          routeName,
-        );
+        const {notification, pressAction} = detail;
+        console.log('sssssdfsdfsdfsdfsdf', notification, routeName);
         let searchTerm = /invitation/;
         let findWord = Boolean(searchTerm.test(notification.body));
         const getNameFunc = NavigationService.getCurrentRoute();
@@ -280,6 +276,18 @@ class FCMService {
         );
         if (isPressed) onOpenNotification(notification);
         if (type !== 7) await this.setBadge();
+        // Check if the user pressed the "Mark as read" action
+        console.log('first11111111', pressAction);
+        if (
+          type === EventType.ACTION_PRESS &&
+          pressAction.id === 'mark-as-read'
+        ) {
+          // Decrement the count by 1
+          await notifee.decrementBadgeCount();
+
+          // Remove the notification
+          await notifee.cancelNotification(notification.id);
+        }
       },
     );
   };

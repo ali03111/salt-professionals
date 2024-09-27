@@ -72,11 +72,11 @@ const OnboardScreen = ({navigation}) => {
   const FirstView = () => {
     return (
       <>
-        <StatusBar
+        {/* <StatusBar
           hidden={true}
           backgroundColor={'black'}
           barStyle="light-content"
-        />
+        /> */}
         <AnimatedText
           text={onBoardinData[0].heading}
           styles={{...styles.heading}}
