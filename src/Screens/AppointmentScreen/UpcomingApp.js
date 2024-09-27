@@ -7,7 +7,6 @@ import {keyExtractor} from '../../Utils';
 import {styles} from './styles';
 import {hp} from '../../Config/responsive';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
-import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
 import useAppointmentScreen from './useAppointmentScreen';
 import {EmptyViewComp} from '../../Components/EmptyViewComp';
 

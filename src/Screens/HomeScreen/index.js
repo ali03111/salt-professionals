@@ -21,7 +21,6 @@ import {ProfileCardComp} from '../../Components/ProfileCardComp';
 import {ProfileProgressView} from './ProfileProgressView';
 import {Colors} from '../../Theme/Variables';
 import {AppointmentReqComp} from '../../Components/AppointmentReqComp';
-import AniLeftScroll from '../../AnimatedComp/AniLeftScroll';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import useHomeScreen from './useHomeScreen';
 import NoDataFoundVer from '../../Components/NoDataFoundVer';
