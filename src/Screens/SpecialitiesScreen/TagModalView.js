@@ -93,7 +93,7 @@ const TagModalView = ({
                 );
               })}
             </ScrollView>
-            {firstHit && activeTags.length > 0 && (
+            {firstHit && (
               <ThemeButton
                 title={'Save'}
                 style={styles.btn}

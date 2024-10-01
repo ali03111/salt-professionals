@@ -113,7 +113,9 @@ const SpecialitiesScreen = ({navigation}) => {
         }}>
         <HeadingView
           title={'Braid Types'}
-          rightText={'Add more'}
+          rightText={
+            activeTags?.braid_type?.length > 0 ? 'Edit more' : 'Add more'
+          }
           onPress={() => onOpenModal('braid_type')}
           childern={
             <Touchable onPress={() => onOpenModal('braid_type')}>
@@ -128,7 +130,9 @@ const SpecialitiesScreen = ({navigation}) => {
         <ArryView item={activeTags?.braid_type} />
         <HeadingView
           title={'Braid Size'}
-          rightText={'Add more'}
+          rightText={
+            activeTags?.braid_size?.length > 0 ? 'Edit more' : 'Add more'
+          }
           onPress={() => onOpenModal('braid_size')}
           childern={
             <Touchable onPress={() => onOpenModal('braid_size')}>
@@ -143,7 +147,9 @@ const SpecialitiesScreen = ({navigation}) => {
         <ArryView item={activeTags?.braid_size} />
         <HeadingView
           title={'Braid Lengths'}
-          rightText={'Add more'}
+          rightText={
+            activeTags?.braid_length?.length > 0 ? 'Edit more' : 'Add more'
+          }
           onPress={() => onOpenModal('braid_length')}
           childern={
             <Touchable onPress={() => onOpenModal('braid_length')}>

@@ -24,12 +24,12 @@ const useSettingScreen = ({navigate}) => {
   const dynamicRoute = route => navigate(route);
 
   const onConfirm = val => {
+    toggleAlert(val, false);
     if (val == 'logoutAlert') logoutFunc();
     else {
-      (logoutAlert && 'logoutAlert') || (deleteAlert && 'deleteAlert'),
-        setTimeout(() => {
-          mutate();
-        }, 900);
+      setTimeout(() => {
+        mutate();
+      }, 900);
     }
   };
 

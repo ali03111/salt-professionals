@@ -15,6 +15,8 @@ import {
   StatusBar,
   Platform,
   TextInput,
+  AppState,
+  Alert,
 } from 'react-native';
 import StackNavigatior from './src/Navigation/navigation';
 import {SplashScreen} from './src/Assets';
@@ -27,17 +29,30 @@ import {hp, wp} from './src/Config/responsive';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import {useIsFetching} from '@tanstack/react-query';
-
+import {fcmService} from './src/Services/Notifications';
+import notifee, {
+  EventType,
+  AndroidLaunchActivityFlag,
+} from '@notifee/react-native';
+import NavigationService from './src/Services/NavigationService';
 const App = () => {
+  useEffect(() => {
+    // App launched, remove the badge count
+    notifee.setBadgeCount(0).then(() => console.log('Badge count removed'));
+  }, []);
+
   const flexStyle = {flex: 1};
   const isFetching = useIsFetching();
   const [isVisible, setIsVisible] = useState(true);
+
   const Hide_Splash_Screen = () => {
     setIsVisible(false);
   };
   const {getState, dispatch} = useReduxStore();
   const {isloading} = getState('isloading');
   const {isAlert} = getState('isAlert');
+
+  const {isLogin} = getState('Auth');
 
   const time = () => {
     return 2000;
@@ -69,6 +84,81 @@ const App = () => {
     View.defaultProps.allowFontScaling = false;
   };
 
+  const appState = useRef(AppState.currentState);
+  useEffect(() => {
+    /* It's a function that registers the device to receive push notifications. */
+    if (isLogin) {
+      setTimeout(() => {
+        fcmService.register(
+          onRegister,
+          onOpenNotification,
+          appState.current,
+          () => {},
+        );
+      }, 5000);
+    }
+    return () => {
+      /* It's a function that unregisters the device from receiving push notifications. */
+      if (isLogin) {
+        fcmService.unRegister();
+      }
+    };
+  }, [isLogin]);
+  const onRegister = fcm_token => {
+    console.log('fcm_token', Platform.OS, fcm_token);
+    dispatch(fcmRegister(fcm_token));
+  };
+
+  useEffect(() => {
+    return notifee.onForegroundEvent(({type, detail}) => {
+      switch (type) {
+        case EventType.DISMISSED:
+          console.log('User dismissed notification', detail.notification);
+          break;
+        case EventType.PRESS:
+          const notify = detail.notification;
+          console.log('dksbvjksbdjkvbsdjkbvdjksbvjds', notify);
+          if (notify?.data?.payload) {
+            const payloadData = JSON.parse(notify?.data?.payload);
+            console.log(
+              'payloadDatapayloadDatapayloadDatapayloadDatapayloadData',
+              payloadData,
+            );
+            if (payloadData?.isRoute) {
+              NavigationService.navigate(
+                payloadData?.screenRoute,
+                payloadData?.app_data?.id && payloadData?.app_data,
+              );
+            }
+          }
+          console.log('User pressed notification', detail.notification);
+          break;
+      }
+    });
+  }, []);
+
+  const onOpenNotification = notify => {
+    if (notify?.data?.payload) {
+      console.log(
+        'payloadDatapayloadDatapayloadDatapayloadDasdfsfsddftapayloadData',
+        notify?.data,
+      );
+      const payloadData = JSON.parse(notify?.data?.payload);
+      console.log(
+        'payloadDatapayloadDatapayloadDatapayloadDatapayloadData',
+        payloadData,
+      );
+      if (payloadData?.isRoute) {
+        NavigationService.navigate(
+          payloadData?.screenRoute,
+          payloadData?.app_data?.id && payloadData?.app_data,
+        );
+      }
+    } else {
+      NavigationService.navigate('NotificationScreen');
+    }
+  };
+
   useEffect(useEffectFun, []);
 
   let Splash_Screen = (
@@ -77,14 +167,40 @@ const App = () => {
       style={styles.SplashScreen_RootView}></ImageBackground>
   );
 
+  useEffect(() => {
+    const unsubscribeNotifee = notifee.onForegroundEvent(
+      async ({type, detail}) => {
+        console.log(`The type is`, type, 'the detail is', detail);
+        switch (type) {
+          case EventType.PRESS:
+            if (detail.notification?.remote) {
+              console.log('It was a remote notification');
+              // Do some navigation logic
+            }
+            break;
+          case EventType.ACTION_PRESS:
+            console.log(`It was an ACTION PRESS THO`);
+            break;
+        }
+      },
+    );
+    return () => {
+      unsubscribeNotifee();
+    };
+  }, []);
+
   return (
     <GestureHandlerRootView style={flexStyle}>
       {(isloading || isFetching >= 1) && <Overlay />}
-      <StatusBar
-        hidden={isVisible}
-        backgroundColor={Platform.OS == 'ios' ? 'white' : '#F2F2F2'}
-        barStyle={'dark-content'}
-      />
+      {Platform.OS == 'ios' ? (
+        <StatusBar
+          hidden={isVisible}
+          backgroundColor={'white'}
+          barStyle={'light-content'}
+        />
+      ) : (
+        <StatusBar hidden={isVisible} />
+      )}
       {isVisible === true ? Splash_Screen : <StackNavigatior />}
     </GestureHandlerRootView>
   );

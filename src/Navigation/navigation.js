@@ -31,12 +31,12 @@ const StackNavigatior = () => {
           // ...statusBarColor,
         }}>
         {/* <Stack.Screen name="randomFile" component={randomFile} /> */}
-        {!onboarding && (
+        {/* {!onboarding && (
           <Stack.Screen
             name="OnBoardScreen"
             component={Screens.OnBoardScreen}
           />
-        )}
+        )} */}
         {!isLogin && (
           <>
             <Stack.Screen name="LoginScreen" component={Screens.LoginScreen} />

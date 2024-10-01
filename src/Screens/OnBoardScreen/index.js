@@ -77,7 +77,7 @@ const OnboardScreen = ({navigation}) => {
           backgroundColor={'black'}
           barStyle="light-content"
         /> */}
-        <AnimatedText
+        {/* <AnimatedText
           text={onBoardinData[0].heading}
           styles={{...styles.heading}}
           animation={startAnimation ? animationValue : 0}
@@ -86,7 +86,7 @@ const OnboardScreen = ({navigation}) => {
           text={onBoardinData[0].description}
           styles={{...styles.message}}
           animation={startAnimation ? animationValue : 0}
-        />
+        /> */}
         <Animatable.View animation={startAnimation ? animationValue : 0}>
           <SlideButton
             title="Swipe right"
