@@ -17,11 +17,9 @@ const useHomeScreen = ({navigate}) => {
 
   const {mutate} = useMutation({
     mutationFn: body => {
-      console.log('bodybodybodybodybodybodybodybodybodybodybody', body);
       return API.post(changeAppStatusUrl, body);
     },
     onSuccess: ({ok, data}) => {
-      console.log('dbhvjklsdbjkvbdsjkbvkdsbvsbdjkvbsdkjbvsdbkvsdbvsdjk', data);
       if (ok) {
         queryClient.invalidateQueries({queryKey: ['homeData']});
         successMessage(data?.message);

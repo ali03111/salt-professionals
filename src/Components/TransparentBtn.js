@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: Colors.primaryColor,
   },
   text: {
     fontSize: hp('2'),

@@ -10,8 +10,8 @@ import {divider} from '../../Assets';
 import {hp, wp} from '../../Config/responsive';
 
 const NotificationScreen = ({navigation}) => {
-  const {notiData, onRefresh} = useNotificationScreen();
-  console.log('kdjvbkjsdbvksbdvkbsdklvbsdlkvsd', notiData);
+  const {notiData, onRefresh, onAppPress} = useNotificationScreen();
+  console.log('kdjvbkjsdbvksbdvkbsdklvbsdlkvsd', JSON.stringify(notiData));
   return (
     <>
       <BackHeader headerTitle={'Notifications'} />
@@ -33,7 +33,12 @@ const NotificationScreen = ({navigation}) => {
           InnerCompnonet={item => (
             <NotificationComp
               item={item}
-              disabled={item?.appointment_status == 0 ? true : false}
+              disabled={
+                item?.appointments?.appointment_request[0]?.status == 'rejected'
+                  ? true
+                  : false
+              }
+              onStatusChange={({appId, status}) => onAppPress({appId, status})}
               onPress={() => {
                 navigation.navigate(
                   'AppointmentDetailScreen',

@@ -28,6 +28,7 @@ import {
   messagesFill,
   notification,
   notification2,
+  notificationFilled,
   sendNotification,
   setting,
   setting2,
@@ -160,7 +161,7 @@ function MybottomTabs() {
       />
       <Tab.Screen
         name="NotificationScreen"
-        options={tabarComponent(heartFill, heart)}
+        options={tabarComponent(notificationFilled, notification)}
         component={Screens.NotificationScreen}
       />
       <Tab.Screen
