@@ -57,6 +57,8 @@ export const verifyOTPUrl = 'professional/check-code';
 export const CheckIsCurrentDateUrl = 'professional/current-date';
 export const getNotificationUrl = 'professional/all-notifications';
 export const GetDetailsUrl = 'professional/appointment-detail/';
+export const GetUserUrl = 'professional/get-user/';
+export const GetChatListUrl = 'professional/chat-list';
 
 export const DeleteUserUrl = 'professional/deactive-prof';
 export const logoutUserUrl = 'professional/logout';

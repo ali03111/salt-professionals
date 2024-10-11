@@ -78,6 +78,17 @@ export const styles = StyleSheet.create({
     backgroundColor: isSender ? Colors.themeRed : 'transparent',
     lineHeight: 100,
   }),
+  msgsRecieve: {
+    paddingHorizontal: wp('4'),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  sendIcon: {
+    width: wp('5'),
+    height: hp('3'),
+    resizeMode: 'contain',
+    marginLeft: wp('1'),
+  },
   searchMain: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -86,7 +97,7 @@ export const styles = StyleSheet.create({
     maxHeight: hp('14'),
     // height: 'auto',
     borderRadius: 10,
-    borderColor: Colors.grayFaded,
+    borderColor: Colors.lightBlack,
     paddingHorizontal: wp('1.8'),
     // marginHorizontal: wp('4'),
     // marginVertical: hp('2'),
@@ -101,5 +112,16 @@ export const styles = StyleSheet.create({
     fontSize: hp('2'),
     flex: 1,
     color: 'white',
+  },
+  sendBtnStyle: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: Colors.themeRed,
+  },
+  sendTextStyle: {
+    color: 'white',
+    marginLeft: wp('1.5'),
+    paddingVertical: hp('1.3'),
+    // paddingHorizontal: wp('3'),
   },
 });

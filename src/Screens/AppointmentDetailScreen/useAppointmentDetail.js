@@ -12,6 +12,11 @@ import {useEffect, useState} from 'react';
 import {removeTimeFromDate} from '../../Utils/globalFunctions';
 
 const useAppointmentDetail = ({navigate, goBack}, {params}) => {
+  console.log(
+    'paramsparamsparamsparamsparamsparamsparamsparamsparamsparamsparamsparams',
+    params,
+  );
+
   const {data, error, isSuccess, isLoading} = useQuery({
     queryKey: ['appointDetail'],
     queryFn: () => API.get(GetDetailsUrl + params?.id),
@@ -107,7 +112,11 @@ const useAppointmentDetail = ({navigate, goBack}, {params}) => {
         appointment_id: data?.data?.id,
         aor: true,
       }),
-    false: () => console.log('klsnvlksdnlkvnsdkl'),
+    false: () =>
+      navigate('ChatScreen', {
+        app_id: data?.data?.id,
+        userId: data?.data?.users?.id,
+      }),
   };
 
   return {data: data?.data, onAcceptPress, onCancelPress, status};

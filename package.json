@@ -30,7 +30,8 @@
     "gitPush": "git push -u origin DevOnePro",
     "build-ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'",
     "postinstall": "react-native setup-ios-permissions && npx pod-install",
-    "buildIos": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
+    "buildIos": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'",
+    "runSecondServer": "react-native run-android --port 8088"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -54,6 +55,7 @@
     "@react-navigation/native-stack": "^6.9.17",
     "@tanstack/react-query": "^5.22.2",
     "apisauce": "^3.0.1",
+    "firebase": "^10.14.0",
     "lottie-ios": "3.4.1",
     "lottie-react-native": "^5.1.6",
     "moment": "^2.29.4",

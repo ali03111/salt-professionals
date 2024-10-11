@@ -34,6 +34,8 @@ const onNotificationNotiFee = async (data, appState) => {
         launchActivity: 'default',
         launchActivityFlags: [AndroidLaunchActivityFlag.SINGLE_TOP],
       },
+      largeIcon: 'ic_launcher',
+      smallIcon: 'ic_notification',
       // sound,
     },
     ios: {sound},

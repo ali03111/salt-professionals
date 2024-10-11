@@ -5,13 +5,14 @@ import {Colors} from '../Theme/Variables';
 import {CircleImage} from './CircleImageComponent';
 import {TextComponent} from './TextComponent';
 import {Touchable} from './Touchable';
+import {imageUrl} from '../Utils/Urls';
 
 export const MessageViewComp = ({data, viewStyle, onPress}) => {
   return (
     <Touchable style={{...styles.mainView, ...viewStyle}} onPress={onPress}>
       <View style={styles.userView}>
         <CircleImage
-          image={data?.image}
+          image={imageUrl(data?.image)}
           styles={styles.circleImage}
           uri={true}
         />

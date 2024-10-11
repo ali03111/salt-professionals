@@ -9,8 +9,13 @@ import {styles} from './styles';
 import {AniFlatOneByOne} from '../../AnimatedComp/AniFlatOneByOne';
 import {Chat} from '../../Utils/localDB';
 import {MessageViewComp} from '../../Components/MessageViewComp';
+import useMessageScreen from './useMessageScreen';
 
 const MessageScreen = ({navigation}) => {
+  const {messageList, users, dynamicNav} = useMessageScreen(navigation);
+
+  console.log('jlsbdvkbsldibklsjdbvladsbilkvbasdlads', users);
+
   return (
     <View>
       <BackHeader headerTitle={'Chat'} />
@@ -27,7 +32,7 @@ const MessageScreen = ({navigation}) => {
         />
       </View>
       <AniFlatOneByOne
-        data={Chat}
+        data={users}
         InnerCompnonet={item => (
           <MessageViewComp
             data={item}

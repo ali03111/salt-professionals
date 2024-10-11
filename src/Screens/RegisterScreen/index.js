@@ -82,7 +82,7 @@ const RegisterScreen = ({navigation}) => {
             getValues,
             placeholder: 'Email',
             isImage: email,
-            defaultValue: '',
+            defaultValue: __DEV__ ? 'pro10@gmail.com' : '',
             tintColor: Colors.themeRed,
           }}
         />

@@ -266,6 +266,18 @@ function removeTimeFromDate(datetimeStr) {
   return datePart;
 }
 
+function removeSeconds(timeStr) {
+  //  input "6:36:49 PM"
+  // Output: "6:36 PM"
+  if (timeStr) {
+    // Split the time string by the colon
+    let timeParts = timeStr.split(':');
+
+    // Join only the first two parts (hours and minutes) and append the AM/PM part
+    return timeParts[0] + ':' + timeParts[1] + ' ' + timeParts[2].slice(-2);
+  }
+}
+
 export {
   getSingleCharacter,
   getIdsFromObj,
@@ -274,4 +286,5 @@ export {
   getDateMonthYear,
   openGoogleMaps,
   removeTimeFromDate,
+  removeSeconds,
 };

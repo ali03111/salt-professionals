@@ -37,6 +37,12 @@ const HomeScreen = ({navigation}) => {
         <UpComingAppCards
           data={item}
           onpress={() => dynamicNav('AppointmentDetailScreen', item)}
+          onChatPress={() =>
+            dynamicNav('ChatScreen', {
+              app_id: item?.id,
+              userId: item?.users?.id,
+            })
+          }
         />
       );
     },

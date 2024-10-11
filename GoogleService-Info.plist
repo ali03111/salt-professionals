@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>841728114130-0n4aiu6o0ncsenoml24t8kiu5kqsjd2a.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.841728114130-0n4aiu6o0ncsenoml24t8kiu5kqsjd2a</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>841728114130-8qcu5bhqdob6sgckvcans2n5tnrc3i2e.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCUSN0mjcdW4BbAF0C1ss8bkXipXr0AlGs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>841728114130</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.codment.salt.stylelist</string>
+	<key>PROJECT_ID</key>
+	<string>salt-1ea5a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>salt-1ea5a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:841728114130:ios:78515fd9e8a99ee1e05c0b</string>
+	<key>DATABASE_URL</key>
+	<string>https://salt-1ea5a-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

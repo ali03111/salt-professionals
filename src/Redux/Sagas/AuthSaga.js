@@ -58,6 +58,7 @@ const loginSaga = function* ({payload: {datas, type}}) {
           yield put(loadingTrue());
           yield put(updateAuth(data));
         } else {
+          console.log('jksdbvjkbsdjkvbsdkjbvkjdsvjsbkjbsd', data);
           errorMessage(data?.message);
         }
       }
