@@ -1,10 +1,12 @@
 import {useQuery} from '@tanstack/react-query';
-import API from '../../Utils/helperFunc';
+import API, {fetchGetWithToken} from '../../Utils/helperFunc';
 import {GetChatListUrl} from '../../Utils/Urls';
 import {useEffect, useRef, useState} from 'react';
 import useReduxStore from '../../Hooks/UseReduxStore';
 import {
   collection,
+  doc,
+  getDoc,
   limit,
   onSnapshot,
   orderBy,
@@ -21,22 +23,21 @@ const useMessageScreen = ({navigate, addListener}) => {
   const [users, setUsers] = useState([]);
   const isUnreadRef = useRef(false);
 
-  const {getState, dispatch} = useReduxStore();
+  const {getState, dispatch, queryClient} = useReduxStore();
   const {userData} = getState('Auth');
   const [unreadCount, setUnreadCount] = useState(0);
 
   const fetchUsersAndMessages = async () => {
     try {
-      const fetchedUsers = data?.data || [];
+      const fetchedUsers = await fetchGetWithToken(GetChatListUrl);
 
       const unsubscribeFunctions = fetchedUsers.map(async appointments => {
-        const chatroomDocRef = doc(db, 'messages', appointments?.id);
-        const chatroomDocSnap = await getDoc(chatroomDocRef);
-
-        console.log(
-          'skbvklsbdlkvbsdlkbvklsdbvlksdbvklsdblkbsdklvblkdsbvkldsbvklsdblkvdsblkvbdsklvbkdlsv',
-          chatroomDocSnap.exists(),
+        const chatroomDocRef = doc(
+          db,
+          'messages',
+          appointments?.id?.toString(),
         );
+        const chatroomDocSnap = await getDoc(chatroomDocRef);
 
         if (chatroomDocSnap.exists()) {
           return listenForLastMessage(appointments);
@@ -47,33 +48,35 @@ const useMessageScreen = ({navigate, addListener}) => {
         unsubscribeFunctions.forEach(unsub => unsub());
       };
     } catch (error) {
-      console.error('Error fetching users or messages:', error);
+      console.error('Error fetching users or messages  :', error);
     }
   };
 
-  const listenForLastMessage = user => {
-    const auth = userData.id;
-    const documentId = user.id;
+  const listenForLastMessage = appointment => {
+    const appId = appointment.id;
 
     const messageRef = query(
-      collection(db, 'messages', documentId, 'messages'),
+      collection(db, 'messages', appId.toString(), 'messages'),
       orderBy('createdAt', 'desc'),
       limit(1),
     );
 
     const unsubscribe = onSnapshot(messageRef, querySnapshot => {
       let lastMessage = null;
+
       querySnapshot.forEach(doc => {
         lastMessage = doc.data();
       });
 
       setUsers(prevUsers =>
-        prevUsers.map(u => (u.id === user.id ? {...u, lastMessage} : u)),
+        prevUsers.map(u => {
+          return u.id == appId.toString() ? {...u, lastMessage} : u;
+        }),
       );
 
       // Count unread messages
       const isUnread =
-        authUser?.user?.id === lastMessage?.receiver && lastMessage?.seen == 0;
+        userData?.id === lastMessage?.receiver && lastMessage?.seen == 0;
       isUnreadRef.current = isUnread;
 
       // Update unread count
@@ -96,7 +99,10 @@ const useMessageScreen = ({navigate, addListener}) => {
         try {
           // Reset the unread count  when the Chat screen is focused
           //   dispatch(resetUnreadCount());
-
+          queryClient.fetchQuery({
+            queryKey: ['chatList'],
+            staleTime: 1000,
+          });
           await fetchUsersAndMessages();
         } catch (error) {
           console.error('Error initializing chat:', error);
@@ -111,9 +117,10 @@ const useMessageScreen = ({navigate, addListener}) => {
     navigate(screenName, screenData);
 
   return {
-    messageList: data?.data ?? [],
+    messageList: [],
     dynamicNav,
     users,
+    userData,
   };
 };
 

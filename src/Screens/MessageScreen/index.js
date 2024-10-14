@@ -12,7 +12,8 @@ import {MessageViewComp} from '../../Components/MessageViewComp';
 import useMessageScreen from './useMessageScreen';
 
 const MessageScreen = ({navigation}) => {
-  const {messageList, users, dynamicNav} = useMessageScreen(navigation);
+  const {messageList, users, userData, dynamicNav} =
+    useMessageScreen(navigation);
 
   console.log('jlsbdvkbsldibklsjdbvladsbilkvbasdlads', users);
 
@@ -36,8 +37,14 @@ const MessageScreen = ({navigation}) => {
         InnerCompnonet={item => (
           <MessageViewComp
             data={item}
+            userData={userData}
             viewStyle={{marginVertical: hp('1')}}
-            onPress={() => navigation.navigate('ChatScreen')}
+            onPress={() =>
+              navigation.navigate('ChatScreen', {
+                app_id: item?.id,
+                userId: item?.users?.id,
+              })
+            }
           />
         )}
         flatViewStyle={{marginTop: hp('2'), paddingBottom: hp('20')}}

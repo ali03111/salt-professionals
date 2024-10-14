@@ -12,11 +12,6 @@ import {useEffect, useState} from 'react';
 import {removeTimeFromDate} from '../../Utils/globalFunctions';
 
 const useAppointmentDetail = ({navigate, goBack}, {params}) => {
-  console.log(
-    'paramsparamsparamsparamsparamsparamsparamsparamsparamsparamsparamsparams',
-    params,
-  );
-
   const {data, error, isSuccess, isLoading} = useQuery({
     queryKey: ['appointDetail'],
     queryFn: () => API.get(GetDetailsUrl + params?.id),

@@ -79,43 +79,34 @@ const useChatScreen = ({navigate}, {params}) => {
     // chatroomId.current = jodId;
 
     const chatroomDocRef = doc(db, 'messages', jodId);
+
     const chatroomDocSnap = await getDoc(chatroomDocRef);
 
     if (!chatroomDocSnap.exists()) {
       await setDoc(chatroomDocRef, {messages: []});
     }
 
-    // const lastMessageQuery = query(
-    //   collection(db, 'messages', jodId, 'messages'),
-    //   where('sender', '==', userData.id),
-    //   orderBy('createdAt', 'desc'),
-    //   limit(1),
-    // );
+    const lastMessageQuery = query(
+      collection(db, 'messages', `"${jodId}"`, 'messages'),
+      where('sender', '==', userData.id),
+      orderBy('createdAt', 'desc'),
+      limit(1),
+    );
+    const querySnapshot = await getDocs(lastMessageQuery);
 
-    // console.log(
-    //   'lastMessageQuerylastMessageQuerylastMessageQuerylastMessageQuery',
-    //   lastMessageQuery,
-    //   userData?.id,
-    //   jodId,
-    // );
-    // const querySnapshot = await getDocs(lastMessageQuery);
+    if (!querySnapshot.empty) {
+      const lastMessageDoc = querySnapshot.docs[0];
 
-    // console.log(
-    //   'querySnapshotquerySnapshotquerySnapshotquerySnapshotquerySnapshot',
-    //   querySnapshot,
-    // );
-    // if (!querySnapshot.empty) {
-    //   const lastMessageDoc = querySnapshot.docs[0];
-    //   const messageRef = doc(
-    //     db,
-    //     'messages',
-    //     jodId,
-    //     'messages',
-    //     lastMessageDoc.id,
-    //   );
+      const messageRef = doc(
+        db,
+        'messages',
+        `"${jodId}"`,
+        'messages',
+        lastMessageDoc.id,
+      );
 
-    //   await updateDoc(messageRef, {seen: '1'});
-    // }
+      await updateDoc(messageRef, {seen: '1'});
+    }
 
     const messagesQuery = query(
       collection(chatroomDocRef, 'messages'),
@@ -127,11 +118,6 @@ const useChatScreen = ({navigate}, {params}) => {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(
-        'messagesListmessagesListmessagesListmessagesListmessagesList',
-        messagesList,
-      );
-      //   state.setMessages(messagesList);
       dispatch({
         type: 'updateReducer',
         payload: {
@@ -139,8 +125,15 @@ const useChatScreen = ({navigate}, {params}) => {
           data: messagesList,
         },
       });
-      setLoading(false); // Stop loader when messages are loaded
+      //   state.setMessages(messagesList);
     });
+    // dispatch({
+    //   type: 'updateReducer',
+    //   payload: {
+    //     key: 'isLoading',
+    //     data: false,
+    //   },
+    // });
 
     return () => unsubscribe();
   };
@@ -189,6 +182,7 @@ const useChatScreen = ({navigate}, {params}) => {
     handleAutoScroll,
     regexp,
     scrollViewRef,
+    app_id,
     setMessage: e => {
       dispatch({
         type: 'updateReducer',
