@@ -59,6 +59,8 @@ export const getNotificationUrl = 'professional/all-notifications';
 export const GetDetailsUrl = 'professional/appointment-detail/';
 export const GetUserUrl = 'professional/get-user/';
 export const GetChatListUrl = 'professional/chat-list';
+export const UpdateChatNotiUrl = 'professional/user-in-chat';
+export const SendNotiONChatUrl = 'professional/send-chat-notification';
 
 export const DeleteUserUrl = 'professional/deactive-prof';
 export const logoutUserUrl = 'professional/logout';

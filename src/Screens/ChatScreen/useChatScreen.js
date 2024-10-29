@@ -15,9 +15,13 @@ import {
   where,
 } from 'firebase/firestore';
 import {db} from '../../Services/FirebaseServicsConfig';
-import {useQuery} from '@tanstack/react-query';
+import {useMutation, useQuery} from '@tanstack/react-query';
 import API from '../../Utils/helperFunc';
-import {GetUserUrl} from '../../Utils/Urls';
+import {
+  GetUserUrl,
+  SendNotiONChatUrl,
+  UpdateChatNotiUrl,
+} from '../../Utils/Urls';
 
 const STATE = {
   messages: [],
@@ -138,6 +142,29 @@ const useChatScreen = ({navigate}, {params}) => {
     return () => unsubscribe();
   };
 
+  const {mutate} = useMutation({
+    mutationFn: body => {
+      return API.post(SendNotiONChatUrl, {
+        app_id,
+        message: body?.msg,
+        user_id: userId,
+      });
+    },
+    onSuccess: ({ok, data}) => {
+      console.log('jksdbvjksdkbvdjksbvjkldsjklvbdsklvbdlvks', data);
+    },
+  });
+  const {mutateAsync} = useMutation({
+    mutationFn: body => {
+      return API.post(UpdateChatNotiUrl, {
+        user_id: body?.userId ?? null,
+      });
+    },
+    onSuccess: ({ok, data}) => {
+      console.log('jksdbvjksdkbvdjksbvjkldsjklvbdsklvbdlvks', data);
+    },
+  });
+
   const sendMessage = async () => {
     if (message.trim()) {
       try {
@@ -156,6 +183,9 @@ const useChatScreen = ({navigate}, {params}) => {
             data: '',
           },
         });
+        mutate({
+          msg: message,
+        });
         // setMessage(''); // Clear the input field
       } catch (error) {
         console.error('Error adding message: ', error);
@@ -171,6 +201,15 @@ const useChatScreen = ({navigate}, {params}) => {
   };
   useLayoutEffect(() => {
     handleAutoScroll();
+  }, []);
+
+  useEffect(() => {
+    mutateAsync({
+      userId,
+    });
+    return () => {
+      mutateAsync();
+    };
   }, []);
 
   return {
