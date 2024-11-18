@@ -8,9 +8,9 @@ import {types} from '../../Redux/types';
 import {errorMessage, successMessage} from '../../Config/NotificationMessage';
 
 const useSpecialitiesScreen = () => {
-  const [modalVal, setModalVal] = useState(false);
-
   const {getState, dispatch} = useReduxStore();
+
+  const [modalVal, setModalVal] = useState(false);
 
   const onPressKeyRef = useRef('braid_length');
 

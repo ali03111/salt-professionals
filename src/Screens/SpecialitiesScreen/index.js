@@ -3,7 +3,7 @@ import {Image, ScrollView, View} from 'react-native';
 import BackHeader from '../../Components/BackHeader';
 import {Colors} from '../../Theme/Variables';
 import {HeadingView} from '../HomeScreen/headingView';
-import {plusCircle} from '../../Assets';
+import {arrowRight, plusCircle} from '../../Assets';
 import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
 import {styles} from './styles';
@@ -11,6 +11,7 @@ import TagModalView from './TagModalView';
 import useSpecialitiesScreen from './userSpecialitiesScreen';
 import {braidType} from '../../Utils/localDB';
 import {Touchable} from '../../Components/Touchable';
+import ThemeButton from '../../Components/ThemeButton';
 
 export const data = [
   {
@@ -99,19 +100,32 @@ const SpecialitiesScreen = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: Colors.themeBlack}}>
+    <View style={styles.mainView}>
       <BackHeader
         headerTitle={'Specialities'}
         isBack={true}
         goBack={() => navigation.goBack()}
       />
-      <ScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
-          backgroundColor: Colors.themeBlack,
-          paddingBottom: hp('10'),
-        }}>
-        <HeadingView
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        <TextComponent
+          text={'No Specialities \nFound'}
+          styles={styles.heading}
+        />
+        <TextComponent
+          text={
+            'Dive into a world of intricate braids and \nstunning hair designs...'
+          }
+          styles={styles.subText}
+          fade
+        />
+        <ThemeButton
+          title={'Add Specialities'}
+          image={arrowRight}
+          onPress={() => navigation.navigate('BriadTypeScreen')}
+          textStyle={styles.btnText}
+          style={styles.addBtn}
+        />
+        {/* <HeadingView
           title={'Braid Types'}
           rightText={
             activeTags?.braid_type?.length > 0 ? 'Edit more' : 'Add more'
@@ -161,7 +175,7 @@ const SpecialitiesScreen = ({navigation}) => {
             </Touchable>
           }
         />
-        <ArryView item={activeTags?.braid_length} />
+        <ArryView item={activeTags?.braid_length} /> */}
       </ScrollView>
       {modalVal && (
         <TagModalView

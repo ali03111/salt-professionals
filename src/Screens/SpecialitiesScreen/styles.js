@@ -3,6 +3,31 @@ import {hp, wp} from '../../Config/responsive';
 import {Colors} from '../../Theme/Variables';
 
 export const styles = StyleSheet.create({
+  mainView: {flex: 1, backgroundColor: Colors.themeBlack},
+  scrollView: {
+    flexGrow: 1,
+    backgroundColor: Colors.themeBlack,
+    paddingBottom: hp('10'),
+  },
+  heading: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: hp('4.5'),
+    marginTop: hp('8'),
+  },
+  subText: {
+    textAlign: 'center',
+    marginTop: hp('2'),
+  },
+  addBtn: {
+    marginTop: hp('52'),
+    width: wp('95'),
+    alignSelf: 'center',
+  },
+  btnText: {
+    fontSize: hp('2'),
+    marginRight: wp('2'),
+  },
   arryView: {
     width: wp('95'),
     alignSelf: 'center',

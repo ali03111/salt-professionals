@@ -16,3 +16,4 @@ export {default as ChangePasswordScreen} from './ChangePasswordScreen';
 export {default as NotificationScreen} from './NotificationScreen';
 export {default as AppointmentDetailScreen} from './AppointmentDetailScreen';
 export {default as OTPScreen} from './OTPScreen';
+export {default as BriadTypeScreen} from './BriadTypeScreen';
