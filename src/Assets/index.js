@@ -134,6 +134,8 @@ export {default as userMinus} from './Icons/userMinus.png';
 export {default as profileDelete} from './Icons/profileDelete.png';
 export {default as verify} from './Icons/verify.png';
 export {default as arrowRightIcon} from './Icons/arrow-right.png';
+export {default as radioBtn} from './Icons/radioBtn.png';
+export {default as activeRadioBtn} from './Icons/activeRadioBtn.png';
 
 // Lotties files
 

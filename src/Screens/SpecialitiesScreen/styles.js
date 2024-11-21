@@ -77,6 +77,8 @@ export const styles = StyleSheet.create({
     elevation: 20,
     width: wp('100'),
     paddingHorizontal: wp('5'),
+    maxHeight: hp('90'),
+    height: 'auto',
     // height: hp('40'),
   },
   divider: {width: wp('15'), height: hp('5'), alignSelf: 'center'},
@@ -110,4 +112,26 @@ export const styles = StyleSheet.create({
   innerText: isActive => ({
     color: isActive ? 'black' : Colors.grayFaded,
   }),
+  typeView: {
+    width: wp('90'),
+    height: hp('6'),
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  radioImg: {
+    width: wp('10'),
+    height: hp('9'),
+    marginRight: wp('2'),
+  },
+  typeDivider: {
+    color: Colors.grayBorder,
+    width: wp('90'),
+    alignSelf: 'center',
+  },
+  modalScroll: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: wp('90'),
+  },
 });

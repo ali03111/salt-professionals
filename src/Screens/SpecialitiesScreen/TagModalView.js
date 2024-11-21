@@ -1,7 +1,14 @@
 import {Image, ScrollView, TextInput, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {Colors} from '../../Theme/Variables';
-import {blurImage, boldDivider, divider, profileWhite} from '../../Assets';
+import {
+  activeRadioBtn,
+  blurImage,
+  boldDivider,
+  divider,
+  profileWhite,
+  radioBtn,
+} from '../../Assets';
 import {styles} from './styles';
 import {hp, wp} from '../../Config/responsive';
 import {TextComponent} from '../../Components/TextComponent';
@@ -9,6 +16,7 @@ import ThemeButton from '../../Components/ThemeButton';
 import {data} from '.';
 import {Touchable} from '../../Components/Touchable';
 import {useState} from 'react';
+import {Divider} from 'react-native-paper';
 
 const TagModalView = ({
   activeTags,
@@ -18,6 +26,7 @@ const TagModalView = ({
   heading,
   onSelect,
   onBackPress,
+  activeTitle,
 }) => {
   function convertToTitleCase(str) {
     return str
@@ -26,7 +35,93 @@ const TagModalView = ({
       ?.join(' ');
   }
 
+  const title = {
+    braid_type: 'Select type',
+    braid_length: 'Select length',
+    braid_size: 'Select Size',
+    estimateTime: 'Estimated time',
+    estimatePrice: 'Estimated price',
+  };
+
   const [firstHit, setFirstHit] = useState(false);
+
+  const MultiSelectView = () => {
+    return allData?.map(res => {
+      return (
+        <Touchable
+          onPress={() => {
+            setFirstHit(true);
+            onSelect(res, heading);
+          }}
+          style={styles.innerTextView(
+            Boolean(activeTags.find(v => v.id == res.id)),
+          )}>
+          <TextComponent
+            styles={styles.innerText(
+              Boolean(activeTags.find(v => v.id == res.id)),
+            )}
+            text={res?.item}
+            fade={true}
+          />
+        </Touchable>
+      );
+    });
+  };
+
+  const SignleSelectView = () => {
+    return allData.map(res => {
+      return (
+        <Touchable onPress={() => onSelect(res, heading)}>
+          <View style={styles.typeView}>
+            <Image
+              source={activeTags?.id == res?.id ? activeRadioBtn : radioBtn}
+              resizeMode="contain"
+              style={styles.radioImg}
+            />
+            <TextComponent text={res?.title || res?.name || res?.item} />
+          </View>
+          <Divider style={styles.typeDivider} />
+        </Touchable>
+      );
+    });
+  };
+
+  const EstimateTimeView = () => {
+    return (
+      <View
+        style={{
+          width: wp('90'),
+          alignSelf: 'center',
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: hp('2'),
+        }}>
+        <View
+          style={{
+            width: wp('37'),
+            height: hp('15'),
+            borderRadius: 10,
+            borderColor: Colors.lightBlack,
+            borderWidth: 0.5,
+          }}>
+          {/* <TextInput  /> */}
+        </View>
+        <TextComponent
+          text={'-'}
+          styles={{fontSize: hp('4'), fontWeight: 'bold'}}
+        />
+        <View
+          style={{
+            width: wp('37'),
+            height: hp('15'),
+            borderRadius: 10,
+            borderColor: Colors.lightBlack,
+            borderWidth: 0.5,
+          }}></View>
+      </View>
+    );
+  };
 
   return (
     <View
@@ -56,50 +151,19 @@ const TagModalView = ({
               resizeMode="contain"
               style={styles.divider}
             />
-            <TextComponent
-              text={'Add Specialities'}
-              styles={styles.headingText}
-            />
-            <TextComponent
-              text={convertToTitleCase(heading)}
-              styles={{marginVertical: hp('2')}}
-            />
+            <TextComponent text={title[heading]} styles={styles.headingText} />
             <ScrollView
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                width: wp('90'),
-                paddingBottom: firstHit ? hp('0') : hp('5'),
-              }}>
-              {allData?.map(res => {
-                return (
-                  <Touchable
-                    onPress={() => {
-                      setFirstHit(true);
-                      onSelect(res, heading);
-                    }}
-                    style={styles.innerTextView(
-                      Boolean(activeTags.find(v => v.id == res.id)),
-                    )}>
-                    <TextComponent
-                      styles={styles.innerText(
-                        Boolean(activeTags.find(v => v.id == res.id)),
-                      )}
-                      text={res?.item}
-                      fade={true}
-                    />
-                  </Touchable>
-                );
-              })}
+              contentContainerStyle={styles.modalScroll}>
+              {Boolean(
+                heading == 'braid_size' || heading == 'braid_length',
+              ) && <MultiSelectView />}
+              {Boolean(heading == 'braid_type') && <SignleSelectView />}
+              {Boolean(heading == 'estimatePrice') && <EstimateTimeView />}
             </ScrollView>
-            {firstHit && (
-              <ThemeButton
-                title={'Save'}
-                style={styles.btn}
-                onPress={onPress}
-              />
-            )}
+            {/* {firstHit && ( */}
+            <ThemeButton title={'Save'} style={styles.btn} onPress={onPress} />
+            {/* )} */}
           </View>
         </View>
       </Modal>

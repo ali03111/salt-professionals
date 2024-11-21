@@ -17,6 +17,7 @@ import {HeadingView} from '../HomeScreen/headingView';
 import ThemeButton from '../../Components/ThemeButton';
 import TagModalView from '../SpecialitiesScreen/TagModalView';
 import useBriadTypeScreen from './useBriadTypeScreen';
+import BraidTypeModal from './BraidTypeModal';
 
 const BriadTypeScreen = ({navigation}) => {
   const {
@@ -28,11 +29,13 @@ const BriadTypeScreen = ({navigation}) => {
     onPressKey,
     onOpenModal,
     toggleModal,
+    typeModal,
+    setTypeModal,
   } = useBriadTypeScreen(navigation);
 
   const TextIconView = ({title, placeholder, value, onPress}) => {
     return (
-      <Touchable style={styles.touchView}>
+      <Touchable style={styles.touchView} onPress={onPress}>
         <TextComponent text={title} styles={{fontSize: hp('1.8')}} fade />
         <View style={styles.innerView}>
           <TextComponent
@@ -59,13 +62,25 @@ const BriadTypeScreen = ({navigation}) => {
           justifyContent: arry ? 'flex-start' : 'flex-end',
         }}>
         {arry ? (
-          item.map(res => {
-            return (
-              <View style={styles.textView}>
-                <TextComponent fade={true} text={res?.item} />
-              </View>
-            );
-          })
+          <>
+            {item.map(res => {
+              return (
+                <View style={styles.textView}>
+                  <TextComponent fade={true} text={res?.item} />
+                </View>
+              );
+            })}
+            <ThemeButton
+              title={'Add more'}
+              style={{
+                ...styles.addView,
+                ...styles.addmore,
+              }}
+              image={plusCircle}
+              imageStyle={{marginLeft: wp('1')}}
+              onPress={onPress}
+            />
+          </>
         ) : (
           <ThemeButton
             title={'Add Sizes'}
@@ -86,7 +101,10 @@ const BriadTypeScreen = ({navigation}) => {
         isBack={true}
         goBack={() => navigation.goBack()}
       />
-      <ScrollView contentContainerStyle={styles.scrollView}>
+
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        showsVerticalScrollIndicator={false}>
         <TextComponent text={'Select Braid Types'} styles={styles.heading} />
         <TextComponent
           text={'If you suspect that your braid has take the grand.'}
@@ -96,20 +114,39 @@ const BriadTypeScreen = ({navigation}) => {
         <TextIconView
           title={'Select braid type'}
           placeholder={'Choose your type'}
-          value={null}
+          value={activeTags['braid_type']?.item}
+          onPress={() => onOpenModal('braid_type')}
         />
         <TextComponent
           text={'Select braid sizes'}
           styles={styles.headingText}
           fade
         />
-        <ArryView item={[]} onPress={() => onOpenModal('braid_size')} />
+        <ArryView
+          item={activeTags['braid_size']}
+          onPress={() => onOpenModal('braid_size')}
+        />
         <TextComponent
           text={'Select braid lengths'}
           styles={styles.headingText}
           fade
         />
-        <ArryView item={[]} onPress={() => onOpenModal('braid_size')} />
+        <ArryView
+          item={activeTags['braid_length']}
+          onPress={() => onOpenModal('braid_length')}
+        />
+        <TextIconView
+          title={'Estimated price'}
+          placeholder={'Add your price'}
+          value={null}
+          onPress={() => onOpenModal('estimatePrice')}
+        />
+        <TextIconView
+          title={'Estimated time'}
+          placeholder={'How much time it will taken'}
+          value={null}
+          onPress={() => onOpenModal('estimateTime')}
+        />
         {modalVal && (
           <TagModalView
             activeTags={activeTags[onPressKey] ?? []}

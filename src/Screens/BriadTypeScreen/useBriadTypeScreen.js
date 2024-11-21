@@ -11,27 +11,54 @@ const useBriadTypeScreen = () => {
   });
 
   const [modalVal, setModalVal] = useState(false);
+  const [typeModal, setTypeModal] = useState(true);
 
   const onPressKeyRef = useRef('braid_length');
 
   const {getState, dispatch} = useReduxStore();
 
   const {userData} = getState('Auth');
+
   const [activeTags, setActiveTags] = useState({
-    braid_length: userData?.braid_length,
-    braid_size: userData?.braid_size,
-    braid_type: userData?.braid_type,
+    braid_length: [],
+    braid_size: [],
+    braid_type: [],
+    startPrice: null,
+    endPrice: null,
+    startTime: null,
+    endTime: null,
   });
 
-  const {braid_length, braid_size, braid_type} = activeTags;
+  const [braidTypeData, setBraidTypeData] = useState({
+    braidType: null,
+    braidLength: null,
+    braidSize: null,
+  });
+
+  const {
+    braidLength,
+    braidSize,
+    braidType,
+    endPrice,
+    endTime,
+    startPrice,
+    startTime,
+  } = braidTypeData;
 
   const updateState = data => setActiveTags(prev => ({...prev, ...data}));
 
+  const updateBraidState = data =>
+    setBraidTypeData(prev => ({...prev, ...data}));
+
   const addTags = (v, key) => {
-    if (Boolean(activeTags[key].find(res => res.id == v.id))) {
-      updateState({[key]: activeTags[key].filter(res => res.id != v.id)});
+    if (key == 'braid_length' || key == 'braid_size') {
+      if (Boolean(activeTags[key].find(res => res.id == v.id))) {
+        updateState({[key]: activeTags[key].filter(res => res.id != v.id)});
+      } else {
+        updateState({[key]: [...activeTags[key], v]});
+      }
     } else {
-      updateState({[key]: [...activeTags[key], v]});
+      updateState({[key]: v});
     }
   };
 
@@ -64,6 +91,8 @@ const useBriadTypeScreen = () => {
     onPressKey: onPressKeyRef.current,
     onOpenModal,
     toggleModal,
+    typeModal,
+    setTypeModal,
   };
 };
 
