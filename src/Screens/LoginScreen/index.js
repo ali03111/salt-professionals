@@ -78,7 +78,7 @@ const LoginScreen = ({navigation}) => {
             getValues,
             placeholder: 'Email',
             isImage: email,
-            defaultValue: '',
+            defaultValue: __DEV__ ? 'pro4@gmail.com' : '',
             tintColor: Colors.themeRed,
           }}
         />
@@ -92,7 +92,7 @@ const LoginScreen = ({navigation}) => {
             getValues,
             placeholder: 'Password',
             isImage: lock,
-            defaultValue: '',
+            defaultValue: __DEV__ ? 'Test@123' : '',
             isSecure: true,
             inputIconStyle: styles.lockstyle,
             tintColor: Colors.themeRed,

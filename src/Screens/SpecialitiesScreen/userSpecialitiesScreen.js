@@ -73,6 +73,8 @@ const useSpecialitiesScreen = () => {
     }
   };
 
+  console.log('activeTags', data);
+
   return {
     addTags,
     activeTags,

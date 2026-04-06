@@ -97,7 +97,7 @@ const BriadTypeScreen = ({navigation}) => {
   return (
     <View style={styles.mainView}>
       <BackHeader
-        headerTitle={'Braid Types'}
+        headerTitle={'Speciality'}
         isBack={true}
         goBack={() => navigation.goBack()}
       />

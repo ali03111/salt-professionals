@@ -123,6 +123,7 @@ export const styles = StyleSheet.create({
     width: wp('10'),
     height: hp('9'),
     marginRight: wp('2'),
+    marginTop: hp('2'),
   },
   typeDivider: {
     color: Colors.grayBorder,

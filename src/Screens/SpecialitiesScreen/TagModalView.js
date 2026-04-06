@@ -105,7 +105,17 @@ const TagModalView = ({
             borderColor: Colors.lightBlack,
             borderWidth: 0.5,
           }}>
-          {/* <TextInput  /> */}
+          <TextInput
+            style={{
+              flex: 1,
+              color: 'white',
+              fontSize: hp('3'),
+              alignSelf: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: wp('10'),
+            }}
+          />
         </View>
         <TextComponent
           text={'-'}
@@ -118,7 +128,19 @@ const TagModalView = ({
             borderRadius: 10,
             borderColor: Colors.lightBlack,
             borderWidth: 0.5,
-          }}></View>
+          }}>
+          <TextInput
+            style={{
+              flex: 1,
+              color: 'white',
+              fontSize: hp('3'),
+              alignSelf: 'center',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: wp('10'),
+            }}
+          />
+        </View>
       </View>
     );
   };
